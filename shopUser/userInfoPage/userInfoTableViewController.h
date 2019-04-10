@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface userInfoTableViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UIImageView *avatorimage;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

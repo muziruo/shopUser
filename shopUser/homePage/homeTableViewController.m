@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    _logoImage.image = [UIImage imageNamed:@"zhanweitu.png"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -27,24 +29,26 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return 1;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 200;
 }
-*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    homePageTableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"homePageTableViewCell"];
+    //代码构建cell需要有这一步判断
+    if (!myCell) {
+        myCell = [[homePageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homePageTableViewCell"];
+    }
+    [myCell setFrame:CGRectMake(0, 0, tableView.frame.size.width, 200)];
+    return myCell;
+}
 
 /*
 // Override to support conditional editing of the table view.

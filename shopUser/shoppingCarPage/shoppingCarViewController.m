@@ -19,6 +19,18 @@
     // Do any additional setup after loading the view.
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 0;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
 /*
 #pragma mark - Navigation
 

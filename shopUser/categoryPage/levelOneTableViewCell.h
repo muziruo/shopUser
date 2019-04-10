@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface levelOneTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *categoryTitle;
+
 @end
 
 NS_ASSUME_NONNULL_END

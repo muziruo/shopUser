@@ -10,13 +10,54 @@
 
 @interface categotyViewController ()
 
+@property NSArray *levelOne;
+
 @end
 
 @implementation categotyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _levelOne = @[@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类"];
     // Do any additional setup after loading the view.
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _levelOne.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    levelOneTableViewCell *levelOneCell = [tableView dequeueReusableCellWithIdentifier:@"levelOneTitle" forIndexPath:indexPath];
+    
+    levelOneCell.categoryTitle.text = _levelOne[indexPath.row];
+    
+    return levelOneCell;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return _levelOne.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    levelTwoCollectionViewCell *levelTwoCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"levelTwoCell" forIndexPath:indexPath];
+    
+    levelTwoCell.categoryImage.image = [UIImage imageNamed:@"zhanweitu.png"];
+    levelTwoCell.levelTwoTitle.text = _levelOne[indexPath.row];
+    
+    return levelTwoCell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 /*

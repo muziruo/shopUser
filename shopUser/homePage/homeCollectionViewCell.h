@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface homeCollectionViewCell : UICollectionViewCell
 
+@property UILabel *categoryName;
+@property UIImageView *categoryImage;
+
 @end
 
 NS_ASSUME_NONNULL_END

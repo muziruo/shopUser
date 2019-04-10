@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2AF34D5E4041478A1C84068 /* Pods_shopUser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0CB5268646772CA7D070C5A /* Pods_shopUser.framework */; };
+		EE032058225CD3A300212E84 /* levelTwoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE032057225CD3A300212E84 /* levelTwoCollectionViewCell.m */; };
+		EE03205E225CD8EE00212E84 /* shoppingCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE03205D225CD8EE00212E84 /* shoppingCarViewController.m */; };
+		EE032061225CDAD900212E84 /* userInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE032060225CDAD900212E84 /* userInfoTableViewController.m */; };
+		EE032064225CDCC400212E84 /* homeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE032063225CDCC400212E84 /* homeTableViewController.m */; };
+		EE032069225CF02300212E84 /* commodityListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE032068225CF02300212E84 /* commodityListTableViewController.m */; };
+		EE03206D225CF46C00212E84 /* commodityListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE03206C225CF46C00212E84 /* commodityListTableViewCell.m */; };
+		EE032070225CF51E00212E84 /* commodityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EE03206F225CF51E00212E84 /* commodityInfo.m */; };
+		EE032072225D88F300212E84 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = EE032071225D88F300212E84 /* Podfile */; };
+		EE032075225D8D9D00212E84 /* homePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE032074225D8D9D00212E84 /* homePageTableViewCell.m */; };
 		EE1A8A65225CC9B40054E293 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A8A64225CC9B40054E293 /* AppDelegate.m */; };
 		EE1A8A68225CC9B40054E293 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A8A67225CC9B40054E293 /* ViewController.m */; };
 		EE1A8A6B225CC9B40054E293 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE1A8A69225CC9B40054E293 /* Main.storyboard */; };
@@ -16,6 +26,11 @@
 		EE1A8A76225CC9B50054E293 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A8A75225CC9B50054E293 /* main.m */; };
 		EE1A8A80225CC9B50054E293 /* shopUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A8A7F225CC9B50054E293 /* shopUserTests.m */; };
 		EE1A8A8B225CC9B50054E293 /* shopUserUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A8A8A225CC9B50054E293 /* shopUserUITests.m */; };
+		EE1A8A9B225CC9FD0054E293 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A8A9A225CC9FD0054E293 /* loginViewController.m */; };
+		EE1A8A9F225CCCC30054E293 /* categotyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A8A9E225CCCC30054E293 /* categotyViewController.m */; };
+		EE1A8AA2225CCCF20054E293 /* levelOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A8AA1225CCCF20054E293 /* levelOneTableViewCell.m */; };
+		EED07113225D9CD10086D96C /* homeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07112225D9CD10086D96C /* homeCollectionView.m */; };
+		EED07116225D9D170086D96C /* homeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07115225D9D170086D96C /* homeCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +51,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		213FEDECC8C1DE405B8C948E /* Pods-shopUser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shopUser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-shopUser/Pods-shopUser.debug.xcconfig"; sourceTree = "<group>"; };
+		2A37FA38FF45EF96FB5F9741 /* Pods-shopUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shopUser.release.xcconfig"; path = "Pods/Target Support Files/Pods-shopUser/Pods-shopUser.release.xcconfig"; sourceTree = "<group>"; };
+		C0CB5268646772CA7D070C5A /* Pods_shopUser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shopUser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE032056225CD3A300212E84 /* levelTwoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = levelTwoCollectionViewCell.h; sourceTree = "<group>"; };
+		EE032057225CD3A300212E84 /* levelTwoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = levelTwoCollectionViewCell.m; sourceTree = "<group>"; };
+		EE03205C225CD8EE00212E84 /* shoppingCarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shoppingCarViewController.h; sourceTree = "<group>"; };
+		EE03205D225CD8EE00212E84 /* shoppingCarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shoppingCarViewController.m; sourceTree = "<group>"; };
+		EE03205F225CDAD900212E84 /* userInfoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userInfoTableViewController.h; sourceTree = "<group>"; };
+		EE032060225CDAD900212E84 /* userInfoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userInfoTableViewController.m; sourceTree = "<group>"; };
+		EE032062225CDCC400212E84 /* homeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeTableViewController.h; sourceTree = "<group>"; };
+		EE032063225CDCC400212E84 /* homeTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeTableViewController.m; sourceTree = "<group>"; };
+		EE032067225CF02300212E84 /* commodityListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = commodityListTableViewController.h; sourceTree = "<group>"; };
+		EE032068225CF02300212E84 /* commodityListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = commodityListTableViewController.m; sourceTree = "<group>"; };
+		EE03206B225CF46C00212E84 /* commodityListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = commodityListTableViewCell.h; sourceTree = "<group>"; };
+		EE03206C225CF46C00212E84 /* commodityListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = commodityListTableViewCell.m; sourceTree = "<group>"; };
+		EE03206E225CF51E00212E84 /* commodityInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = commodityInfo.h; sourceTree = "<group>"; };
+		EE03206F225CF51E00212E84 /* commodityInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = commodityInfo.m; sourceTree = "<group>"; };
+		EE032071225D88F300212E84 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		EE032073225D8D9D00212E84 /* homePageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homePageTableViewCell.h; sourceTree = "<group>"; };
+		EE032074225D8D9D00212E84 /* homePageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homePageTableViewCell.m; sourceTree = "<group>"; };
 		EE1A8A60225CC9B40054E293 /* shopUser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shopUser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE1A8A63225CC9B40054E293 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EE1A8A64225CC9B40054E293 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,6 +88,16 @@
 		EE1A8A86225CC9B50054E293 /* shopUserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = shopUserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE1A8A8A225CC9B50054E293 /* shopUserUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shopUserUITests.m; sourceTree = "<group>"; };
 		EE1A8A8C225CC9B50054E293 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE1A8A99225CC9FD0054E293 /* loginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
+		EE1A8A9A225CC9FD0054E293 /* loginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
+		EE1A8A9D225CCCC30054E293 /* categotyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = categotyViewController.h; sourceTree = "<group>"; };
+		EE1A8A9E225CCCC30054E293 /* categotyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = categotyViewController.m; sourceTree = "<group>"; };
+		EE1A8AA0225CCCF20054E293 /* levelOneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = levelOneTableViewCell.h; sourceTree = "<group>"; };
+		EE1A8AA1225CCCF20054E293 /* levelOneTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = levelOneTableViewCell.m; sourceTree = "<group>"; };
+		EED07111225D9CD10086D96C /* homeCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeCollectionView.h; sourceTree = "<group>"; };
+		EED07112225D9CD10086D96C /* homeCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeCollectionView.m; sourceTree = "<group>"; };
+		EED07114225D9D170086D96C /* homeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeCollectionViewCell.h; sourceTree = "<group>"; };
+		EED07115225D9D170086D96C /* homeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2AF34D5E4041478A1C84068 /* Pods_shopUser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,13 +126,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C7B395B58C44D2797BCD9D0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				213FEDECC8C1DE405B8C948E /* Pods-shopUser.debug.xcconfig */,
+				2A37FA38FF45EF96FB5F9741 /* Pods-shopUser.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EE032059225CD77200212E84 /* userInfoPage */ = {
+			isa = PBXGroup;
+			children = (
+				EE03205F225CDAD900212E84 /* userInfoTableViewController.h */,
+				EE032060225CDAD900212E84 /* userInfoTableViewController.m */,
+			);
+			path = userInfoPage;
+			sourceTree = "<group>";
+		};
+		EE03205A225CD78300212E84 /* shoppingCarPage */ = {
+			isa = PBXGroup;
+			children = (
+				EE03205C225CD8EE00212E84 /* shoppingCarViewController.h */,
+				EE03205D225CD8EE00212E84 /* shoppingCarViewController.m */,
+			);
+			path = shoppingCarPage;
+			sourceTree = "<group>";
+		};
+		EE03205B225CD79700212E84 /* homePage */ = {
+			isa = PBXGroup;
+			children = (
+				EE032062225CDCC400212E84 /* homeTableViewController.h */,
+				EE032063225CDCC400212E84 /* homeTableViewController.m */,
+				EE032073225D8D9D00212E84 /* homePageTableViewCell.h */,
+				EE032074225D8D9D00212E84 /* homePageTableViewCell.m */,
+				EED07111225D9CD10086D96C /* homeCollectionView.h */,
+				EED07112225D9CD10086D96C /* homeCollectionView.m */,
+				EED07114225D9D170086D96C /* homeCollectionViewCell.h */,
+				EED07115225D9D170086D96C /* homeCollectionViewCell.m */,
+			);
+			path = homePage;
+			sourceTree = "<group>";
+		};
+		EE032065225CEF3600212E84 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				EE03206E225CF51E00212E84 /* commodityInfo.h */,
+				EE03206F225CF51E00212E84 /* commodityInfo.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		EE032066225CF00F00212E84 /* commodityListPage */ = {
+			isa = PBXGroup;
+			children = (
+				EE032067225CF02300212E84 /* commodityListTableViewController.h */,
+				EE032068225CF02300212E84 /* commodityListTableViewController.m */,
+				EE03206B225CF46C00212E84 /* commodityListTableViewCell.h */,
+				EE03206C225CF46C00212E84 /* commodityListTableViewCell.m */,
+			);
+			path = commodityListPage;
+			sourceTree = "<group>";
+		};
 		EE1A8A57225CC9B40054E293 = {
 			isa = PBXGroup;
 			children = (
+				EE032071225D88F300212E84 /* Podfile */,
 				EE1A8A62225CC9B40054E293 /* shopUser */,
 				EE1A8A7E225CC9B50054E293 /* shopUserTests */,
 				EE1A8A89225CC9B50054E293 /* shopUserUITests */,
 				EE1A8A61225CC9B40054E293 /* Products */,
+				9C7B395B58C44D2797BCD9D0 /* Pods */,
+				F06DE39FD92E6755F4FDCC36 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +214,13 @@
 		EE1A8A62225CC9B40054E293 /* shopUser */ = {
 			isa = PBXGroup;
 			children = (
+				EE032065225CEF3600212E84 /* model */,
+				EE032066225CF00F00212E84 /* commodityListPage */,
+				EE03205B225CD79700212E84 /* homePage */,
+				EE03205A225CD78300212E84 /* shoppingCarPage */,
+				EE032059225CD77200212E84 /* userInfoPage */,
+				EE1A8A9C225CCCB30054E293 /* categoryPage */,
+				EE1A8A98225CC9EA0054E293 /* loginPage */,
 				EE1A8A63225CC9B40054E293 /* AppDelegate.h */,
 				EE1A8A64225CC9B40054E293 /* AppDelegate.m */,
 				EE1A8A66225CC9B40054E293 /* ViewController.h */,
@@ -135,6 +253,36 @@
 			path = shopUserUITests;
 			sourceTree = "<group>";
 		};
+		EE1A8A98225CC9EA0054E293 /* loginPage */ = {
+			isa = PBXGroup;
+			children = (
+				EE1A8A99225CC9FD0054E293 /* loginViewController.h */,
+				EE1A8A9A225CC9FD0054E293 /* loginViewController.m */,
+			);
+			path = loginPage;
+			sourceTree = "<group>";
+		};
+		EE1A8A9C225CCCB30054E293 /* categoryPage */ = {
+			isa = PBXGroup;
+			children = (
+				EE1A8A9D225CCCC30054E293 /* categotyViewController.h */,
+				EE1A8A9E225CCCC30054E293 /* categotyViewController.m */,
+				EE1A8AA0225CCCF20054E293 /* levelOneTableViewCell.h */,
+				EE1A8AA1225CCCF20054E293 /* levelOneTableViewCell.m */,
+				EE032056225CD3A300212E84 /* levelTwoCollectionViewCell.h */,
+				EE032057225CD3A300212E84 /* levelTwoCollectionViewCell.m */,
+			);
+			path = categoryPage;
+			sourceTree = "<group>";
+		};
+		F06DE39FD92E6755F4FDCC36 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0CB5268646772CA7D070C5A /* Pods_shopUser.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -142,9 +290,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE1A8A8F225CC9B50054E293 /* Build configuration list for PBXNativeTarget "shopUser" */;
 			buildPhases = (
+				890CA5C90DD27CA7D0040A15 /* [CP] Check Pods Manifest.lock */,
 				EE1A8A5C225CC9B40054E293 /* Sources */,
 				EE1A8A5D225CC9B40054E293 /* Frameworks */,
 				EE1A8A5E225CC9B40054E293 /* Resources */,
+				4C578497673AE74C53BECB67 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,6 +390,7 @@
 			files = (
 				EE1A8A73225CC9B50054E293 /* LaunchScreen.storyboard in Resources */,
 				EE1A8A70225CC9B50054E293 /* Assets.xcassets in Resources */,
+				EE032072225D88F300212E84 /* Podfile in Resources */,
 				EE1A8A6B225CC9B40054E293 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,15 +411,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4C578497673AE74C53BECB67 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-shopUser/Pods-shopUser-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shopUser/Pods-shopUser-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		890CA5C90DD27CA7D0040A15 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-shopUser-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EE1A8A5C225CC9B40054E293 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE032075225D8D9D00212E84 /* homePageTableViewCell.m in Sources */,
+				EE032058225CD3A300212E84 /* levelTwoCollectionViewCell.m in Sources */,
+				EE032064225CDCC400212E84 /* homeTableViewController.m in Sources */,
+				EE1A8A9F225CCCC30054E293 /* categotyViewController.m in Sources */,
 				EE1A8A68225CC9B40054E293 /* ViewController.m in Sources */,
+				EE1A8A9B225CC9FD0054E293 /* loginViewController.m in Sources */,
 				EE1A8A65225CC9B40054E293 /* AppDelegate.m in Sources */,
 				EE1A8A76225CC9B50054E293 /* main.m in Sources */,
+				EE032061225CDAD900212E84 /* userInfoTableViewController.m in Sources */,
+				EE03205E225CD8EE00212E84 /* shoppingCarViewController.m in Sources */,
+				EE032069225CF02300212E84 /* commodityListTableViewController.m in Sources */,
+				EE1A8AA2225CCCF20054E293 /* levelOneTableViewCell.m in Sources */,
+				EE032070225CF51E00212E84 /* commodityInfo.m in Sources */,
+				EE03206D225CF46C00212E84 /* commodityListTableViewCell.m in Sources */,
 				EE1A8A6E225CC9B40054E293 /* shopUser.xcdatamodeld in Sources */,
+				EED07116225D9D170086D96C /* homeCollectionViewCell.m in Sources */,
+				EED07113225D9CD10086D96C /* homeCollectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +642,7 @@
 		};
 		EE1A8A90225CC9B50054E293 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 213FEDECC8C1DE405B8C948E /* Pods-shopUser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,6 +660,7 @@
 		};
 		EE1A8A91225CC9B50054E293 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A37FA38FF45EF96FB5F9741 /* Pods-shopUser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
