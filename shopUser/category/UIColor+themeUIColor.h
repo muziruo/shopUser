@@ -2,7 +2,7 @@
 //  UIColor+themeUIColor.h
 //  shopUser
 //
-//  Created by 李祎喆 on 2019/4/12.
+//  Created by 李祎喆 on 2019/4/16.
 //  Copyright © 2019 李祎喆. All rights reserved.
 //
 
@@ -10,7 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIColor ()
+@interface UIColor (themeUIColor)
+
++(UIColor *)buttonColor;
 
 @end
 
