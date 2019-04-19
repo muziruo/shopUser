@@ -8,6 +8,7 @@
 
 #import "commodityListTableViewController.h"
 
+
 @interface commodityListTableViewController ()
 
 @end
@@ -16,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //self.hidesBottomBarWhenPushed = YES;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -27,24 +28,29 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return 10;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    commodityListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commodityListCel" forIndexPath:indexPath];
     
-    // Configure the cell...
+    cell.commodityInfo.text = @"商品描述";
+    cell.commodityName.text = @"商品名称";
+    cell.commodityImage.image = [UIImage imageNamed:@"imageReplace"];
+    cell.price.text = @"9999";
     
     return cell;
 }
-*/
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"goToInfo" sender:nil];
+}
+
 
 /*
 // Override to support conditional editing of the table view.

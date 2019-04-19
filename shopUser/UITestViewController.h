@@ -7,10 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIColor+themeUIColor.h"
+#import "UIFont+themeUIFont.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UITestViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UILabel *titleText;
+@property (weak, nonatomic) IBOutlet UILabel *normalText;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionText;
+@property (weak, nonatomic) IBOutlet UILabel *titleTextLight;
+@property (weak, nonatomic) IBOutlet UILabel *normlTextLight;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionTextLight;
+
+@property (weak, nonatomic) IBOutlet UIButton *normalButton;
+@property (weak, nonatomic) IBOutlet UIButton *stressButton;
 
 @end
 

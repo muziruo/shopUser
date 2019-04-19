@@ -7,10 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "orderStatusCollectionViewCell.h"
+#import "Masonry.h"
+#import "UIFont+themeUIFont.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface userInfoTableViewCell : UITableViewCell
+
+
+
+@end
+
+
+@interface orderStatusCell : UITableViewCell<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
+@property UICollectionView *orderCollectionView;
+@property NSArray *statusTitle;
+@property NSArray *statusImage;
 
 @end
 

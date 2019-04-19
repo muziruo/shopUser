@@ -8,21 +8,39 @@
 
 #import <UIKit/UIKit.h>
 #import "SDCycleScrollView.h"
+#import "homeCollectionView.h"
+#import "homeCollectionViewCell.h"
+#import "Masonry.h"
+#import "commodityListTableViewController.h"
+#import "commodityCollectionViewCell.h"
+#import "infoViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 //轮播图cell
-@interface homePageTableViewCell : UITableViewCell
+@interface homePageTableViewCell : UITableViewCell<SDCycleScrollViewDelegate>
+
+@property (nonatomic) SDCycleScrollView *myView;
+
+-(UIViewController *)getController;
 
 @end
 
 //主页分类cell
-@interface homeCategoryCell : UITableViewCell
+@interface homeCategoryCell : UITableViewCell<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
+@property (nonatomic) UICollectionView *homeCategory;
+
+-(UIViewController *)getController;
 
 @end
 
 //商品cell
-@interface commodityCell : UITableViewCell
+@interface commodityCell : UITableViewCell<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
+@property (nonatomic) UICollectionView *homeCommodity;
+
+-(UIViewController *)getController;
 
 @end
 

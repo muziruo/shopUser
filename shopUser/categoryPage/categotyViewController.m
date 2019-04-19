@@ -20,6 +20,9 @@
     [super viewDidLoad];
     
     _levelOne = @[@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类"];
+    
+    self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
+    self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     // Do any additional setup after loading the view.
 }
 
@@ -50,8 +53,12 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     levelTwoCollectionViewCell *levelTwoCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"levelTwoCell" forIndexPath:indexPath];
     
-    levelTwoCell.categoryImage.image = [UIImage imageNamed:@"zhanweitu.png"];
+    levelTwoCell.categoryImage.image = [UIImage imageNamed:@"imageReplace-s"];
+    levelTwoCell.categoryImage.clipsToBounds = YES;
+    levelTwoCell.categoryImage.contentMode = UIViewContentModeScaleAspectFill;
+    
     levelTwoCell.levelTwoTitle.text = _levelOne[indexPath.row];
+    levelTwoCell.levelTwoTitle.font = UIFont.normalFontLight;
     
     return levelTwoCell;
 }
@@ -60,14 +67,10 @@
     return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    commodityListTableViewController *commodityListView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"commodityListTableView"];
+    [self.navigationController pushViewController:commodityListView animated:true];
 }
-*/
 
 @end

@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    self.categoryTitle.font = UIFont.normalFont;
     // Initialization code
 }
 

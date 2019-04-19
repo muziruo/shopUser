@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIFont+themeUIFont.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface homeCollectionViewCell : UICollectionViewCell
 
-@property UILabel *categoryName;
-@property UIImageView *categoryImage;
+@property (nonatomic) UILabel *categoryName;
+@property (nonatomic) UIImageView *categoryImage;
 
 @end
 

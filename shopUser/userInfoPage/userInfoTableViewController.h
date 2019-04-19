@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "userInfoTableViewCell.h"
+#import "UIColor+themeUIColor.h"
+#import "UIFont+themeUIFont.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface userInfoTableViewController : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatorimage;
+@property (weak, nonatomic) IBOutlet UILabel *userNickName;
+@property (weak, nonatomic) IBOutlet UIView *userBackgroundImage;
 
 
 @end

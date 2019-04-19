@@ -8,28 +8,27 @@
 
 #import "homeTableViewController.h"
 
+
 @interface homeTableViewController ()
 
 @end
+
 
 @implementation homeTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
     _logoImage.image = [UIImage imageNamed:@"zhanweitu.png"];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
+    self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
 }
 
-#pragma mark - Table view data source
-
+/**
+ 配置tableview
+ */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 9;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -37,18 +36,62 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section >= 2) {
+        return 250;
+    }
     return 200;
 }
 
+/**
+ 根据主页不同的sectiona来配置不同的cell
+ */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    homePageTableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"homePageTableViewCell"];
-    //代码构建cell需要有这一步判断
-    if (!myCell) {
-        myCell = [[homePageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homePageTableViewCell"];
+    if (indexPath.section == 0) {
+        homePageTableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"homePageTableViewCell"];
+        //代码构建cell需要有这一步判断
+        if (!myCell) {
+            myCell = [[homePageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homePageTableViewCell"];
+        }
+        return myCell;
+    }else if (indexPath.section == 1){
+        homeCategoryCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"homeCategoryCell"];
+        if (!myCell) {
+            myCell = [[homeCategoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homeCategoryCell"];
+        }
+        return myCell;
+    }else {
+        commodityCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"homeCommodityCell"];
+        if (!myCell) {
+            myCell = [[commodityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homeCommodityCell"];
+        }
+        myCell.backgroundColor = [[UIColor alloc] initWithRed:231 green:231 blue:231 alpha:1.0];
+        return myCell;
     }
-    [myCell setFrame:CGRectMake(0, 0, tableView.frame.size.width, 200)];
-    return myCell;
 }
+
+//section之间的间隔
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 15;
+}
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:true];
+}
+
+- (IBAction)goToSearch:(id)sender {
+    NSArray *hotSearch = @[@"iPhone",@"iPad",@"MacBook",@"AirPods"];
+    
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSearch searchBarPlaceholder:@"搜索您想要的商品" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        commodityListTableViewController *toController = [mainStoryBroad instantiateViewControllerWithIdentifier:@"commodityListTableView"];
+        [searchViewController.navigationController pushViewController:toController animated:YES];
+    }];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+    [self presentViewController:nav animated:true completion:nil];
+}
+
 
 /*
 // Override to support conditional editing of the table view.

@@ -17,7 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _avatorimage.image = [UIImage imageNamed:@"zhanweitu.png"];
+    _avatorimage.image = [UIImage imageNamed:@"imageReplace-s"];
+    _userNickName.font = UIFont.normalFont;
+    
+    self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -28,21 +32,32 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        return 85;
+    }
+    return 60;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 15;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    if (indexPath.section == 0) {
+        orderStatusCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"orderStatusCell"];
+        if (!myCell) {
+            myCell = [[orderStatusCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"orderStatusCell"];
+        }
+        return myCell;
+    }
     return nil;
 }
 

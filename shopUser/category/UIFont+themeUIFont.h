@@ -12,6 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIFont (themeUIFont)
 
++ (UIFont *)descriptionFont;
++ (UIFont *)descriptionFontLight;
++ (UIFont *)titleFont;
++ (UIFont *)titleFontLight;
++ (UIFont *)normalFont;
++ (UIFont *)normalFontLight;
++ (UIFont *)numberFont;
+
 @end
 
 NS_ASSUME_NONNULL_END

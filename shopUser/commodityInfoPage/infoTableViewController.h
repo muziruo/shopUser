@@ -7,10 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDCycleScrollView.h"
+#import "baseInfoTableViewCell.h"
+#import "UIColor+themeUIColor.h"
+#import "UIFont+themeUIFont.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface infoTableViewController : UITableViewController
+
+@property (weak, nonatomic) IBOutlet UIView *imageArea;
+
+@property SDCycleScrollView *commodityImage;
+
 
 @end
 

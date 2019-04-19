@@ -7,10 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JXCategoryView.h"
+#import "JVFloatLabeledTextField.h"
+#import "UIColor+themeUIColor.h"
+#import "UIFont+themeUIFont.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface registerViewController : UIViewController
+@interface registerViewController : UIViewController<JXCategoryListContentViewDelegate>
+
+@property JVFloatLabeledTextField *accountInput;
+@property JVFloatLabeledTextField *passwordInput;
+@property JVFloatLabeledTextField *verifiedCode;
+@property UIButton *getCode;
+@property UIButton *registerButton;
 
 @end
 

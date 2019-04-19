@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIFont+themeUIFont.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface orderStatusCollectionViewCell : UICollectionViewCell
+
+@property UIImageView *statusImage;
+@property UILabel *statusTitle;
 
 @end
 

@@ -7,10 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JXCategoryView.h"
+#import "JVFloatLabeledTextField.h"
+#import "UIColor+themeUIColor.h"
+#import "UIFont+themeUIFont.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface listViewController : UIViewController
+@interface listViewController : UIViewController<JXCategoryListContentViewDelegate>
+
+@property JVFloatLabeledTextField *accountInput;
+@property JVFloatLabeledTextField *passwordInput;
+@property UIButton *loginButton;
 
 @end
 

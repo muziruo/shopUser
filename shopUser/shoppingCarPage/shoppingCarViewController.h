@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIColor+themeUIColor.h"
+#import "shoppingCarTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface shoppingCarViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIButton *buyButton;
 
 @end
 

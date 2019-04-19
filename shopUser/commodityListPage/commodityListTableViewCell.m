@@ -12,6 +12,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    self.commodityName.font = UIFont.normalFont;
+    self.commodityInfo.font = UIFont.descriptionFontLight;
+    self.price.font = UIFont.numberFont;
+    
+    self.commodityImage.contentMode = UIViewContentModeScaleAspectFill;
+    self.commodityImage.clipsToBounds = YES;
     // Initialization code
 }
 

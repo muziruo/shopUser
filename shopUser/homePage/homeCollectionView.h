@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface homeCollectionView : UIView
+@interface homeCollectionView : UIView<UICollectionViewDelegate, UICollectionViewDataSource>
 
 
 

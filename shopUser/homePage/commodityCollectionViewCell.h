@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIFont+themeUIFont.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface commodityCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic) UIImageView *commodityImage;
+@property (nonatomic) UILabel *commodityName;
+@property (nonatomic) UILabel *price;
 
 @end
 

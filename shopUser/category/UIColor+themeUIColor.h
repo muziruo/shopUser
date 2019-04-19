@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIColor (themeUIColor)
 
 +(UIColor *)buttonColor;
++(UIColor *)stressColor;
++(UIColor *)themeMainColor;
 
 @end
 

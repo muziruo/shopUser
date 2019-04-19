@@ -16,20 +16,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _buyButton.backgroundColor = UIColor.buttonColor;
+    self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
+    self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     // Do any additional setup after loading the view.
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    shoppingCarTableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"shoppingCarCell" forIndexPath:indexPath];
+    
+    myCell.commodityImage.image = [UIImage imageNamed:@"imageReplace"];
+    myCell.commodityName.text = @"商品名称";
+    myCell.descriptionInfo.text = @"商品参数";
+    
+    return myCell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return [[UIView alloc] initWithFrame:CGRectZero];
 }
+
+
 
 /*
 #pragma mark - Navigation
