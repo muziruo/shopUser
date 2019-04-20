@@ -207,7 +207,7 @@
     
 //    请在此配置数据
     
-    myCell.commodityName.text = @"商品名称";
+    myCell.commodityName.text = [self.commodityInfo[indexPath.row] valueForKey:@"name"];
     myCell.commodityImage.image = [UIImage imageNamed:@"imageReplace"];
     myCell.price.text = @"¥9999";
     
@@ -232,6 +232,5 @@
     }
     return nil;
 }
-
 
 @end

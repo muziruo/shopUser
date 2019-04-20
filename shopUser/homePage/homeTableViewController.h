@@ -13,6 +13,7 @@
 #import "PYSearch.h"
 #import "infoViewController.h"
 #import "commodityListTableViewController.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIImageView *logoImage;
 @property (weak, nonatomic) IBOutlet UITextField *searchInput;
+
+-(void)getHomeCommodity;
 
 @end
 

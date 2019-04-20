@@ -14,6 +14,7 @@
 #import "commodityListTableViewController.h"
 #import "commodityCollectionViewCell.h"
 #import "infoViewController.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -39,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface commodityCell : UITableViewCell<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic) UICollectionView *homeCommodity;
+@property NSArray *commodityInfo;
 
 -(UIViewController *)getController;
 

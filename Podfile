@@ -7,4 +7,5 @@ target 'shopUser' do
     pod 'JVFloatLabeledTextField'
     pod 'JXCategoryView'
     pod 'PYSearch'
+    pod 'AVOSCloud'
 end

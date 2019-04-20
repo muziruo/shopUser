@@ -11,6 +11,8 @@
 
 @interface homeTableViewController ()
 
+@property NSArray *commodityInfo;
+
 @end
 
 
@@ -22,13 +24,30 @@
     
     self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
+    
+    [self getHomeCommodity];
 }
+
+//获取云端数据
+- (void)getHomeCommodity {
+    [AVCloud callFunctionInBackground:@"getHomeCommodity" withParameters:nil block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            self.commodityInfo = object;
+            //NSLog(@"数组中的元素个数为%lu",[object count]);
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+            NSLog(@"数据获取成功");
+        }
+    }];
+}
+
 
 /**
  配置tableview
  */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 9;
+    return 2 + [self.commodityInfo count] / 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -43,7 +62,7 @@
 }
 
 /**
- 根据主页不同的sectiona来配置不同的cell
+ 根据主页不同的sectiona来配置不同的cell，请在此处向子类传递数据
  */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
@@ -64,6 +83,7 @@
         if (!myCell) {
             myCell = [[commodityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homeCommodityCell"];
         }
+        myCell.commodityInfo = self.commodityInfo;
         myCell.backgroundColor = [[UIColor alloc] initWithRed:231 green:231 blue:231 alpha:1.0];
         return myCell;
     }

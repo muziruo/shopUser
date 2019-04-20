@@ -539,6 +539,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-shopUser/Pods-shopUser-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework",
 				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/JXCategoryView/JXCategoryView.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
@@ -548,6 +549,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloud.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JXCategoryView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",

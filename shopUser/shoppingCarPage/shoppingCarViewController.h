@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIColor+themeUIColor.h"
 #import "shoppingCarTableViewCell.h"
+#import "infoViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

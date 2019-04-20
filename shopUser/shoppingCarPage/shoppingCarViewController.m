@@ -45,6 +45,12 @@
     return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    infoViewController *commodityInfo = [mainStoryBroad instantiateViewControllerWithIdentifier:@"commodityInfoView"];
+    [self.navigationController pushViewController:commodityInfo animated:YES];
+}
+
 
 
 /*

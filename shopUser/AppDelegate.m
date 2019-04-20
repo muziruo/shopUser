@@ -17,6 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [AVOSCloud setApplicationId:@"aHJ3ITs72tlYwR50EvEbbciG-gzGzoHsz" clientKey:@"b9TS6i4H8Y6WKcqx9KXdMRMB"];
+    
     return YES;
 }
 
