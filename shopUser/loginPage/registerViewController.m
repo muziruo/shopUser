@@ -71,4 +71,8 @@
     NSLog(@"注册成功");
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:true];
+}
+
 @end

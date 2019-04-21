@@ -81,6 +81,7 @@
             break;
         case 1:
             return [[registerViewController alloc] init];
+            break;
         default:
             return nil;
             break;

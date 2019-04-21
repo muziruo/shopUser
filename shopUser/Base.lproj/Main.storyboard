@@ -13,7 +13,7 @@
         <!--Login View Controller-->
         <scene sceneID="3hK-8b-JyA">
             <objects>
-                <viewController id="4oP-4j-Pwv" customClass="loginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4oP-4j-Pwv" customClass="loginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZoP-5X-ujT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -804,19 +804,19 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ds6-rG-6js">
-                                    <rect key="frame" x="170" y="120" width="35" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ot5-gA-pbr">
+                                    <rect key="frame" x="154.5" y="118" width="66" height="30"/>
+                                    <state key="normal" title="登录/注册">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="ot5-gA-pbr" firstAttribute="top" secondItem="MNR-Bo-zBl" secondAttribute="bottom" constant="8" id="5yR-d6-q3q"/>
                                 <constraint firstItem="MNR-Bo-zBl" firstAttribute="top" secondItem="4AT-Rf-aDq" secondAttribute="top" constant="30" id="Bhu-cW-Iiw"/>
-                                <constraint firstItem="ds6-rG-6js" firstAttribute="centerX" secondItem="4AT-Rf-aDq" secondAttribute="centerX" id="KjW-uJ-AO7"/>
                                 <constraint firstItem="MNR-Bo-zBl" firstAttribute="centerX" secondItem="4AT-Rf-aDq" secondAttribute="centerX" id="QIz-23-z5h"/>
-                                <constraint firstItem="ds6-rG-6js" firstAttribute="top" secondItem="MNR-Bo-zBl" secondAttribute="bottom" constant="10" id="rIC-wp-03v"/>
+                                <constraint firstItem="ot5-gA-pbr" firstAttribute="centerX" secondItem="4AT-Rf-aDq" secondAttribute="centerX" id="yam-xp-NwD"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -838,7 +838,7 @@
                     <connections>
                         <outlet property="avatorimage" destination="MNR-Bo-zBl" id="LOX-X3-a4g"/>
                         <outlet property="userBackgroundImage" destination="4AT-Rf-aDq" id="rZk-Ew-3eD"/>
-                        <outlet property="userNickName" destination="ds6-rG-6js" id="rqe-Km-h5K"/>
+                        <outlet property="userNickName" destination="ot5-gA-pbr" id="cWS-K7-c9e"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tNc-Q8-Sep" userLabel="First Responder" sceneMemberID="firstResponder"/>

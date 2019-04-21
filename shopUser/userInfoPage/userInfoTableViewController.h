@@ -10,14 +10,15 @@
 #import "userInfoTableViewCell.h"
 #import "UIColor+themeUIColor.h"
 #import "UIFont+themeUIFont.h"
+#import "loginViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface userInfoTableViewController : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatorimage;
-@property (weak, nonatomic) IBOutlet UILabel *userNickName;
 @property (weak, nonatomic) IBOutlet UIView *userBackgroundImage;
+@property (weak, nonatomic) IBOutlet UIButton *userNickName;
 
 
 @end

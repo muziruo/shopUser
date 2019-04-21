@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property JVFloatLabeledTextField *accountInput;
 @property JVFloatLabeledTextField *passwordInput;
 @property UIButton *loginButton;
+@property UIViewController *mainView;
 
 @end
 

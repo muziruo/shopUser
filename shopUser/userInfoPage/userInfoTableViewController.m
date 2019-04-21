@@ -10,17 +10,21 @@
 
 @interface userInfoTableViewController ()
 
+@property NSUserDefaults *userSetting;
+
 @end
 
 @implementation userInfoTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.userSetting = [NSUserDefaults standardUserDefaults];
     
     _avatorimage.image = [UIImage imageNamed:@"imageReplace-s"];
     _userNickName.font = UIFont.normalFont;
     
     self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -29,7 +33,22 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-#pragma mark - Table view data source
+//在此跳转到登录页面
+-(void)userLogin {
+    UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    loginViewController *loginView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"loginView"];
+    [self presentViewController:loginView animated:true completion:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if (![self.userSetting valueForKey:@"isLogin"]) {
+        [self.userNickName setTitle:@"登录/注册" forState:UIControlStateNormal];
+        [self.userNickName addTarget:self action:@selector(userLogin) forControlEvents:UIControlEventTouchUpInside];
+    }else {
+        [self.userNickName setTitle:@"昵称" forState:UIControlStateNormal];
+        self.userNickName.userInteractionEnabled = false;
+    }
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

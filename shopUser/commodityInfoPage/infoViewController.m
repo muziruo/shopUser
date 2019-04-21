@@ -34,7 +34,9 @@
     self.buyButton.backgroundColor = UIColor.buttonColor;
     self.addCart.backgroundColor = UIColor.stressColor;
     
-    [self getCommodityEvaluation];
+    if ([self.info valueForKey:@"objectId"] != nil) {
+        [self getCommodityEvaluation];
+    }
     // Do any additional setup after loading the view.
 }
 
