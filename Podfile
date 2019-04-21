@@ -8,4 +8,5 @@ target 'shopUser' do
     pod 'JXCategoryView'
     pod 'PYSearch'
     pod 'AVOSCloud'
+    pod 'BRPickerView'
 end

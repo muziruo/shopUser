@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) UIImageView *commodityImage;
 @property (nonatomic) UILabel *commodityName;
 @property (nonatomic) UILabel *price;
+@property NSInteger selectedTag;
 
 @end
 

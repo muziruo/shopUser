@@ -160,6 +160,7 @@
 /**
  主页商品cell
  */
+
 @implementation commodityCell
 
 - (void)awakeFromNib {
@@ -206,9 +207,9 @@
     commodityCollectionViewCell *myCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"homeCommodityCell" forIndexPath:indexPath];
     
 //    请在此配置数据
-    
-    myCell.commodityName.text = [self.commodityInfo[indexPath.row] valueForKey:@"name"];
+    myCell.commodityName.text = [self.commodityInfo[self.tableViewSection * 2 + indexPath.item] valueForKey:@"name"];
     myCell.commodityImage.image = [UIImage imageNamed:@"imageReplace"];
+    myCell.selectedTag = self.tableViewSection * 2 + indexPath.item;
     myCell.price.text = @"¥9999";
     
     return myCell;
@@ -220,6 +221,9 @@
     
     UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     infoViewController *commodityInfoView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"commodityInfoView"];
+    
+    commodityCollectionViewCell *selectedCell = (commodityCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    commodityInfoView.info = self.commodityInfo[selectedCell.selectedTag];
     [[self getController].navigationController pushViewController:commodityInfoView animated:true];
 }
 

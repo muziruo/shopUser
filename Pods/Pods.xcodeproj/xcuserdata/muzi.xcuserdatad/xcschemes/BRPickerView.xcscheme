@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "58D26B5AA026E9A7B1E00760D895B94C"
-               BlueprintName = "SDWebImage"
+               BlueprintIdentifier = "8CB424540E15371BC1D06078778B69CD"
+               BlueprintName = "BRPickerView"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "SDWebImage.framework">
+               BuildableName = "BRPickerView.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

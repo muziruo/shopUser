@@ -11,10 +11,14 @@
 #import "baseInfoTableViewCell.h"
 #import "UIColor+themeUIColor.h"
 #import "UIFont+themeUIFont.h"
+#import <BRPickerView/BRPickerView.h>
+#import <AVOSCloud/AVOSCloud.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface infoViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+
+@property NSDictionary *info;
 
 @property (weak, nonatomic) IBOutlet UITableView *infoTableView;
 @property SDCycleScrollView *commodityImage;

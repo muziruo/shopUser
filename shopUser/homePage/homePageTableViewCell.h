@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) UICollectionView *homeCommodity;
 @property NSArray *commodityInfo;
+@property NSInteger tableViewSection;
+@property NSInteger selectedSection;
 
 -(UIViewController *)getController;
 
