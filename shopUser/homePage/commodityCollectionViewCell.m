@@ -17,6 +17,8 @@
         self.commodityName = [[UILabel alloc] init];
         self.commodityImage = [[UIImageView alloc] init];
         self.price = [[UILabel alloc] init];
+        self.commodityName.backgroundColor = UIColor.whiteColor;
+        self.price.backgroundColor = UIColor.whiteColor;
         
         self.commodityName.font = UIFont.normalFont;
         self.price.font = UIFont.numberFont;

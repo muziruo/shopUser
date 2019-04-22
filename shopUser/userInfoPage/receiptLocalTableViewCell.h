@@ -7,10 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIFont+themeUIFont.h"
+#import "loginViewController.h"
+#import "Masonry.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface receiptLocalTableViewCell : UITableViewCell
+
+@property UILabel *receiptName;
+@property UILabel *receiptNumber;
+@property UILabel *receiptLocal;
+@property UILabel *isDefault;
+
+@end
+
+
+
+@interface localEditCell : UITableViewCell
+
+@property UILabel *infoTitle;
+@property UITextField *infoInput;
 
 @end
 

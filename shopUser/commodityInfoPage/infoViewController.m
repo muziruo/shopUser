@@ -23,8 +23,8 @@
     self.infoTableView.delegate = self;
     self.infoTableView.dataSource = self;
     
-    NSURL *image1 = [NSURL URLWithString:@"http://muziruo.com/image/laimeiyun/jpg/lmybiqi.JPG"];
-    NSURL *image2 = [NSURL URLWithString:@"http://muziruo.com/image/laimeiyun/jpg/background0707.jpg"];
+    NSURL *image1 = [NSURL URLWithString:@"http://lc-ahj3its7.cn-n1.lcfile.com/84bb660e43f9ef2da95e/background0707-s.jpg"];
+    NSURL *image2 = [NSURL URLWithString:@"http://lc-ahj3its7.cn-n1.lcfile.com/812d8b0a6a1032184925/IMG_3945-s.JPG"];
     NSArray *iamgeUrls = @[image1,image2];
     self.commodityImage = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 400) delegate:self placeholderImage:[UIImage imageNamed:@"imageReplace"]];
     self.commodityImage.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;

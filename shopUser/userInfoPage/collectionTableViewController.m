@@ -10,6 +10,8 @@
 
 @interface collectionTableViewController ()
 
+@property NSArray *collectionInfo;
+
 @end
 
 @implementation collectionTableViewController
@@ -27,24 +29,28 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    if ([self.collectionInfo count] == 0) {
+        return 10;
+    }else {
+        return [self.collectionInfo count];
+    }
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    collectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"collectionCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+//    请在此配置cell的数据
+    cell.commodityName.text = @"商品名称";
+    cell.commodityImage.image = [UIImage imageNamed:@"imageReplace-s"];
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

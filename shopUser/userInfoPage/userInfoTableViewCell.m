@@ -23,6 +23,15 @@
 
 @end
 
+
+@interface orderStatusCell ()
+
+@property NSArray *status;
+
+@end
+
+
+
 @implementation orderStatusCell
 
 - (void)awakeFromNib {
@@ -85,3 +94,46 @@
 
 @end
 
+
+
+@implementation listCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
+    if (self) {
+        self.functionImage = [[UIImageView alloc] init];
+        self.functionImage.contentMode = UIViewContentModeScaleAspectFit;
+        [self addSubview:self.functionImage];
+        UIEdgeInsets imagePadding = UIEdgeInsetsMake(10, 30, -10, -20);
+        [self.functionImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top).with.offset(imagePadding.top);
+            make.left.equalTo(self.mas_left).with.offset(imagePadding.left);
+            make.bottom.equalTo(self.mas_bottom).with.offset(imagePadding.bottom);
+            make.width.mas_equalTo(50);
+        }];
+        
+        self.functionTitle = [[UILabel alloc] init];
+        self.functionTitle.font = UIFont.normalFont;
+        [self addSubview:self.functionTitle];
+        UIEdgeInsets titlePadding = UIEdgeInsetsMake(10, 50, -10, -30);
+        [self.functionTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top).with.offset(titlePadding.top);
+            make.bottom.equalTo(self.mas_bottom).with.offset(titlePadding.bottom);
+            make.right.equalTo(self.mas_right).with.offset(titlePadding.right);
+            make.left.equalTo(self.functionImage.mas_right).with.offset(titlePadding.left);
+        }];
+    }
+    
+    return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+}
+
+@end

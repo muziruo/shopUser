@@ -11,6 +11,8 @@
 @interface userInfoTableViewController ()
 
 @property NSUserDefaults *userSetting;
+@property NSArray *userFunctions;
+@property UIStoryboard *mainStoryBroad;
 
 @end
 
@@ -18,14 +20,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
     self.userSetting = [NSUserDefaults standardUserDefaults];
     
     _avatorimage.image = [UIImage imageNamed:@"imageReplace-s"];
     _userNickName.font = UIFont.normalFont;
     
-    self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
+    self.navigationController.navigationBar.barTintColor = UIColor.whiteColor;
     
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
+    self.userFunctions = @[@"收藏商品",@"收货地址管理",@"关于"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -51,18 +58,28 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    switch (section) {
+        case 0:
+            return 1;
+            break;
+        case 1:
+            return [self.userFunctions count];
+            break;
+        default:
+            return 0;
+            break;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return 85;
     }
-    return 60;
+    return 70;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -76,8 +93,31 @@
             myCell = [[orderStatusCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"orderStatusCell"];
         }
         return myCell;
+    }else if (indexPath.section == 1){
+        listCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"listCell"];
+        if (!myCell) {
+            myCell = [[listCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"listCell"];
+        }
+        
+        myCell.functionImage.image = [UIImage imageNamed:@"imageReplace-s"];
+        myCell.functionTitle.text = self.userFunctions[indexPath.row];
+        
+        return myCell;
     }
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            collectionTableViewController *collectionView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"collectionView"];
+            [self.navigationController pushViewController:collectionView animated:true];
+        }else if (indexPath.row == 1){
+            receiptLocalViewController *receiptLocalView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"receiptLocalView"];
+            [self.navigationController pushViewController:receiptLocalView animated:true];
+        }
+    }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:true];
 }
 
 

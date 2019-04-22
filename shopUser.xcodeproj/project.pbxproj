@@ -37,12 +37,17 @@
 		EE3D5DAF2265B928006F05BC /* UITestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3D5DAD2265B928006F05BC /* UITestViewController.m */; };
 		EE50185A2268756F00EF007E /* listViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EE5018582268756F00EF007E /* listViewController.h */; };
 		EE50185B2268756F00EF007E /* listViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5018592268756F00EF007E /* listViewController.m */; };
+		EE6D4E3E226D714700DDE1DA /* receiptLocalViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EE6D4E3C226D714700DDE1DA /* receiptLocalViewController.h */; };
+		EE6D4E3F226D714700DDE1DA /* receiptLocalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6D4E3D226D714700DDE1DA /* receiptLocalViewController.m */; };
+		EE6D4E42226D720F00DDE1DA /* receiptLocalTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EE6D4E40226D720F00DDE1DA /* receiptLocalTableViewCell.h */; };
+		EE6D4E43226D720F00DDE1DA /* receiptLocalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6D4E41226D720F00DDE1DA /* receiptLocalTableViewCell.m */; };
+		EE6D4E46226D7C5600DDE1DA /* localEditViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EE6D4E44226D7C5600DDE1DA /* localEditViewController.h */; };
+		EE6D4E47226D7C5600DDE1DA /* localEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6D4E45226D7C5600DDE1DA /* localEditViewController.m */; };
 		EED07113225D9CD10086D96C /* homeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07112225D9CD10086D96C /* homeCollectionView.m */; };
 		EED07116225D9D170086D96C /* homeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07115225D9D170086D96C /* homeCollectionViewCell.m */; };
 		EED07119225DED8B0086D96C /* commodityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07118225DED8B0086D96C /* commodityCollectionViewCell.m */; };
 		EED0711C225E2E320086D96C /* userInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED0711B225E2E320086D96C /* userInfoTableViewCell.m */; };
 		EED07122225E2F490086D96C /* orderStatusCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07121225E2F490086D96C /* orderStatusCollectionViewCell.m */; };
-		EED07125225E3BEB0086D96C /* otherCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07124225E3BEB0086D96C /* otherCollectionViewCell.m */; };
 		EEDC62112268AA9A0067533A /* registerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDC620F2268AA9A0067533A /* registerViewController.h */; };
 		EEDC62122268AA9A0067533A /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDC62102268AA9A0067533A /* registerViewController.m */; };
 		EEDC62162268B79E0067533A /* infoTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDC62142268B79E0067533A /* infoTableViewController.h */; };
@@ -52,6 +57,10 @@
 		EEDC62222269772B0067533A /* infoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDC62202269772B0067533A /* infoViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EEDC62232269772B0067533A /* infoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDC62212269772B0067533A /* infoViewController.m */; };
 		EEDC62242269B38C0067533A /* commodityListTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EE032067225CF02300212E84 /* commodityListTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EEDC6227226D689C0067533A /* collectionTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDC6225226D689C0067533A /* collectionTableViewController.h */; };
+		EEDC6228226D689C0067533A /* collectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDC6226226D689C0067533A /* collectionTableViewController.m */; };
+		EEDC622B226D69570067533A /* collectionTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDC6229226D69570067533A /* collectionTableViewCell.h */; };
+		EEDC622C226D69570067533A /* collectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDC622A226D69570067533A /* collectionTableViewCell.m */; };
 		EEED193E2265D26F005CD4DA /* shoppingCarTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EEED193C2265D26F005CD4DA /* shoppingCarTableViewCell.h */; };
 		EEED193F2265D26F005CD4DA /* shoppingCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEED193D2265D26F005CD4DA /* shoppingCarTableViewCell.m */; };
 /* End PBXBuildFile section */
@@ -125,6 +134,12 @@
 		EE3D5DAD2265B928006F05BC /* UITestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITestViewController.m; sourceTree = "<group>"; };
 		EE5018582268756F00EF007E /* listViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = listViewController.h; sourceTree = "<group>"; };
 		EE5018592268756F00EF007E /* listViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = listViewController.m; sourceTree = "<group>"; };
+		EE6D4E3C226D714700DDE1DA /* receiptLocalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = receiptLocalViewController.h; sourceTree = "<group>"; };
+		EE6D4E3D226D714700DDE1DA /* receiptLocalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = receiptLocalViewController.m; sourceTree = "<group>"; };
+		EE6D4E40226D720F00DDE1DA /* receiptLocalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = receiptLocalTableViewCell.h; sourceTree = "<group>"; };
+		EE6D4E41226D720F00DDE1DA /* receiptLocalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = receiptLocalTableViewCell.m; sourceTree = "<group>"; };
+		EE6D4E44226D7C5600DDE1DA /* localEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = localEditViewController.h; sourceTree = "<group>"; };
+		EE6D4E45226D7C5600DDE1DA /* localEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = localEditViewController.m; sourceTree = "<group>"; };
 		EED07111225D9CD10086D96C /* homeCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeCollectionView.h; sourceTree = "<group>"; };
 		EED07112225D9CD10086D96C /* homeCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeCollectionView.m; sourceTree = "<group>"; };
 		EED07114225D9D170086D96C /* homeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeCollectionViewCell.h; sourceTree = "<group>"; };
@@ -135,8 +150,6 @@
 		EED0711B225E2E320086D96C /* userInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userInfoTableViewCell.m; sourceTree = "<group>"; };
 		EED07120225E2F490086D96C /* orderStatusCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = orderStatusCollectionViewCell.h; sourceTree = "<group>"; };
 		EED07121225E2F490086D96C /* orderStatusCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orderStatusCollectionViewCell.m; sourceTree = "<group>"; };
-		EED07123225E3BEB0086D96C /* otherCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = otherCollectionViewCell.h; sourceTree = "<group>"; };
-		EED07124225E3BEB0086D96C /* otherCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = otherCollectionViewCell.m; sourceTree = "<group>"; };
 		EEDC620F2268AA9A0067533A /* registerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
 		EEDC62102268AA9A0067533A /* registerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
 		EEDC62142268B79E0067533A /* infoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = infoTableViewController.h; sourceTree = "<group>"; };
@@ -145,6 +158,10 @@
 		EEDC621922695E940067533A /* baseInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseInfoTableViewCell.m; sourceTree = "<group>"; };
 		EEDC62202269772B0067533A /* infoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = infoViewController.h; sourceTree = "<group>"; };
 		EEDC62212269772B0067533A /* infoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = infoViewController.m; sourceTree = "<group>"; };
+		EEDC6225226D689C0067533A /* collectionTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = collectionTableViewController.h; sourceTree = "<group>"; };
+		EEDC6226226D689C0067533A /* collectionTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = collectionTableViewController.m; sourceTree = "<group>"; };
+		EEDC6229226D69570067533A /* collectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = collectionTableViewCell.h; sourceTree = "<group>"; };
+		EEDC622A226D69570067533A /* collectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = collectionTableViewCell.m; sourceTree = "<group>"; };
 		EEED193C2265D26F005CD4DA /* shoppingCarTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shoppingCarTableViewCell.h; sourceTree = "<group>"; };
 		EEED193D2265D26F005CD4DA /* shoppingCarTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shoppingCarTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,8 +210,16 @@
 				EED0711B225E2E320086D96C /* userInfoTableViewCell.m */,
 				EED07120225E2F490086D96C /* orderStatusCollectionViewCell.h */,
 				EED07121225E2F490086D96C /* orderStatusCollectionViewCell.m */,
-				EED07123225E3BEB0086D96C /* otherCollectionViewCell.h */,
-				EED07124225E3BEB0086D96C /* otherCollectionViewCell.m */,
+				EEDC6225226D689C0067533A /* collectionTableViewController.h */,
+				EEDC6226226D689C0067533A /* collectionTableViewController.m */,
+				EEDC6229226D69570067533A /* collectionTableViewCell.h */,
+				EEDC622A226D69570067533A /* collectionTableViewCell.m */,
+				EE6D4E3C226D714700DDE1DA /* receiptLocalViewController.h */,
+				EE6D4E3D226D714700DDE1DA /* receiptLocalViewController.m */,
+				EE6D4E40226D720F00DDE1DA /* receiptLocalTableViewCell.h */,
+				EE6D4E41226D720F00DDE1DA /* receiptLocalTableViewCell.m */,
+				EE6D4E44226D7C5600DDE1DA /* localEditViewController.h */,
+				EE6D4E45226D7C5600DDE1DA /* localEditViewController.m */,
 			);
 			path = userInfoPage;
 			sourceTree = "<group>";
@@ -390,15 +415,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEDC62242269B38C0067533A /* commodityListTableViewController.h in Headers */,
+				EE6D4E3E226D714700DDE1DA /* receiptLocalViewController.h in Headers */,
 				EEDC62222269772B0067533A /* infoViewController.h in Headers */,
 				EE50185A2268756F00EF007E /* listViewController.h in Headers */,
 				EEDC62162268B79E0067533A /* infoTableViewController.h in Headers */,
 				EE3D5DAA2265B698006F05BC /* UIFont+themeUIFont.h in Headers */,
 				EEDC62112268AA9A0067533A /* registerViewController.h in Headers */,
+				EE6D4E42226D720F00DDE1DA /* receiptLocalTableViewCell.h in Headers */,
+				EEDC622B226D69570067533A /* collectionTableViewCell.h in Headers */,
 				EEED193E2265D26F005CD4DA /* shoppingCarTableViewCell.h in Headers */,
 				EE3D5DAE2265B928006F05BC /* UITestViewController.h in Headers */,
 				EE3D5DA62265B223006F05BC /* UIColor+themeUIColor.h in Headers */,
+				EEDC6227226D689C0067533A /* collectionTableViewController.h in Headers */,
 				EEDC621A22695E940067533A /* baseInfoTableViewCell.h in Headers */,
+				EE6D4E46226D7C5600DDE1DA /* localEditViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,7 +619,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EED07125225E3BEB0086D96C /* otherCollectionViewCell.m in Sources */,
 				EE032075225D8D9D00212E84 /* homePageTableViewCell.m in Sources */,
 				EE032058225CD3A300212E84 /* levelTwoCollectionViewCell.m in Sources */,
 				EE032064225CDCC400212E84 /* homeTableViewController.m in Sources */,
@@ -602,11 +631,15 @@
 				EEDC62122268AA9A0067533A /* registerViewController.m in Sources */,
 				EE1A8A65225CC9B40054E293 /* AppDelegate.m in Sources */,
 				EE3D5DAB2265B698006F05BC /* UIFont+themeUIFont.m in Sources */,
+				EEDC622C226D69570067533A /* collectionTableViewCell.m in Sources */,
+				EE6D4E3F226D714700DDE1DA /* receiptLocalViewController.m in Sources */,
+				EE6D4E43226D720F00DDE1DA /* receiptLocalTableViewCell.m in Sources */,
 				EE3D5DA42265AD7D006F05BC /* UIColor+themeUIColor.m in Sources */,
 				EE1A8A76225CC9B50054E293 /* main.m in Sources */,
 				EED07122225E2F490086D96C /* orderStatusCollectionViewCell.m in Sources */,
 				EE032061225CDAD900212E84 /* userInfoTableViewController.m in Sources */,
 				EED0711C225E2E320086D96C /* userInfoTableViewCell.m in Sources */,
+				EE6D4E47226D7C5600DDE1DA /* localEditViewController.m in Sources */,
 				EE03205E225CD8EE00212E84 /* shoppingCarViewController.m in Sources */,
 				EE032069225CF02300212E84 /* commodityListTableViewController.m in Sources */,
 				EE1A8AA2225CCCF20054E293 /* levelOneTableViewCell.m in Sources */,
@@ -619,6 +652,7 @@
 				EED07116225D9D170086D96C /* homeCollectionViewCell.m in Sources */,
 				EE3D5DAF2265B928006F05BC /* UITestViewController.m in Sources */,
 				EED07113225D9CD10086D96C /* homeCollectionView.m in Sources */,
+				EEDC6228226D689C0067533A /* collectionTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

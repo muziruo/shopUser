@@ -77,6 +77,7 @@
         if (!myCell) {
             myCell = [[homeCategoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homeCategoryCell"];
         }
+        myCell.contentView.backgroundColor = UIColor.voidColor;
         return myCell;
     }else {
         commodityCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"homeCommodityCell"];
@@ -85,7 +86,7 @@
         }
         myCell.commodityInfo = self.commodityInfo;
         myCell.tableViewSection = indexPath.section - 2;
-        myCell.backgroundColor = [[UIColor alloc] initWithRed:231 green:231 blue:231 alpha:1.0];
+        myCell.contentView.backgroundColor = UIColor.voidColor;
         return myCell;
     }
 }

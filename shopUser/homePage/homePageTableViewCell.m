@@ -24,8 +24,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
-        NSURL *image1 = [NSURL URLWithString:@"http://muziruo.com/image/laimeiyun/jpg/lmybiqi.JPG"];
-        NSURL *image2 = [NSURL URLWithString:@"http://muziruo.com/image/laimeiyun/jpg/background0707.jpg"];
+        NSURL *image1 = [NSURL URLWithString:@"http://lc-ahj3its7.cn-n1.lcfile.com/812d8b0a6a1032184925/IMG_3945-s.JPG"];
+        NSURL *image2 = [NSURL URLWithString:@"http://lc-ahj3its7.cn-n1.lcfile.com/84bb660e43f9ef2da95e/background0707-s.jpg"];
         NSArray *iamgeUrls = @[image1,image2];
         
         self.myView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, 375, 200) delegate:self placeholderImage:[UIImage imageNamed:@"zhanweitu.png"]];
@@ -133,6 +133,7 @@
     return homeCategoryCell;
 }
 
+
 //点击跳转事件,跳转到商品列表页面
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"你点击了第%li个按钮",(long)indexPath.item);
@@ -174,7 +175,7 @@
         UICollectionViewFlowLayout *cellLayout = [[UICollectionViewFlowLayout alloc] init];
         cellLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         self.homeCommodity = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:cellLayout];
-        self.homeCommodity.backgroundColor = UIColor.whiteColor;
+        self.homeCommodity.backgroundColor = UIColor.voidColor;
         self.homeCommodity.delegate = self;
         self.homeCommodity.dataSource = self;
         
@@ -207,10 +208,19 @@
     commodityCollectionViewCell *myCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"homeCommodityCell" forIndexPath:indexPath];
     
 //    请在此配置数据
+//    商品名称
     myCell.commodityName.text = [self.commodityInfo[self.tableViewSection * 2 + indexPath.item] valueForKey:@"name"];
-    myCell.commodityImage.image = [UIImage imageNamed:@"imageReplace"];
+    
+//    商品主图
+    [myCell.commodityImage sd_setImageWithURL:[self.commodityInfo[self.tableViewSection * 2 + indexPath.item] valueForKey:@"mainImage"] placeholderImage:[UIImage imageNamed:@"imageReplace"]];
+    
     myCell.selectedTag = self.tableViewSection * 2 + indexPath.item;
-    myCell.price.text = @"¥9999";
+    
+//    商品价格
+    NSString *priceTitle = @"¥";
+    NSString *priceString = [NSNumberFormatter localizedStringFromNumber:[self.commodityInfo[self.tableViewSection * 2 + indexPath.item] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+    priceTitle = [priceTitle stringByAppendingString:priceString];
+    myCell.price.text = priceTitle;
     
     return myCell;
 }

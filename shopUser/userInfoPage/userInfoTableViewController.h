@@ -11,6 +11,8 @@
 #import "UIColor+themeUIColor.h"
 #import "UIFont+themeUIFont.h"
 #import "loginViewController.h"
+#import "collectionTableViewController.h"
+#import "receiptLocalViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

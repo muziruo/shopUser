@@ -27,4 +27,9 @@
     return [UIColor colorWithRed:36.0/255.0 green:134.0/255.0 blue:185.0/255.0 alpha:1.0];
 }
 
+//空隙颜色
++ (UIColor *)voidColor {
+    return [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
+}
+
 @end

@@ -59,13 +59,13 @@
 
 //请在此配置具体的网络登录操作
 - (void)login {
-    [self.userSetting setBool:true forKey:@"isLogin"];
+//    网络登录操作
     
+    [self.userSetting setBool:true forKey:@"isLogin"];
     [[self getCurrentVC] dismissViewControllerAnimated:true completion:nil];
 }
 
-- (UIViewController *)getCurrentVC
-{
+- (UIViewController *)getCurrentVC {
     UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     
     UIViewController *currentVC = [self getCurrentVCFrom:rootViewController];
@@ -73,15 +73,13 @@
     return currentVC;
 }
 
-- (UIViewController *)getCurrentVCFrom:(UIViewController *)rootVC
-{
+- (UIViewController *)getCurrentVCFrom:(UIViewController *)rootVC {
     UIViewController *currentVC;
     
     if ([rootVC presentedViewController]) {
         // 视图是被presented出来的
         rootVC = [rootVC presentedViewController];
     }
-    
     if ([rootVC isKindOfClass:[UITabBarController class]]) {
         // 根视图为UITabBarController
         currentVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
@@ -92,7 +90,6 @@
         // 根视图为非导航类
         currentVC = rootVC;
     }
-    
     return currentVC;
 }
 

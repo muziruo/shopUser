@@ -21,6 +21,7 @@
     self.myTitleView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 50)];
     self.myTitleView.delegate = self;
     self.myTitleView.titles =@[@"登录",@"注册"];
+    self.myTitleView.titleFont = UIFont.titleFont;
     self.myTitleView.titleColorGradientEnabled = YES;
     self.myTitleView.titleSelectedColor = UIColor.themeMainColor;
     self.myTitleView.titleColor = UIColor.grayColor;

@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface collectionTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *commodityImage;
+@property (weak, nonatomic) IBOutlet UILabel *commodityName;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

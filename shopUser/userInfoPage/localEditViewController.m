@@ -10,23 +10,60 @@
 
 @interface localEditViewController ()
 
+@property NSArray *editInfoTitle;
+@property NSArray *editPlaceHolder;
+
 @end
 
 @implementation localEditViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.editInfoTitle = @[@"收件人",@"电话号码",@"所在区域",@"具体住址"];
+    self.editPlaceHolder = @[@"请输入收件人姓名",@"请输入手机号码",@"请选择所在区域",@"请输入具体住址"];
+    
+    self.saveButton.backgroundColor = UIColor.buttonColor;
+    
+    UITapGestureRecognizer *tableviewEndEdit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endEdit)];
+    tableviewEndEdit.cancelsTouchesInView = NO;
+    [self.localEditTableView addGestureRecognizer:tableviewEndEdit];
+    
+    self.localEditTableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     // Do any additional setup after loading the view.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.editInfoTitle count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    localEditCell *cell = [tableView dequeueReusableCellWithIdentifier:@"localEditCell"];
+    
+    if (!cell) {
+        cell = [[localEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"localEditCell"];
+    }
+    
+    cell.infoTitle.text = self.editInfoTitle[indexPath.row];
+    cell.infoInput.placeholder = self.editPlaceHolder[indexPath.row];
+    
+    return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
+}
+
+- (void)endEdit {
+    [self.view endEditing:YES];
+}
 
 @end

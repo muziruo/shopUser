@@ -7,10 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "receiptLocalTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface localEditViewController : UIViewController
+@interface localEditViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *localEditTableView;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+
+
+//需要编辑的地址信息
+@property NSDictionary *editLocalInfo;
 
 @end
 

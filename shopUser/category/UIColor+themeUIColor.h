@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(UIColor *)buttonColor;
 +(UIColor *)stressColor;
 +(UIColor *)themeMainColor;
++(UIColor *)voidColor;
 
 @end
 

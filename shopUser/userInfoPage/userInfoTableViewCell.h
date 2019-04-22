@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface userInfoTableViewCell : UITableViewCell
 
 
-
 @end
 
 
@@ -25,6 +24,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property UICollectionView *orderCollectionView;
 @property NSArray *statusTitle;
 @property NSArray *statusImage;
+
+@end
+
+
+@interface listCell : UITableViewCell
+
+@property UIImageView *functionImage;
+@property UILabel *functionTitle;
 
 @end
 
