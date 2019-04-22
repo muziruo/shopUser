@@ -1,8 +1,8 @@
 //
-//  otherCollectionViewCell.h
+//  collectionTableViewController.h
 //  shopUser
 //
-//  Created by 李祎喆 on 2019/4/10.
+//  Created by 李祎喆 on 2019/4/22.
 //  Copyright © 2019 李祎喆. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface otherCollectionViewCell : UICollectionViewCell
+@interface collectionTableViewController : UITableViewController
 
 @end
 
