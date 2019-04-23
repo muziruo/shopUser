@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "collectionTableViewCell.h"
+#import <AVOSCloud/AVOSCloud.h>
+#import <SDWebImage/SDWebImage.h>
+#import "UIColor+themeUIColor.h"
+#import "UIFont+themeUIFont.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
