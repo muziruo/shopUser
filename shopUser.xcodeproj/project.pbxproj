@@ -43,6 +43,10 @@
 		EE6D4E43226D720F00DDE1DA /* receiptLocalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6D4E41226D720F00DDE1DA /* receiptLocalTableViewCell.m */; };
 		EE6D4E46226D7C5600DDE1DA /* localEditViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EE6D4E44226D7C5600DDE1DA /* localEditViewController.h */; };
 		EE6D4E47226D7C5600DDE1DA /* localEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6D4E45226D7C5600DDE1DA /* localEditViewController.m */; };
+		EEB0A6B7226F07C800066371 /* orderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEB0A6B5226F07C800066371 /* orderViewController.h */; };
+		EEB0A6B8226F07C800066371 /* orderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A6B6226F07C800066371 /* orderViewController.m */; };
+		EEB0A6BB226F095000066371 /* orderTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EEB0A6B9226F095000066371 /* orderTableViewCell.h */; };
+		EEB0A6BC226F095000066371 /* orderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A6BA226F095000066371 /* orderTableViewCell.m */; };
 		EED07113225D9CD10086D96C /* homeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07112225D9CD10086D96C /* homeCollectionView.m */; };
 		EED07116225D9D170086D96C /* homeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07115225D9D170086D96C /* homeCollectionViewCell.m */; };
 		EED07119225DED8B0086D96C /* commodityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07118225DED8B0086D96C /* commodityCollectionViewCell.m */; };
@@ -140,6 +144,10 @@
 		EE6D4E41226D720F00DDE1DA /* receiptLocalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = receiptLocalTableViewCell.m; sourceTree = "<group>"; };
 		EE6D4E44226D7C5600DDE1DA /* localEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = localEditViewController.h; sourceTree = "<group>"; };
 		EE6D4E45226D7C5600DDE1DA /* localEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = localEditViewController.m; sourceTree = "<group>"; };
+		EEB0A6B5226F07C800066371 /* orderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = orderViewController.h; sourceTree = "<group>"; };
+		EEB0A6B6226F07C800066371 /* orderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orderViewController.m; sourceTree = "<group>"; };
+		EEB0A6B9226F095000066371 /* orderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = orderTableViewCell.h; sourceTree = "<group>"; };
+		EEB0A6BA226F095000066371 /* orderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orderTableViewCell.m; sourceTree = "<group>"; };
 		EED07111225D9CD10086D96C /* homeCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeCollectionView.h; sourceTree = "<group>"; };
 		EED07112225D9CD10086D96C /* homeCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeCollectionView.m; sourceTree = "<group>"; };
 		EED07114225D9D170086D96C /* homeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeCollectionViewCell.h; sourceTree = "<group>"; };
@@ -301,6 +309,7 @@
 				EE3D5DA72265B680006F05BC /* category */,
 				EE3D5D942260CD83006F05BC /* Extension */,
 				EE032065225CEF3600212E84 /* model */,
+				EEB0A6B4226F07A600066371 /* oderPage */,
 				EEDC62132268B71B0067533A /* commodityInfoPage */,
 				EE032066225CF00F00212E84 /* commodityListPage */,
 				EE03205B225CD79700212E84 /* homePage */,
@@ -386,6 +395,17 @@
 			path = category;
 			sourceTree = "<group>";
 		};
+		EEB0A6B4226F07A600066371 /* oderPage */ = {
+			isa = PBXGroup;
+			children = (
+				EEB0A6B5226F07C800066371 /* orderViewController.h */,
+				EEB0A6B6226F07C800066371 /* orderViewController.m */,
+				EEB0A6B9226F095000066371 /* orderTableViewCell.h */,
+				EEB0A6BA226F095000066371 /* orderTableViewCell.m */,
+			);
+			path = oderPage;
+			sourceTree = "<group>";
+		};
 		EEDC62132268B71B0067533A /* commodityInfoPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,12 +440,14 @@
 				EE50185A2268756F00EF007E /* listViewController.h in Headers */,
 				EEDC62162268B79E0067533A /* infoTableViewController.h in Headers */,
 				EE3D5DAA2265B698006F05BC /* UIFont+themeUIFont.h in Headers */,
+				EEB0A6B7226F07C800066371 /* orderViewController.h in Headers */,
 				EEDC62112268AA9A0067533A /* registerViewController.h in Headers */,
 				EE6D4E42226D720F00DDE1DA /* receiptLocalTableViewCell.h in Headers */,
 				EEDC622B226D69570067533A /* collectionTableViewCell.h in Headers */,
 				EEED193E2265D26F005CD4DA /* shoppingCarTableViewCell.h in Headers */,
 				EE3D5DAE2265B928006F05BC /* UITestViewController.h in Headers */,
 				EE3D5DA62265B223006F05BC /* UIColor+themeUIColor.h in Headers */,
+				EEB0A6BB226F095000066371 /* orderTableViewCell.h in Headers */,
 				EEDC6227226D689C0067533A /* collectionTableViewController.h in Headers */,
 				EEDC621A22695E940067533A /* baseInfoTableViewCell.h in Headers */,
 				EE6D4E46226D7C5600DDE1DA /* localEditViewController.h in Headers */,
@@ -574,6 +596,7 @@
 				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/JXCategoryView/JXCategoryView.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/PPNumberButton/PPNumberButton.framework",
 				"${BUILT_PRODUCTS_DIR}/PYSearch/PYSearch.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -585,6 +608,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JXCategoryView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PPNumberButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PYSearch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -622,6 +646,7 @@
 				EE032075225D8D9D00212E84 /* homePageTableViewCell.m in Sources */,
 				EE032058225CD3A300212E84 /* levelTwoCollectionViewCell.m in Sources */,
 				EE032064225CDCC400212E84 /* homeTableViewController.m in Sources */,
+				EEB0A6B8226F07C800066371 /* orderViewController.m in Sources */,
 				EE1A8A9F225CCCC30054E293 /* categotyViewController.m in Sources */,
 				EE1A8A68225CC9B40054E293 /* ViewController.m in Sources */,
 				EE50185B2268756F00EF007E /* listViewController.m in Sources */,
@@ -640,6 +665,7 @@
 				EE032061225CDAD900212E84 /* userInfoTableViewController.m in Sources */,
 				EED0711C225E2E320086D96C /* userInfoTableViewCell.m in Sources */,
 				EE6D4E47226D7C5600DDE1DA /* localEditViewController.m in Sources */,
+				EEB0A6BC226F095000066371 /* orderTableViewCell.m in Sources */,
 				EE03205E225CD8EE00212E84 /* shoppingCarViewController.m in Sources */,
 				EE032069225CF02300212E84 /* commodityListTableViewController.m in Sources */,
 				EE1A8AA2225CCCF20054E293 /* levelOneTableViewCell.m in Sources */,

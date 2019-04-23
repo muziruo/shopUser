@@ -9,4 +9,5 @@ target 'shopUser' do
     pod 'PYSearch'
     pod 'AVOSCloud'
     pod 'BRPickerView'
+    pod 'PPNumberButton'
 end

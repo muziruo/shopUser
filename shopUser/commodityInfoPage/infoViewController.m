@@ -11,6 +11,7 @@
 @interface infoViewController ()
 
 @property NSArray *evaluationInfo;
+@property UIStoryboard *mainStoryBroad;
 
 @end
 
@@ -18,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     self.infoTableView.rowHeight = UITableViewAutomaticDimension;
     self.infoTableView.delegate = self;
@@ -33,6 +36,8 @@
     
     self.buyButton.backgroundColor = UIColor.buttonColor;
     self.addCart.backgroundColor = UIColor.stressColor;
+    
+    [self.buyButton addTarget:self action:@selector(buyCommodity) forControlEvents:UIControlEventTouchUpInside];
     
     if ([self.info valueForKey:@"objectId"] != nil) {
         [self getCommodityEvaluation];
@@ -197,6 +202,11 @@
         NSLog(@"取消了选择");
     }];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)buyCommodity{
+    orderViewController *orderView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"orderView"];
+    [self.navigationController pushViewController:orderView animated:true];
 }
 
 @end

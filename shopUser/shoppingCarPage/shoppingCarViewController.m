@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.shopCarTableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    
     _buyButton.backgroundColor = UIColor.buttonColor;
     self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
