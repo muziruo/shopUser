@@ -11,18 +11,41 @@
 
 @interface commodityListTableViewController ()
 
+@property NSArray *commodityListInfo;
+@property UIStoryboard *mainStoryBroad;
+
 @end
 
 @implementation commodityListTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    if (self.searchText != nil) {
+        [self searchInfo];
+    }
     //self.hidesBottomBarWhenPushed = YES;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+
+//搜索商品
+-(void)searchInfo {
+    NSDictionary *params = [NSDictionary dictionaryWithObject:self.searchText forKey:@"keyWord"];
+    [AVCloud callFunctionInBackground:@"searchCommodity" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            self.commodityListInfo = object;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+    }];
 }
 
 #pragma mark - Table view data source
@@ -32,24 +55,38 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return [self.commodityListInfo count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     commodityListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commodityListCel" forIndexPath:indexPath];
+
+//    在此配置数据
     
-    cell.commodityInfo.text = @"商品描述";
-    cell.commodityName.text = @"商品名称";
-    cell.commodityImage.image = [UIImage imageNamed:@"imageReplace"];
-    cell.price.text = @"9999";
+    cell.commodityInfo.text = [self.commodityListInfo[indexPath.row] valueForKey:@"description"];
+    cell.commodityName.text = [self.commodityListInfo[indexPath.row] valueForKey:@"name"];
+    
+    NSURL *imageUrl = [NSURL URLWithString:[self.commodityListInfo[indexPath.row] valueForKey:@"mainImage"]];
+    [cell.commodityImage sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imageReplace"]];
+    
+    NSString *priceText = [NSNumberFormatter localizedStringFromNumber:[self.commodityListInfo[indexPath.row] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+    cell.price.text = priceText;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"goToInfo" sender:nil];
+    infoViewController *nextView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"commodityInfoView"];
+    nextView.info = self.commodityListInfo[indexPath.row];
+    [self.navigationController pushViewController:nextView animated:true];
 }
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
 
 
 /*

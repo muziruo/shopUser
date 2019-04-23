@@ -11,10 +11,15 @@
 #import "commodityListTableViewCell.h"
 #import "PYSearch.h"
 #import "infoViewController.h"
+#import <SDWebImage/SDWebImage.h>
+#import <AVOSCloud/AVOSCloud.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface commodityListTableViewController : UITableViewController
+
+
+@property NSString *searchText;
 
 @end
 

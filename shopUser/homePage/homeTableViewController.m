@@ -107,6 +107,7 @@
     PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSearch searchBarPlaceholder:@"搜索您想要的商品" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         commodityListTableViewController *toController = [mainStoryBroad instantiateViewControllerWithIdentifier:@"commodityListTableView"];
+        toController.searchText = searchText;
         [searchViewController.navigationController pushViewController:toController animated:YES];
     }];
     
