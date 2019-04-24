@@ -22,7 +22,7 @@
     
     self.sureButton.backgroundColor = UIColor.stressColor;
     self.sureButton.titleLabel.font = UIFont.normalFontLight;
-    [self.sureButton.titleLabel setTextColor:UIColor.whiteColor];
+    [self.sureButton addTarget:self action:@selector(sureOrder) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.
 }
 
@@ -33,7 +33,17 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    switch (section) {
+        case 0:
+            return 1;
+            break;
+        case 1:
+            return 1;
+            break;
+        default:
+            return 0;
+            break;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -78,6 +88,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+}
+
+- (void)sureOrder {
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 @end

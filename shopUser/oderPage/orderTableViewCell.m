@@ -201,7 +201,7 @@
         self.numberButton.increaseTitle = @"+";
         self.numberButton.decreaseTitle = @"-";
         [self addSubview:self.numberButton];
-        UIEdgeInsets numberPadding = UIEdgeInsetsMake(10, 0, -10, -25);
+        UIEdgeInsets numberPadding = UIEdgeInsetsMake(10, 0, -20, -25);
         [self.numberButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.mas_right).with.offset(numberPadding.right);
             make.top.equalTo(self.commodityPrice.mas_bottom).with.offset(numberPadding.top);

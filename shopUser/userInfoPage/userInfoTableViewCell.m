@@ -78,7 +78,7 @@
     orderStatusCollectionViewCell *orderCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"orderStatusCell" forIndexPath:indexPath];
     
 //    在此配置数据
-    orderCell.statusTitle.text = @"状态";
+    orderCell.statusTitle.text = self.statusTitle[indexPath.item];
     orderCell.statusImage.image = [UIImage imageNamed:@"imageReplace-s"];
     
     return orderCell;
@@ -88,8 +88,24 @@
     return CGSizeMake((self.frame.size.width - 20)/5, 55);
 }
 
+//在此配置订单状态点击跳转事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"你点击了第%li个按钮",(long)indexPath.item);
+    if (indexPath.item == 0) {
+        UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        waitShipTableViewController *orderView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"waitShipView"];
+        [[self getController].navigationController pushViewController:orderView animated:true];
+    }
+}
+
+- (UIViewController *)getController {
+    for (UIView *nextView =[self superview]; nextView; nextView = nextView.superview) {
+        UIResponder *getResponder = [nextView nextResponder];
+        if ([getResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)getResponder;
+        }
+    }
+    return nil;
 }
 
 @end

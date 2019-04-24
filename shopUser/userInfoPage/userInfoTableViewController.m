@@ -12,6 +12,7 @@
 
 @property NSUserDefaults *userSetting;
 @property NSArray *userFunctions;
+@property NSArray *orderStatus;
 @property UIStoryboard *mainStoryBroad;
 
 @end
@@ -33,6 +34,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     self.userFunctions = @[@"收藏商品",@"收货地址管理",@"关于"];
+    self.orderStatus = @[@"待发货",@"待收货",@"待评价",@"历史订单"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -92,6 +94,9 @@
         if (!myCell) {
             myCell = [[orderStatusCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"orderStatusCell"];
         }
+
+        myCell.statusTitle = self.orderStatus;
+        
         return myCell;
     }else if (indexPath.section == 1){
         listCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"listCell"];
