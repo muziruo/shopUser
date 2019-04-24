@@ -91,9 +91,18 @@
 //在此配置订单状态点击跳转事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"你点击了第%li个按钮",(long)indexPath.item);
+    UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     if (indexPath.item == 0) {
-        UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         waitShipTableViewController *orderView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"waitShipView"];
+        [[self getController].navigationController pushViewController:orderView animated:true];
+    }else if (indexPath.item == 1){
+        waitReceiptTableViewController *orderView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"waitReceiptView"];
+        [[self getController].navigationController pushViewController:orderView animated:true];
+    }else if (indexPath.item == 2){
+        waitEvaluateTableViewController *orderView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"waitEvaluateView"];
+        [[self getController].navigationController pushViewController:orderView animated:true];
+    }else if (indexPath.item == 3){
+        historyTableViewController *orderView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"historyView"];
         [[self getController].navigationController pushViewController:orderView animated:true];
     }
 }

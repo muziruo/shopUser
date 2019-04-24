@@ -38,29 +38,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-////待评价订单
-//@interface waitEvaluateCell : UITableViewCell
-//
-//@property UIImageView *commodityImage;
-//@property UILabel *commodityName;
-//@property UILabel *commodityModel;
-//@property UILabel *commodityShop;
-//@property UILabel *commodityStatus;
-//@property UIButton *evaluate;
-//
-//@end
+//待评价订单
+@interface waitEvaluateCell : UITableViewCell
+
+@property UIImageView *commodityImage;
+@property UILabel *commodityName;
+@property UILabel *commodityModel;
+@property UILabel *commodityShop;
+@property UILabel *commodityStatus;
+@property UIButton *evaluate;
+
+@end
 
 
 
-////历史订单
-//@interface historyCell : UITableViewCell
-//
-//@property UIImageView *commodityImage;
-//@property UILabel *commodityName;
-//@property UILabel *commodityModel;
-//@property UILabel *commodityShop;
-//
-//@end
+//历史订单
+@interface historyCell : UITableViewCell
+
+@property UIImageView *commodityImage;
+@property UILabel *commodityName;
+@property UILabel *commodityModel;
+@property UILabel *commodityShop;
+@property UILabel *commodityStatus;
+
+@end
 
 
 NS_ASSUME_NONNULL_END

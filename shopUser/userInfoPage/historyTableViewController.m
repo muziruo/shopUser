@@ -27,13 +27,32 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return 3;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    historyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"historyCell"];
+    
+    if (!cell) {
+        cell = [[historyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"historyCell"];
+    }
+    
+    cell.commodityImage.image = [UIImage imageNamed:@"imageReplace-s"];
+    cell.commodityName.text = @"商品名称";
+    cell.commodityShop.text = @"店铺名称";
+    cell.commodityModel.text = @"商品型号";
+    cell.commodityStatus.text = @"已完成";
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
 }
 
 /*

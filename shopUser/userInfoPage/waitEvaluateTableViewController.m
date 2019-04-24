@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -27,13 +28,33 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return 3;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    waitEvaluateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"waitEvaluateCell"];
+    
+    if (!cell) {
+        cell = [[waitEvaluateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"waitEvaluateCell"];
+    }
+    
+    cell.commodityImage.image = [UIImage imageNamed:@"imageReplace-s"];
+    cell.commodityStatus.text = @"等待评价";
+    cell.commodityName.text = @"商品名称";
+    cell.commodityShop.text = @"店铺名称";
+    cell.commodityModel.text = @"商品型号";
+    [cell.evaluate setTitle:@"填写评论" forState:UIControlStateNormal];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
 }
 
 /*

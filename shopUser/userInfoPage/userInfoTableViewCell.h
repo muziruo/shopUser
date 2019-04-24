@@ -11,6 +11,9 @@
 #import "Masonry.h"
 #import "UIFont+themeUIFont.h"
 #import "waitShipTableViewController.h"
+#import "waitReceiptTableViewController.h"
+#import "waitEvaluateTableViewController.h"
+#import "historyTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
