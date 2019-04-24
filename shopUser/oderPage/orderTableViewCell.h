@@ -10,6 +10,7 @@
 #import <Masonry/Masonry.h>
 #import "UIColor+themeUIColor.h"
 #import "UIFont+themeUIFont.h"
+#import <PPNumberButton/PPNumberButton.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property UILabel *commodityPrice;
 @property UILabel *commodityModel;
 @property UILabel *shopName;
+@property UIView *numberArea;
+@property UILabel *number;
+@property PPNumberButton *numberButton;
 
 @end
 

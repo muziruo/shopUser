@@ -92,14 +92,17 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOl-bq-oDT" customClass="PPNumberButton">
-                                                    <rect key="frame" x="252" y="79" width="108" height="30"/>
+                                                    <rect key="frame" x="270" y="84" width="90" height="25"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="IAr-ZF-FTx"/>
+                                                        <constraint firstAttribute="width" constant="90" id="oPh-v2-8NL"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="PCG-DM-apq" firstAttribute="leading" secondItem="jQ0-gc-aLe" secondAttribute="trailing" constant="8" id="0wg-nI-YFR"/>
                                                 <constraint firstItem="3zk-kA-rWA" firstAttribute="trailing" secondItem="gu1-fF-tKl" secondAttribute="trailingMargin" id="2Pl-3H-hG4"/>
-                                                <constraint firstItem="EOl-bq-oDT" firstAttribute="top" secondItem="3zk-kA-rWA" secondAttribute="bottom" constant="9" id="4Gt-R2-ZE8"/>
                                                 <constraint firstItem="EOl-bq-oDT" firstAttribute="bottom" secondItem="gu1-fF-tKl" secondAttribute="bottomMargin" id="8r6-Rd-M6D"/>
                                                 <constraint firstItem="EOl-bq-oDT" firstAttribute="trailing" secondItem="gu1-fF-tKl" secondAttribute="trailingMargin" id="E84-li-FH4"/>
                                                 <constraint firstItem="9Mi-fE-g5a" firstAttribute="centerY" secondItem="gu1-fF-tKl" secondAttribute="centerY" id="EhA-mR-zBG"/>
@@ -112,7 +115,6 @@
                                                 <constraint firstItem="PCG-DM-apq" firstAttribute="top" secondItem="3zk-kA-rWA" secondAttribute="bottom" constant="13" id="eeu-co-Kc9"/>
                                                 <constraint firstItem="jQ0-gc-aLe" firstAttribute="leading" secondItem="MFS-Dg-N5C" secondAttribute="trailing" constant="36" id="fBq-eh-brc"/>
                                                 <constraint firstItem="3zk-kA-rWA" firstAttribute="leading" secondItem="MFS-Dg-N5C" secondAttribute="trailing" constant="36" id="lGK-Y3-fpl"/>
-                                                <constraint firstItem="EOl-bq-oDT" firstAttribute="leading" secondItem="PCG-DM-apq" secondAttribute="trailing" constant="10" id="ngL-HJ-Ljq"/>
                                                 <constraint firstItem="jQ0-gc-aLe" firstAttribute="top" secondItem="3zk-kA-rWA" secondAttribute="bottom" constant="13" id="q4o-0r-j0e"/>
                                                 <constraint firstItem="3zk-kA-rWA" firstAttribute="top" secondItem="PPE-r0-YPs" secondAttribute="bottom" constant="13" id="uhW-Ku-PEO"/>
                                             </constraints>
@@ -121,6 +123,7 @@
                                             <outlet property="commodityImage" destination="MFS-Dg-N5C" id="z3G-Ez-anh"/>
                                             <outlet property="commodityName" destination="PPE-r0-YPs" id="Qsu-Az-oWp"/>
                                             <outlet property="descriptionInfo" destination="3zk-kA-rWA" id="W5a-W4-ewo"/>
+                                            <outlet property="numberButton" destination="EOl-bq-oDT" id="s8r-8g-yK2"/>
                                             <outlet property="price" destination="PCG-DM-apq" id="XgQ-oM-7U2"/>
                                         </connections>
                                     </tableViewCell>
@@ -752,7 +755,9 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQ9-F2-H23">
                                 <rect key="frame" x="30" y="617" width="315" height="40"/>
-                                <state key="normal" title="确认订单"/>
+                                <state key="normal" title="确认订单">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="20"/>

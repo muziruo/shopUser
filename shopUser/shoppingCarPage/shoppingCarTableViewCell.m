@@ -17,6 +17,13 @@
     _descriptionInfo.font = UIFont.descriptionFont;
     _price.font = UIFont.numberFont;
     _commodityImage.contentMode = UIViewContentModeScaleAspectFill;
+    
+    self.numberButton.borderColor = UIColor.themeMainColor;
+    //self.numberButton.decreaseHide = YES;
+    self.numberButton.currentNumber = 1;
+    self.numberButton.minValue = 1;
+    self.numberButton.increaseTitle = @"+";
+    self.numberButton.decreaseTitle = @"-";
     // Initialization code
 }
 

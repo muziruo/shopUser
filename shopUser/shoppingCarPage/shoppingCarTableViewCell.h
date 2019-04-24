@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "UIFont+themeUIFont.h"
+#import "UIColor+themeUIColor.h"
+#import <PPNumberButton/PPNumberButton.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *commodityName;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionInfo;
 @property (weak, nonatomic) IBOutlet UILabel *price;
-@property (weak, nonatomic) IBOutlet UITextField *commodityNumber;
+@property (weak, nonatomic) IBOutlet PPNumberButton *numberButton;
+
 
 
 @end
