@@ -25,16 +25,22 @@
     self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getHomeCommodity)];
+    
     [self getHomeCommodity];
 }
 
 //获取云端数据
 - (void)getHomeCommodity {
+    [self.tableView.mj_header beginRefreshing];
+    
     [AVCloud callFunctionInBackground:@"getHomeCommodity" withParameters:nil block:^(id  _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
             self.commodityInfo = object;
+            
             //NSLog(@"数组中的元素个数为%lu",[object count]);
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView.mj_header endRefreshing];
                 [self.tableView reloadData];
             }];
             NSLog(@"数据获取成功");

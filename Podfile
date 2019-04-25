@@ -10,4 +10,5 @@ target 'shopUser' do
     pod 'AVOSCloud'
     pod 'BRPickerView'
     pod 'PPNumberButton'
+    pod 'MJRefresh'
 end
