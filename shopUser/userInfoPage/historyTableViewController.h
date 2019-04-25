@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "orderStatusTableViewCell.h"
+#import "orderDetailViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

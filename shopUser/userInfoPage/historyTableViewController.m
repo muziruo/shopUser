@@ -10,6 +10,8 @@
 
 @interface historyTableViewController ()
 
+@property UIStoryboard *mainStoryBroad;
+
 @end
 
 @implementation historyTableViewController
@@ -17,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -53,6 +56,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+    orderDetailViewController *orderDetailView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"orderDetailView"];
+    [self.navigationController pushViewController:orderDetailView animated:true];
 }
 
 /*
