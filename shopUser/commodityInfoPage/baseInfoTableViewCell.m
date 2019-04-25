@@ -92,3 +92,38 @@
 }
 
 @end
+
+
+
+@implementation buttonCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
+
+- (void)layoutSubviews {
+    
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
+    if (self) {
+        self.seeMore = [[UIButton alloc] init];
+        self.seeMore.backgroundColor = UIColor.themeMainColor;
+        [self.seeMore setTitle:@"查看更多评论" forState:UIControlStateNormal];
+        self.seeMore.layer.cornerRadius = 10;
+        self.seeMore.titleLabel.font = UIFont.descriptionFontLight;
+        [self addSubview:self.seeMore];
+        
+        UIEdgeInsets buttonPadding = UIEdgeInsetsMake(5, 100, 5, 100);
+        [self.seeMore mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self).with.insets(buttonPadding);
+            make.height.mas_equalTo(20);
+        }];
+    }
+    
+    return self;
+}
+
+@end

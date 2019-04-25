@@ -38,13 +38,34 @@
     self.addCart.backgroundColor = UIColor.stressColor;
     
     [self.buyButton addTarget:self action:@selector(buyCommodity) forControlEvents:UIControlEventTouchUpInside];
+    [self.addCart addTarget:self action:@selector(addCartFunction) forControlEvents:UIControlEventTouchUpInside];
     
     if ([self.info valueForKey:@"objectId"] != nil) {
         [self getCommodityEvaluation];
+        [self getImage];
+        [self getStock];
     }
     // Do any additional setup after loading the view.
 }
 
+
+//添加购物车
+-(void)addCartFunction {
+    
+    if (self.selectedModel == nil) {
+        NSLog(@"请先选择型号");
+    }else {
+        NSDictionary *params = @{@"number":@1,@"userId":@"5cbc8182c8959c00751357ca",@"commodityId":[self.info valueForKey:@"objectId"],@"commodityStockId":self.selectedModel};
+        [AVCloud callFunctionInBackground:@"addShoppingCar" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+            if (error == nil) {
+                NSLog(@"添加购物车成功");
+            }
+        }];
+    }
+}
+
+
+//获取评论信息
 -(void)getCommodityEvaluation {
     NSDictionary *parameters = [NSDictionary dictionaryWithObject:[self.info valueForKey:@"objectId"] forKey:@"commodityID"];
     [AVCloud callFunctionInBackground:@"getCommodityEvaluation" withParameters:parameters block:^(id  _Nullable object, NSError * _Nullable error) {
@@ -55,6 +76,41 @@
             }];
         }
     }];
+}
+
+
+
+//获取库存信息
+-(void)getStock {
+    NSDictionary *params = [NSDictionary dictionaryWithObject:[self.info valueForKey:@"objectId"] forKey:@"commodityId"];
+    [AVCloud callFunctionInBackground:@"getStock" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            self.stock = object;
+        }
+    }];
+}
+
+
+
+//获取q图片信息
+-(void)getImage {
+    NSDictionary *params = [NSDictionary dictionaryWithObject:[self.info valueForKey:@"objectId"] forKey:@"commodityId"];
+    [AVCloud callFunctionInBackground:@"getCommodityImage" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            NSMutableArray *imageUrl = [[NSMutableArray alloc] init];
+            for (int i = 0; i < [object count]; i++) {
+                [imageUrl addObject:[object[i] valueForKey:@"imageUrl"]];
+            }
+            self.commodityImage.imageURLStringsGroup = imageUrl;
+        }
+    }];
+}
+
+
+
+//获取店铺信息
+-(void)getShopInfo {
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -73,7 +129,7 @@
             if ([self.evaluationInfo count] == 0) {
                 return 2;
             }
-            return 1 + [self.evaluationInfo count];
+            return 2 + [self.evaluationInfo count];
             break;
         default:
             return 0;
@@ -81,6 +137,9 @@
     }
 }
 
+
+
+//配置cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         baseInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"baseInfoTableViewCell"];
@@ -100,6 +159,7 @@
                 }
                 cell.infoLabel.font = UIFont.titleFont;
                 cell.infoLabel.textColor = UIColor.redColor;
+                cell.infoLabel.tag = 666;
                 cell.userInteractionEnabled = false;
                 break;
             case 1:
@@ -142,7 +202,7 @@
             if (!cell) {
                 cell = [[baseInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"baseInfoTableViewCell"];
             }
-            cell.infoLabel.text = @"请选择参数";
+            cell.infoLabel.text = @"选择型号";
             cell.infoLabel.tag = 777;
             cell.infoLabel.textColor = UIColor.themeMainColor;
             cell.infoLabel.font = UIFont.normalFont;
@@ -159,6 +219,7 @@
             cell.userInteractionEnabled = false;
             return cell;
         }else {
+//
             if ([self.evaluationInfo count] == 0) {
                 baseInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"baseInfoTableViewCell"];
                 if (!cell) {
@@ -169,6 +230,18 @@
                 cell.userInteractionEnabled = false;
                 return cell;
             }
+//
+            if (indexPath.row == 3) {
+                buttonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"buttonCell"];
+                
+                if (!cell) {
+                    cell = [[buttonCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"buttonCell"];
+                }
+                
+                
+                return cell;
+            }
+//
             commentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentTableViewCell"];
             if (!cell) {
                 cell = [[commentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commentTableViewCell"];
@@ -194,13 +267,35 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"选择参数");
-    NSArray *dateSource = @[@"型号1",@"型号2",@"型号3",@"型号4",@"型号5"];
-    [BRStringPickerView showStringPickerWithTitle:@"选择参数" dataSource:dateSource defaultSelValue:@"请选择参数" isAutoSelect:YES themeColor:UIColor.grayColor resultBlock:^(id selectValue) {
+    if ([self.stock count] == 0) {
         UILabel *canshu = [tableView viewWithTag:777];
-        canshu.text = selectValue;
-    } cancelBlock:^{
-        NSLog(@"取消了选择");
-    }];
+        canshu.text = @"暂无可选型号";
+        canshu.userInteractionEnabled = false;
+    }else {
+        NSMutableArray *dateSource = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [self.stock count]; i++) {
+            [dateSource addObject:[self.stock[i] valueForKey:@"commodityModel"]];
+        }
+        [BRStringPickerView showStringPickerWithTitle:@"选择参数" dataSource:dateSource defaultSelValue:@"请选择参数" isAutoSelect:YES themeColor:UIColor.themeMainColor resultBlock:^(id selectValue) {
+            
+            UILabel *canshu = [tableView viewWithTag:777];
+            canshu.text = selectValue;
+            
+            NSInteger index = [dateSource indexOfObject:selectValue];
+            self.selectedModel = [self.stock[index] valueForKey:@"objectId"];
+            
+////            改变价格
+//            UILabel *modelPrice = [tableView viewWithTag:666];
+//            NSString *price = @"¥";
+//            NSString *priceNum = [NSNumberFormatter localizedStringFromNumber:[self.stock valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+//            price = [price stringByAppendingString:priceNum];
+            
+            
+        } cancelBlock:^{
+            NSLog(@"取消了选择");
+        }];
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

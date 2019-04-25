@@ -27,6 +27,9 @@
 }
 
 
+//获取收货地址
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;

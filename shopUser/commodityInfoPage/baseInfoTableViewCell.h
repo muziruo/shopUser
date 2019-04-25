@@ -28,4 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+@interface buttonCell : UITableViewCell
+
+@property UIButton *seeMore;
+
+@end
+
 NS_ASSUME_NONNULL_END

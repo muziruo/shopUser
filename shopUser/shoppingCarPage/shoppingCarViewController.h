@@ -10,6 +10,8 @@
 #import "UIColor+themeUIColor.h"
 #import "shoppingCarTableViewCell.h"
 #import "infoViewController.h"
+#import <AVOSCloud/AVOSCloud.h>
+#import <SDWebImage/SDWebImage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

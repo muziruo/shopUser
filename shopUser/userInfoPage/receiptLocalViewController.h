@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "receiptLocalTableViewCell.h"
 #import "localEditViewController.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface receiptLocalViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+
+@property NSArray *localInfo;
 
 @property (weak, nonatomic) IBOutlet UITableView *receiptLocalTableView;
 @property (weak, nonatomic) IBOutlet UIButton *addLoacl;

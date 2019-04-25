@@ -10,6 +10,8 @@
 
 @interface shoppingCarViewController ()
 
+@property NSArray *shoppingCarInfo;
+
 @end
 
 @implementation shoppingCarViewController
@@ -22,7 +24,23 @@
     _buyButton.backgroundColor = UIColor.buttonColor;
     self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
+    
+    [self getShoppingCarInfo];
     // Do any additional setup after loading the view.
+}
+
+
+//获取购物车信息
+-(void)getShoppingCarInfo {
+    NSDictionary *params = @{@"userId":@"5cbc8182c8959c00751357ca"};
+    [AVCloud callFunctionInBackground:@"getShoppingCar" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            self.shoppingCarInfo = object;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.shopCarTableView reloadData];
+            }];
+        }
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -30,15 +48,25 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [self.shoppingCarInfo count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     shoppingCarTableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"shoppingCarCell" forIndexPath:indexPath];
     
-    myCell.commodityImage.image = [UIImage imageNamed:@"imageReplace"];
-    myCell.commodityName.text = @"商品名称";
-    myCell.descriptionInfo.text = @"商品参数";
+    
+//    配置cell中的数据
+    NSURL *imageUrl = [NSURL URLWithString:[[self.shoppingCarInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"mainImage"]];
+    [myCell.commodityImage sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imageReplace-s"]];
+    myCell.commodityName.text = [[self.shoppingCarInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"name"];
+    myCell.descriptionInfo.text = [[self.shoppingCarInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"description"];
+    NSNumber *number = [self.shoppingCarInfo[indexPath.row] valueForKey:@"number"];
+    myCell.numberButton.currentNumber = number.floatValue;
+    
+    NSString *priceTitle = @"¥";
+    NSString *price = [NSNumberFormatter localizedStringFromNumber:[[self.shoppingCarInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+    priceTitle = [priceTitle stringByAppendingString:price];
+    myCell.price.text = priceTitle;
     
     return myCell;
 }
@@ -51,6 +79,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     infoViewController *commodityInfo = [mainStoryBroad instantiateViewControllerWithIdentifier:@"commodityInfoView"];
+    commodityInfo.info = [self.shoppingCarInfo[indexPath.row] valueForKey:@"commodity"];
     [self.navigationController pushViewController:commodityInfo animated:YES];
 }
 

@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface infoViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property NSDictionary *info;
+@property NSArray *stock;
+@property NSArray *imageArray;
+@property NSString *selectedModel;
 
 @property (weak, nonatomic) IBOutlet UITableView *infoTableView;
 @property SDCycleScrollView *commodityImage;

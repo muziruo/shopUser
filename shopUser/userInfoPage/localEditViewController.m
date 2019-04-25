@@ -12,6 +12,7 @@
 
 @property NSArray *editInfoTitle;
 @property NSArray *editPlaceHolder;
+@property NSArray *needInfo;
 
 @end
 
@@ -22,6 +23,7 @@
     
     self.editInfoTitle = @[@"收件人",@"电话号码",@"所在区域",@"具体住址"];
     self.editPlaceHolder = @[@"请输入收件人姓名",@"请输入手机号码",@"请选择所在区域",@"请输入具体住址"];
+    self.needInfo = @[@"name",@"phoneNumber",@"area",@"address"];
     
     self.saveButton.backgroundColor = UIColor.buttonColor;
     
@@ -50,6 +52,10 @@
     
     cell.infoTitle.text = self.editInfoTitle[indexPath.row];
     cell.infoInput.placeholder = self.editPlaceHolder[indexPath.row];
+    
+    if (self.editOrCreate == 1) {
+        cell.infoInput.text = [self.editLocalInfo valueForKey:self.needInfo[indexPath.row]];
+    }
     
     return cell;
 }
