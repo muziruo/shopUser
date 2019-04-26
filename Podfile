@@ -11,4 +11,6 @@ target 'shopUser' do
     pod 'BRPickerView'
     pod 'PPNumberButton'
     pod 'MJRefresh'
+    pod 'GRStarsView'
+    pod 'SVProgressHUD'
 end

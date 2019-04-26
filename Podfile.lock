@@ -1,6 +1,7 @@
 PODS:
   - AVOSCloud (11.6.1)
   - BRPickerView (2.2.1)
+  - GRStarsView (0.1.0)
   - JVFloatLabeledTextField (1.2.1)
   - JXCategoryView (1.3.0)
   - Masonry (1.1.0)
@@ -12,10 +13,12 @@ PODS:
   - SDWebImage (5.0.0):
     - SDWebImage/Core (= 5.0.0)
   - SDWebImage/Core (5.0.0)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - AVOSCloud
   - BRPickerView
+  - GRStarsView
   - JVFloatLabeledTextField
   - JXCategoryView
   - Masonry
@@ -24,11 +27,13 @@ DEPENDENCIES:
   - PYSearch
   - SDCycleScrollView
   - SDWebImage
+  - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AVOSCloud
     - BRPickerView
+    - GRStarsView
     - JVFloatLabeledTextField
     - JXCategoryView
     - Masonry
@@ -37,10 +42,12 @@ SPEC REPOS:
     - PYSearch
     - SDCycleScrollView
     - SDWebImage
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   AVOSCloud: 75fe137e0d4eae392047824cea66c9b99a2ea574
   BRPickerView: 0590a8c5de9bd98c6b4e4f117a3dff6de287d5b2
+  GRStarsView: a9cf0b315dd4ab5f547a2004943eef86e935a792
   JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
   JXCategoryView: b3bf1bedb51b5f98b63d51f0e31007a2ef80de14
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -49,7 +56,8 @@ SPEC CHECKSUMS:
   PYSearch: 76dee18eea3309b60921a5d6a69390a63a5dda15
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: 5de80a0302de9e377e62f47d2fa1304efff0e55f
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: f4ece1a1d4f3899b222541567aaadd63fb4008b8
+PODFILE CHECKSUM: f17dd17ab1fe2f0f6d7423c9459f963df8674013
 
 COCOAPODS: 1.5.2

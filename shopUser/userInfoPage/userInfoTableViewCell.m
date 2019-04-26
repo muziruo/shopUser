@@ -24,12 +24,15 @@
 @end
 
 
+
+
+
+
 @interface orderStatusCell ()
 
 @property NSArray *status;
 
 @end
-
 
 
 @implementation orderStatusCell
@@ -118,6 +121,10 @@
 }
 
 @end
+
+
+
+
 
 
 

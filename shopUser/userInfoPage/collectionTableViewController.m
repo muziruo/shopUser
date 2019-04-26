@@ -18,6 +18,7 @@
 
 @implementation collectionTableViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -77,13 +78,15 @@
     
     return cell;
 }
-    
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     infoViewController *infoView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"commodityInfoView"];
     infoView.info = [self.collectionInfo[indexPath.row] valueForKey:@"commodity"];
     [self.navigationController pushViewController:infoView animated:true];
 }
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return [[UIView alloc] initWithFrame:CGRectZero];

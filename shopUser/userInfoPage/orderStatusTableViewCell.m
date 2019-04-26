@@ -289,9 +289,28 @@
             make.height.mas_equalTo(25);
             make.bottom.lessThanOrEqualTo(self.mas_bottom).with.offset(buttonPadding.bottom);
         }];
+        
+        
+        [self.evaluate addTarget:self action:@selector(goToEvaluate) forControlEvents:UIControlEventTouchUpInside];
     }
 
     return self;
+}
+
+-(void)goToEvaluate {
+    UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    evaluateViewController *evaluateView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"evaluateView"];
+    [[self getController].navigationController pushViewController:evaluateView animated:true];
+}
+
+- (UIViewController *)getController {
+    for (UIView *nextView =[self superview]; nextView; nextView = nextView.superview) {
+        UIResponder *getResponder = [nextView nextResponder];
+        if ([getResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)getResponder;
+        }
+    }
+    return nil;
 }
 
 @end

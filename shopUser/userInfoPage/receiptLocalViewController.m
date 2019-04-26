@@ -17,6 +17,7 @@
 
 @implementation receiptLocalViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -28,6 +29,7 @@
     [self getReceiptLocalInfo];
     // Do any additional setup after loading the view.
 }
+
 
 //请在此配置网络数据请求
 - (void)getReceiptLocalInfo {
@@ -42,13 +44,16 @@
     }];
 }
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.localInfo count];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     receiptLocalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"localCell"];
@@ -69,6 +74,7 @@
     return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     localEditViewController *editView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"editLocalView"];
     editView.editLocalInfo = self.localInfo[indexPath.row];
@@ -76,6 +82,7 @@
     [self.navigationController pushViewController:editView animated:true];
     [tableView deselectRowAtIndexPath:indexPath animated:true];
 }
+
 
 -(void)goToAddLocal {
     localEditViewController *editView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"editLocalView"];

@@ -67,13 +67,15 @@
 
 //获取评论信息
 -(void)getCommodityEvaluation {
-    NSDictionary *parameters = [NSDictionary dictionaryWithObject:[self.info valueForKey:@"objectId"] forKey:@"commodityID"];
+    NSDictionary *parameters = @{@"commodityId":[self.info valueForKey:@"objectId"],@"type":@1,@"page":@0};
     [AVCloud callFunctionInBackground:@"getCommodityEvaluation" withParameters:parameters block:^(id  _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
-            self.evaluationInfo = object;
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.infoTableView reloadData];
-            }];
+            if ([object valueForKey:@"success"]) {
+                self.evaluationInfo = [object valueForKey:@"resultInfo"];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.infoTableView reloadData];
+                }];
+            }
         }
     }];
 }
@@ -238,7 +240,6 @@
                     cell = [[buttonCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"buttonCell"];
                 }
                 
-                
                 return cell;
             }
 //
@@ -253,7 +254,7 @@
             }else {
                 cell.commentInfo.text = [self.evaluationInfo[indexPath.row - 1] valueForKey:@"info"];
             }
-            cell.userInteractionEnabled = false;
+            //cell.userInteractionEnabled = false;
             return cell;
         }
     }
@@ -267,34 +268,47 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"选择参数");
-    if ([self.stock count] == 0) {
-        UILabel *canshu = [tableView viewWithTag:777];
-        canshu.text = @"暂无可选型号";
-        canshu.userInteractionEnabled = false;
-    }else {
-        NSMutableArray *dateSource = [[NSMutableArray alloc] init];
-        for (int i = 0; i < [self.stock count]; i++) {
-            [dateSource addObject:[self.stock[i] valueForKey:@"commodityModel"]];
-        }
-        [BRStringPickerView showStringPickerWithTitle:@"选择参数" dataSource:dateSource defaultSelValue:@"请选择参数" isAutoSelect:YES themeColor:UIColor.themeMainColor resultBlock:^(id selectValue) {
-            
+    
+    if (indexPath.section == 1) {
+        
+        if ([self.stock count] == 0) {
             UILabel *canshu = [tableView viewWithTag:777];
-            canshu.text = selectValue;
-            
-            NSInteger index = [dateSource indexOfObject:selectValue];
-            self.selectedModel = [self.stock[index] valueForKey:@"objectId"];
-            
-////            改变价格
-//            UILabel *modelPrice = [tableView viewWithTag:666];
-//            NSString *price = @"¥";
-//            NSString *priceNum = [NSNumberFormatter localizedStringFromNumber:[self.stock valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
-//            price = [price stringByAppendingString:priceNum];
-            
-            
-        } cancelBlock:^{
-            NSLog(@"取消了选择");
-        }];
+            canshu.text = @"暂无可选型号";
+            canshu.userInteractionEnabled = false;
+        }else {
+            NSMutableArray *dateSource = [[NSMutableArray alloc] init];
+            for (int i = 0; i < [self.stock count]; i++) {
+                [dateSource addObject:[self.stock[i] valueForKey:@"commodityModel"]];
+            }
+            [BRStringPickerView showStringPickerWithTitle:@"选择参数" dataSource:dateSource defaultSelValue:@"请选择参数" isAutoSelect:YES themeColor:UIColor.themeMainColor resultBlock:^(id selectValue) {
+                
+                UILabel *canshu = [tableView viewWithTag:777];
+                canshu.text = selectValue;
+                
+                NSInteger index = [dateSource indexOfObject:selectValue];
+                self.selectedModel = [self.stock[index] valueForKey:@"objectId"];
+                
+                ////            改变价格
+                //            UILabel *modelPrice = [tableView viewWithTag:666];
+                //            NSString *price = @"¥";
+                //            NSString *priceNum = [NSNumberFormatter localizedStringFromNumber:[self.stock valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+                //            price = [price stringByAppendingString:priceNum];
+                
+                
+            } cancelBlock:^{
+                NSLog(@"取消了选择");
+            }];
+        }
+        
+    }else if (indexPath.section == 2){
+        
+        evaluationDetailViewController *evaluateView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"evaluationDetailView"];
+        evaluateView.commodityId = [self.info valueForKey:@"objectId"];
+        [self.navigationController pushViewController:evaluateView animated:true];
+        
     }
+    
+    
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

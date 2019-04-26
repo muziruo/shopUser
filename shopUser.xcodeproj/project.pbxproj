@@ -33,6 +33,10 @@
 		EE3AABF322713DD500A5BC94 /* orderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3AABF122713DD500A5BC94 /* orderDetailViewController.m */; };
 		EE3AABF62271409700A5BC94 /* orderDetailTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EE3AABF42271409700A5BC94 /* orderDetailTableViewCell.h */; };
 		EE3AABF72271409700A5BC94 /* orderDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3AABF52271409700A5BC94 /* orderDetailTableViewCell.m */; };
+		EE3AABFF2272BE9800A5BC94 /* evaluateViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EE3AABFD2272BE9800A5BC94 /* evaluateViewController.h */; };
+		EE3AAC002272BE9800A5BC94 /* evaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3AABFE2272BE9800A5BC94 /* evaluateViewController.m */; };
+		EE3AAC032272E14300A5BC94 /* evaluationDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EE3AAC012272E14300A5BC94 /* evaluationDetailViewController.h */; };
+		EE3AAC042272E14300A5BC94 /* evaluationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3AAC022272E14300A5BC94 /* evaluationDetailViewController.m */; };
 		EE3D5DA42265AD7D006F05BC /* UIColor+themeUIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3D5DA32265AD7D006F05BC /* UIColor+themeUIColor.m */; };
 		EE3D5DA62265B223006F05BC /* UIColor+themeUIColor.h in Headers */ = {isa = PBXBuildFile; fileRef = EE3D5DA22265AD7D006F05BC /* UIColor+themeUIColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE3D5DAA2265B698006F05BC /* UIFont+themeUIFont.h in Headers */ = {isa = PBXBuildFile; fileRef = EE3D5DA82265B698006F05BC /* UIFont+themeUIFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -148,6 +152,10 @@
 		EE3AABF122713DD500A5BC94 /* orderDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orderDetailViewController.m; sourceTree = "<group>"; };
 		EE3AABF42271409700A5BC94 /* orderDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = orderDetailTableViewCell.h; sourceTree = "<group>"; };
 		EE3AABF52271409700A5BC94 /* orderDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orderDetailTableViewCell.m; sourceTree = "<group>"; };
+		EE3AABFD2272BE9800A5BC94 /* evaluateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = evaluateViewController.h; sourceTree = "<group>"; };
+		EE3AABFE2272BE9800A5BC94 /* evaluateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = evaluateViewController.m; sourceTree = "<group>"; };
+		EE3AAC012272E14300A5BC94 /* evaluationDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = evaluationDetailViewController.h; sourceTree = "<group>"; };
+		EE3AAC022272E14300A5BC94 /* evaluationDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = evaluationDetailViewController.m; sourceTree = "<group>"; };
 		EE3D5DA22265AD7D006F05BC /* UIColor+themeUIColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+themeUIColor.h"; sourceTree = "<group>"; };
 		EE3D5DA32265AD7D006F05BC /* UIColor+themeUIColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+themeUIColor.m"; sourceTree = "<group>"; };
 		EE3D5DA82265B698006F05BC /* UIFont+themeUIFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+themeUIFont.h"; sourceTree = "<group>"; };
@@ -270,6 +278,8 @@
 				EE3AABF122713DD500A5BC94 /* orderDetailViewController.m */,
 				EE3AABF42271409700A5BC94 /* orderDetailTableViewCell.h */,
 				EE3AABF52271409700A5BC94 /* orderDetailTableViewCell.m */,
+				EE3AABFD2272BE9800A5BC94 /* evaluateViewController.h */,
+				EE3AABFE2272BE9800A5BC94 /* evaluateViewController.m */,
 			);
 			path = userInfoPage;
 			sourceTree = "<group>";
@@ -457,6 +467,8 @@
 				EEDC62152268B79E0067533A /* infoTableViewController.m */,
 				EEDC621822695E940067533A /* baseInfoTableViewCell.h */,
 				EEDC621922695E940067533A /* baseInfoTableViewCell.m */,
+				EE3AAC012272E14300A5BC94 /* evaluationDetailViewController.h */,
+				EE3AAC022272E14300A5BC94 /* evaluationDetailViewController.m */,
 			);
 			path = commodityInfoPage;
 			sourceTree = "<group>";
@@ -476,6 +488,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE3AAC032272E14300A5BC94 /* evaluationDetailViewController.h in Headers */,
 				EE7B7B5022702D4900D2343C /* historyTableViewController.h in Headers */,
 				EE7B7B4822702D0200D2343C /* waitReceiptTableViewController.h in Headers */,
 				EEDC62242269B38C0067533A /* commodityListTableViewController.h in Headers */,
@@ -485,6 +498,7 @@
 				EEDC62162268B79E0067533A /* infoTableViewController.h in Headers */,
 				EE3D5DAA2265B698006F05BC /* UIFont+themeUIFont.h in Headers */,
 				EEB0A6B7226F07C800066371 /* orderViewController.h in Headers */,
+				EE3AABFF2272BE9800A5BC94 /* evaluateViewController.h in Headers */,
 				EEDC62112268AA9A0067533A /* registerViewController.h in Headers */,
 				EE3AABF62271409700A5BC94 /* orderDetailTableViewCell.h in Headers */,
 				EE6D4E42226D720F00DDE1DA /* receiptLocalTableViewCell.h in Headers */,
@@ -642,6 +656,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-shopUser/Pods-shopUser-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework",
 				"${BUILT_PRODUCTS_DIR}/BRPickerView/BRPickerView.framework",
+				"${BUILT_PRODUCTS_DIR}/GRStarsView/GRStarsView.framework",
 				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/JXCategoryView/JXCategoryView.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -650,11 +665,13 @@
 				"${BUILT_PRODUCTS_DIR}/PYSearch/PYSearch.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloud.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRPickerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRStarsView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JXCategoryView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -663,6 +680,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PYSearch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -715,6 +733,7 @@
 				EE6D4E43226D720F00DDE1DA /* receiptLocalTableViewCell.m in Sources */,
 				EE3D5DA42265AD7D006F05BC /* UIColor+themeUIColor.m in Sources */,
 				EE1A8A76225CC9B50054E293 /* main.m in Sources */,
+				EE3AAC042272E14300A5BC94 /* evaluationDetailViewController.m in Sources */,
 				EED07122225E2F490086D96C /* orderStatusCollectionViewCell.m in Sources */,
 				EE032061225CDAD900212E84 /* userInfoTableViewController.m in Sources */,
 				EED0711C225E2E320086D96C /* userInfoTableViewCell.m in Sources */,
@@ -727,6 +746,7 @@
 				EEDC621B22695E940067533A /* baseInfoTableViewCell.m in Sources */,
 				EEED193F2265D26F005CD4DA /* shoppingCarTableViewCell.m in Sources */,
 				EE7B7B4522702CEF00D2343C /* waitShipTableViewController.m in Sources */,
+				EE3AAC002272BE9800A5BC94 /* evaluateViewController.m in Sources */,
 				EE032070225CF51E00212E84 /* commodityInfo.m in Sources */,
 				EE7B7B5122702D4900D2343C /* historyTableViewController.m in Sources */,
 				EE3AABF72271409700A5BC94 /* orderDetailTableViewCell.m in Sources */,
