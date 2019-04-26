@@ -11,6 +11,8 @@
 #import "UIFont+themeUIFont.h"
 #import "orderTableViewCell.h"
 #import <PPNumberButton/PPNumberButton.h>
+#import <AVOSCloud/AVOSCloud.h>
+#import <SDWebImage/SDWebImage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,11 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
 //订单页面数据有：商品信息列表、店铺信息列表、收货地址列表
 @property NSArray *localList;
 @property NSArray *commodityList;
-@property NSArray *shopList;
 
 //选中的地址以及地址id
 @property NSString *selectedLocalId;
 @property NSDictionary *selectedLocal;
+
+//
+@property NSDictionary *selectedStock;
 
 @end
 

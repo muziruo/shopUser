@@ -10,6 +10,7 @@
 #import "baseInfoTableViewCell.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "MJRefresh.h"
+#import <SDWebImage/SDWebImage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

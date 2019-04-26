@@ -40,4 +40,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+
+@interface pointCell : UITableViewCell
+
+@property UILabel *pointInfo;
+
+@end
+
 NS_ASSUME_NONNULL_END

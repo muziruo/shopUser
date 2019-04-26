@@ -60,6 +60,8 @@
     return [self.evaluationInfo count];
 }
 
+
+//请在此配置数据
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     commentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentTableViewCell"];
@@ -68,7 +70,8 @@
         cell = [[commentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commentTableViewCell"];
     }
     
-    cell.userAvator.image = [UIImage imageNamed:@"imageReplace-s"];
+    NSURL *imageUrl = [NSURL URLWithString:[[self.evaluationInfo[indexPath.row] valueForKey:@"userId"] valueForKey:@"avatar"]];
+    [cell.userAvator sd_setImageWithURL:imageUrl];
     cell.userNickName.text = [[self.evaluationInfo[indexPath.row] valueForKey:@"userId"] valueForKey:@"nickName"];
     cell.commentInfo.text = [self.evaluationInfo[indexPath.row] valueForKey:@"info"];
     

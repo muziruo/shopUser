@@ -247,8 +247,10 @@
             if (!cell) {
                 cell = [[commentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commentTableViewCell"];
             }
-            cell.userAvator.image = [UIImage imageNamed:@"imageReplace-s"];
-            cell.userNickName.text = @"用户昵称";
+            
+            NSURL *imageUrl = [NSURL URLWithString:[[self.evaluationInfo[indexPath.row - 1] valueForKey:@"userId"] valueForKey:@"avatar"]];
+            [cell.userAvator sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imageReplace-s"]];
+            cell.userNickName.text = [[self.evaluationInfo[indexPath.row - 1] valueForKey:@"userId"] valueForKey:@"nickName"];
             if ([self.evaluationInfo valueForKey:@"info"] == nil) {
                 cell.commentInfo.text = @"评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息";
             }else {

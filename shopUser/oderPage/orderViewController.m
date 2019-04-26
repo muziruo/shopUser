@@ -23,11 +23,31 @@
     self.sureButton.backgroundColor = UIColor.stressColor;
     self.sureButton.titleLabel.font = UIFont.normalFontLight;
     [self.sureButton addTarget:self action:@selector(sureOrder) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self getReceiptLocal];
     // Do any additional setup after loading the view.
 }
 
 
-//获取收货地址
+//获取所有收货地址
+-(void)getReceiptLocal {
+    NSDictionary *params = @{@"userId":@"5cbc8182c8959c00751357ca"};
+    [AVCloud callFunctionInBackground:@"getReceiptLocal" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            self.localList = object;
+            for (int i = 0; i < [object count]; i++) {
+                if ([[object[i] valueForKey:@"isDefault"]  isEqual:@1]) {
+                    self.selectedLocal = object[i];
+                }
+            }
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.orderTableView reloadData];
+            }];
+        }
+    }];
+}
+
+
 
 
 
@@ -41,7 +61,7 @@
             return 1;
             break;
         case 1:
-            return 1;
+            return [self.commodityList count];
             break;
         default:
             return 0;
@@ -52,16 +72,33 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
+        
+        if (self.selectedLocal == nil) {
+            pointCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pointCell"];
+            
+            if (!cell) {
+                cell = [[pointCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"pointCell"];
+            }
+            
+            cell.pointInfo.text = @"尚未找到地址，点击进行添加";
+            
+            return cell;
+        }
+        
         orderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"localCell"];
         
         if (!cell) {
             cell = [[orderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"localCell"];
         }
         
-        cell.receiptName.text = @"收货人";
-        cell.receiptNumber.text = @"12345678909";
-        cell.isDefalut.text = @"默认";
-        cell.receiptLocal.text = @"收货地址收货地址收货地址收货地址收货地址收货地址收货地址收货地址收货地址收货地址";
+        cell.receiptName.text = [self.selectedLocal valueForKey:@"name"];
+        cell.receiptNumber.text = [self.selectedLocal valueForKey:@"phoneNumber"];
+        if ([[self.selectedLocal valueForKey:@"isDefault"] isEqual:@1]) {
+            cell.isDefalut.text = @"默认";
+        }
+        
+        NSString *totalAddress = [[self.selectedLocal valueForKey:@"area"] stringByAppendingString:[self.selectedLocal valueForKey:@"address"]];
+        cell.receiptLocal.text = totalAddress;
         
         return cell;
     }else if (indexPath.section == 1) {
@@ -70,11 +107,17 @@
         if (!cell) {
             cell = [[commodityInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commodityCell"];
             
-            cell.commodityName.text = @"商品名称";
-            cell.commodityImage.image = [UIImage imageNamed:@"imageReplace-s"];
-            cell.commodityPrice.text = @"商品价格";
-            cell.commodityModel.text = @"商品型号";
-            cell.shopName.text = @"店铺名称";
+            cell.commodityName.text = [self.commodityList[indexPath.row] valueForKey:@"name"];
+            
+            NSURL *imageUrl = [NSURL URLWithString:[self.commodityList[indexPath.row] valueForKey:@"mainImage"]];
+            [cell.commodityImage sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imagePlace-s"]];
+            
+            NSString *priceText = [NSNumberFormatter localizedStringFromNumber:[self.commodityList[indexPath.row] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+            NSString *totalPrice = [@"¥" stringByAppendingString:priceText];
+            cell.commodityPrice.text = totalPrice;
+            
+            cell.commodityModel.text = [self.selectedStock valueForKey:@"commodityModel"];
+            cell.shopName.text = [[self.commodityList[indexPath.row] valueForKey:@"shop"] valueForKey:@"name"];
             //cell.number.text = @"商品数量";
         }
         

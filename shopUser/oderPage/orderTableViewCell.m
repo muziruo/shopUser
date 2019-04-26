@@ -220,3 +220,36 @@
 }
 
 @end
+
+
+
+
+@implementation pointCell
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
+    if (self) {
+        self.pointInfo = [[UILabel alloc] init];
+        self.pointInfo.font = UIFont.normalFont;
+        self.pointInfo.textColor = UIColor.stressColor;
+        
+        [self addSubview:self.pointInfo];
+        UIEdgeInsets infoPadding = UIEdgeInsetsMake(20, 30, 20, 30);
+        [self.pointInfo mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self).with.insets(infoPadding);
+        }];
+    }
+    
+    return self;
+}
+
+- (void)layoutSubviews {
+    
+}
+
+@end
