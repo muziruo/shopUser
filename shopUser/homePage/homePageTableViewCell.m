@@ -24,8 +24,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
-        NSURL *image1 = [NSURL URLWithString:@"http://lc-ahj3its7.cn-n1.lcfile.com/812d8b0a6a1032184925/IMG_3945-s.JPG"];
-        NSURL *image2 = [NSURL URLWithString:@"http://lc-ahj3its7.cn-n1.lcfile.com/84bb660e43f9ef2da95e/background0707-s.jpg"];
+        NSURL *image1 = [NSURL URLWithString:@"http://lc-ahj3its7.cn-n1.lcfile.com/0f24c8f619a064832190/backgroun1.png"];
+        NSURL *image2 = [NSURL URLWithString:@"http://lc-ahj3its7.cn-n1.lcfile.com/0b998d3751403a657873/background2.png"];
         NSArray *iamgeUrls = @[image1,image2];
         
         self.myView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, 375, 200) delegate:self placeholderImage:[UIImage imageNamed:@"zhanweitu.png"]];

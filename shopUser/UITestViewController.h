@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UIColor+themeUIColor.h"
 #import "UIFont+themeUIFont.h"
+#import <QuickLook/QuickLook.h>
+#import <AVOSCloud/AVOSCloud.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIButton *normalButton;
 @property (weak, nonatomic) IBOutlet UIButton *stressButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *goToAR;
+
 
 @end
 

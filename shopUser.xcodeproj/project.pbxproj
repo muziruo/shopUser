@@ -70,6 +70,8 @@
 		EED07119225DED8B0086D96C /* commodityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07118225DED8B0086D96C /* commodityCollectionViewCell.m */; };
 		EED0711C225E2E320086D96C /* userInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED0711B225E2E320086D96C /* userInfoTableViewCell.m */; };
 		EED07122225E2F490086D96C /* orderStatusCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07121225E2F490086D96C /* orderStatusCollectionViewCell.m */; };
+		EED289F222748887007725AE /* ARViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EED289F022748887007725AE /* ARViewController.h */; };
+		EED289F322748887007725AE /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EED289F122748887007725AE /* ARViewController.m */; };
 		EEDC62112268AA9A0067533A /* registerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDC620F2268AA9A0067533A /* registerViewController.h */; };
 		EEDC62122268AA9A0067533A /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDC62102268AA9A0067533A /* registerViewController.m */; };
 		EEDC62162268B79E0067533A /* infoTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDC62142268B79E0067533A /* infoTableViewController.h */; };
@@ -83,6 +85,8 @@
 		EEDC6228226D689C0067533A /* collectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDC6226226D689C0067533A /* collectionTableViewController.m */; };
 		EEDC622B226D69570067533A /* collectionTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDC6229226D69570067533A /* collectionTableViewCell.h */; };
 		EEDC622C226D69570067533A /* collectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDC622A226D69570067533A /* collectionTableViewCell.m */; };
+		EEE1C85122742EC2006ACD74 /* selectLocalViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEE1C84F22742EC2006ACD74 /* selectLocalViewController.h */; };
+		EEE1C85222742EC2006ACD74 /* selectLocalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE1C85022742EC2006ACD74 /* selectLocalViewController.m */; };
 		EEED193E2265D26F005CD4DA /* shoppingCarTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EEED193C2265D26F005CD4DA /* shoppingCarTableViewCell.h */; };
 		EEED193F2265D26F005CD4DA /* shoppingCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEED193D2265D26F005CD4DA /* shoppingCarTableViewCell.m */; };
 /* End PBXBuildFile section */
@@ -194,6 +198,8 @@
 		EED0711B225E2E320086D96C /* userInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userInfoTableViewCell.m; sourceTree = "<group>"; };
 		EED07120225E2F490086D96C /* orderStatusCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = orderStatusCollectionViewCell.h; sourceTree = "<group>"; };
 		EED07121225E2F490086D96C /* orderStatusCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orderStatusCollectionViewCell.m; sourceTree = "<group>"; };
+		EED289F022748887007725AE /* ARViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARViewController.h; sourceTree = "<group>"; };
+		EED289F122748887007725AE /* ARViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARViewController.m; sourceTree = "<group>"; };
 		EEDC620F2268AA9A0067533A /* registerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
 		EEDC62102268AA9A0067533A /* registerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
 		EEDC62142268B79E0067533A /* infoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = infoTableViewController.h; sourceTree = "<group>"; };
@@ -206,6 +212,8 @@
 		EEDC6226226D689C0067533A /* collectionTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = collectionTableViewController.m; sourceTree = "<group>"; };
 		EEDC6229226D69570067533A /* collectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = collectionTableViewCell.h; sourceTree = "<group>"; };
 		EEDC622A226D69570067533A /* collectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = collectionTableViewCell.m; sourceTree = "<group>"; };
+		EEE1C84F22742EC2006ACD74 /* selectLocalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = selectLocalViewController.h; sourceTree = "<group>"; };
+		EEE1C85022742EC2006ACD74 /* selectLocalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = selectLocalViewController.m; sourceTree = "<group>"; };
 		EEED193C2265D26F005CD4DA /* shoppingCarTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shoppingCarTableViewCell.h; sourceTree = "<group>"; };
 		EEED193D2265D26F005CD4DA /* shoppingCarTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shoppingCarTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -454,6 +462,8 @@
 				EEB0A6B6226F07C800066371 /* orderViewController.m */,
 				EEB0A6B9226F095000066371 /* orderTableViewCell.h */,
 				EEB0A6BA226F095000066371 /* orderTableViewCell.m */,
+				EEE1C84F22742EC2006ACD74 /* selectLocalViewController.h */,
+				EEE1C85022742EC2006ACD74 /* selectLocalViewController.m */,
 			);
 			path = oderPage;
 			sourceTree = "<group>";
@@ -469,6 +479,8 @@
 				EEDC621922695E940067533A /* baseInfoTableViewCell.m */,
 				EE3AAC012272E14300A5BC94 /* evaluationDetailViewController.h */,
 				EE3AAC022272E14300A5BC94 /* evaluationDetailViewController.m */,
+				EED289F022748887007725AE /* ARViewController.h */,
+				EED289F122748887007725AE /* ARViewController.m */,
 			);
 			path = commodityInfoPage;
 			sourceTree = "<group>";
@@ -490,6 +502,7 @@
 			files = (
 				EE3AAC032272E14300A5BC94 /* evaluationDetailViewController.h in Headers */,
 				EE7B7B5022702D4900D2343C /* historyTableViewController.h in Headers */,
+				EED289F222748887007725AE /* ARViewController.h in Headers */,
 				EE7B7B4822702D0200D2343C /* waitReceiptTableViewController.h in Headers */,
 				EEDC62242269B38C0067533A /* commodityListTableViewController.h in Headers */,
 				EE6D4E3E226D714700DDE1DA /* receiptLocalViewController.h in Headers */,
@@ -504,6 +517,7 @@
 				EE6D4E42226D720F00DDE1DA /* receiptLocalTableViewCell.h in Headers */,
 				EE7B7B4422702CEF00D2343C /* waitShipTableViewController.h in Headers */,
 				EE3AABF222713DD500A5BC94 /* orderDetailViewController.h in Headers */,
+				EEE1C85122742EC2006ACD74 /* selectLocalViewController.h in Headers */,
 				EEDC622B226D69570067533A /* collectionTableViewCell.h in Headers */,
 				EEED193E2265D26F005CD4DA /* shoppingCarTableViewCell.h in Headers */,
 				EE3D5DAE2265B928006F05BC /* UITestViewController.h in Headers */,
@@ -714,6 +728,7 @@
 			files = (
 				EE032075225D8D9D00212E84 /* homePageTableViewCell.m in Sources */,
 				EE032058225CD3A300212E84 /* levelTwoCollectionViewCell.m in Sources */,
+				EED289F322748887007725AE /* ARViewController.m in Sources */,
 				EE032064225CDCC400212E84 /* homeTableViewController.m in Sources */,
 				EEB0A6B8226F07C800066371 /* orderViewController.m in Sources */,
 				EE1A8A9F225CCCC30054E293 /* categotyViewController.m in Sources */,
@@ -722,6 +737,7 @@
 				EE50185B2268756F00EF007E /* listViewController.m in Sources */,
 				EE1A8A9B225CC9FD0054E293 /* loginViewController.m in Sources */,
 				EEDC62232269772B0067533A /* infoViewController.m in Sources */,
+				EEE1C85222742EC2006ACD74 /* selectLocalViewController.m in Sources */,
 				EED07119225DED8B0086D96C /* commodityCollectionViewCell.m in Sources */,
 				EE7B7B4922702D0200D2343C /* waitReceiptTableViewController.m in Sources */,
 				EEDC62122268AA9A0067533A /* registerViewController.m in Sources */,

@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "orderStatusTableViewCell.h"
+#import <AVOSCloud/AVOSCloud.h>
+#import <MJRefresh/MJRefresh.h>
+#import <SDWebImage/SDWebImage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface waitShipTableViewController : UITableViewController
+
+@property NSArray *orderInfo;
 
 @end
 

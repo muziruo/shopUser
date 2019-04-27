@@ -18,6 +18,8 @@
     [super viewDidLoad];
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    [self getOrderInfo];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -25,14 +27,27 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-#pragma mark - Table view data source
+-(void)getOrderInfo {
+    NSDictionary *params = @{
+                             @"userId":@"5cbc81e6a3180b7832cd059a",
+                             @"orderStatus":@2
+                             };
+    [AVCloud callFunctionInBackground:@"searchOrder" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            if ([object valueForKey:@"success"]) {
+                self.orderInfo = [object valueForKey:@"result"];
+                [self.tableView reloadData];
+            }
+        }
+    }];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [self.orderInfo count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -42,11 +57,13 @@
         cell = [[waitReceiptCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"waitReceiptCell"];
     }
     
-    cell.commodityImage.image = [UIImage imageNamed:@"imageReplace-s"];
+    NSURL *imageUrl = [NSURL URLWithString:[[self.orderInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"mainImage"]];
+    [cell.commodityImage sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imageReplace-s"]];
+    cell.commodityName.text = [[self.orderInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"name"];
+    cell.commodityShop.text = [[self.orderInfo[indexPath.row] valueForKey:@"shop"] valueForKey:@"name"];
+    cell.commodityModel.text = [self.orderInfo[indexPath.row] valueForKey:@"commodityModel"];
+    
     cell.commodityStatus.text = @"正在运输";
-    cell.commodityName.text = @"商品名称";
-    cell.commodityShop.text = @"店铺名称";
-    cell.commodityModel.text = @"商品型号";
     [cell.sureReceipt setTitle:@"确认收货" forState:UIControlStateNormal];
     
     return cell;

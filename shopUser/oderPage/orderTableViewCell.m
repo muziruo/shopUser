@@ -219,6 +219,16 @@
     
 }
 
+- (UIViewController *)getController {
+    for (UIView *nextView =[self superview]; nextView; nextView = nextView.superview) {
+        UIResponder *getResponder = [nextView nextResponder];
+        if ([getResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)getResponder;
+        }
+    }
+    return nil;
+}
+
 @end
 
 

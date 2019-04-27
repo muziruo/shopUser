@@ -672,6 +672,11 @@
                                     <segue destination="4oP-4j-Pwv" kind="modal" id="Udt-HM-85U"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7jr-JC-X6j">
+                                <rect key="frame" x="297" y="580" width="51" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="AR接入"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -698,6 +703,7 @@
                     <connections>
                         <outlet property="descriptionText" destination="C7b-iB-YtL" id="jwX-Dj-a6r"/>
                         <outlet property="descriptionTextLight" destination="SUv-e0-U08" id="Wep-0F-UA7"/>
+                        <outlet property="goToAR" destination="7jr-JC-X6j" id="Hxm-F4-Qoe"/>
                         <outlet property="normalButton" destination="1fj-W2-Sss" id="QTg-mf-90g"/>
                         <outlet property="normalText" destination="Q7J-TV-a4X" id="pbE-fG-0iM"/>
                         <outlet property="normlTextLight" destination="je9-vN-MMe" id="mNY-Ce-ShK"/>
@@ -919,6 +925,50 @@
             </objects>
             <point key="canvasLocation" x="3984.8000000000002" y="-2283.5082458770617"/>
         </scene>
+        <!--Select Local View Controller-->
+        <scene sceneID="wB1-Vo-BIO">
+            <objects>
+                <viewController storyboardIdentifier="localListView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qcI-IG-cJt" customClass="selectLocalViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cIi-Ne-n3N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v52-nT-lOv">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ebH-vl-aNQ">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ebH-vl-aNQ" id="C1M-gX-UlU">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="qcI-IG-cJt" id="CEm-QL-ccX"/>
+                                    <outlet property="delegate" destination="qcI-IG-cJt" id="k9Q-JU-X2j"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xbD-GB-lhO" firstAttribute="trailing" secondItem="v52-nT-lOv" secondAttribute="trailing" id="2Ni-Al-kbZ"/>
+                            <constraint firstItem="v52-nT-lOv" firstAttribute="top" secondItem="xbD-GB-lhO" secondAttribute="top" id="6cd-KP-G6X"/>
+                            <constraint firstItem="v52-nT-lOv" firstAttribute="leading" secondItem="xbD-GB-lhO" secondAttribute="leading" id="uUV-L9-V3e"/>
+                            <constraint firstItem="xbD-GB-lhO" firstAttribute="bottom" secondItem="v52-nT-lOv" secondAttribute="bottom" id="z6T-dQ-SND"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xbD-GB-lhO"/>
+                    </view>
+                    <connections>
+                        <outlet property="localListTableView" destination="v52-nT-lOv" id="AWL-Ph-LVP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SB9-fj-yph" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4860" y="-2284"/>
+        </scene>
         <!--Info View Controller-->
         <scene sceneID="VgC-1b-MFz">
             <objects>
@@ -1097,11 +1147,37 @@
                     <connections>
                         <outlet property="orderTableView" destination="xWe-5s-kS4" id="GWK-NP-jAJ"/>
                         <outlet property="sureButton" destination="VQ9-F2-H23" id="X43-jI-KIh"/>
+                        <outlet property="totalPrice" destination="x8M-h5-NOB" id="Zsp-sz-fVj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGq-gX-dn7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4860" y="-1542"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="89M-ce-uG4">
+            <objects>
+                <viewController storyboardIdentifier="ARView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JoL-Pj-lsx" customClass="ARViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Cx-e5-vp0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6Y-91-wSc">
+                                <rect key="frame" x="172" y="617" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="返回"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ofB-Tp-5Jz"/>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="s6Y-91-wSc" id="KZO-y4-pEH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SWL-7F-Z4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5740" y="-1542"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="xza-FZ-dne">

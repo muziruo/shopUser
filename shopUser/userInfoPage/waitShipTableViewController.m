@@ -17,11 +17,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self getOrderInfo];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+
+-(void)getOrderInfo {
+    NSDictionary *params = @{
+                             @"userId":@"5cbc81e6a3180b7832cd059a",
+                             @"orderStatus":@1
+                             };
+    [AVCloud callFunctionInBackground:@"searchOrder" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            if ([object valueForKey:@"success"]) {
+                self.orderInfo = [object valueForKey:@"result"];
+                [self.tableView reloadData];
+            }
+        }
+    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -31,10 +48,11 @@
         cell = [[orderStatusTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"orderCell"];
     }
     
-    cell.commodityImage.image = [UIImage imageNamed:@"imageReplace-s"];
-    cell.commodityName.text = @"商品名称";
-    cell.commodityShop.text = @"店铺名称";
-    cell.commodityModel.text = @"商品型号";
+    NSURL *imageUrl = [NSURL URLWithString:[[self.orderInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"mainImage"]];
+    [cell.commodityImage sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imageReplace-s"]];
+    cell.commodityName.text = [[self.orderInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"name"];
+    cell.commodityShop.text = [[self.orderInfo[indexPath.row] valueForKey:@"shop"] valueForKey:@"name"];
+    cell.commodityModel.text = [self.orderInfo[indexPath.row] valueForKey:@"commodityModel"];
     cell.commodityStatus.text = @"待发货";
     
     return cell;
@@ -45,22 +63,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [self.orderInfo count];
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

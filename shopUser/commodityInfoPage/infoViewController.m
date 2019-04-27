@@ -26,8 +26,8 @@
     self.infoTableView.delegate = self;
     self.infoTableView.dataSource = self;
     
-    NSURL *image1 = [NSURL URLWithString:@"http://lc-ahj3its7.cn-n1.lcfile.com/84bb660e43f9ef2da95e/background0707-s.jpg"];
-    NSURL *image2 = [NSURL URLWithString:@"http://lc-ahj3its7.cn-n1.lcfile.com/812d8b0a6a1032184925/IMG_3945-s.JPG"];
+    NSURL *image1 = [NSURL URLWithString:@"http://lc-ahj3its7.cn-n1.lcfile.com/0f24c8f619a064832190/backgroun1.png"];
+    NSURL *image2 = [NSURL URLWithString:@"http://lc-ahj3its7.cn-n1.lcfile.com/0b998d3751403a657873/background2.png"];
     NSArray *iamgeUrls = @[image1,image2];
     self.commodityImage = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 400) delegate:self placeholderImage:[UIImage imageNamed:@"imageReplace"]];
     self.commodityImage.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
@@ -40,12 +40,35 @@
     [self.buyButton addTarget:self action:@selector(buyCommodity) forControlEvents:UIControlEventTouchUpInside];
     [self.addCart addTarget:self action:@selector(addCartFunction) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    if (self.detailInfo == nil) {
+        NSLog(@"无数据");
+    }
+    
     if ([self.info valueForKey:@"objectId"] != nil) {
+        [self getCommodityDetail];
         [self getCommodityEvaluation];
         [self getImage];
         [self getStock];
     }
     // Do any additional setup after loading the view.
+}
+
+
+//获取商品详细信息
+-(void)getCommodityDetail {
+    NSString *commodityId = [self.info valueForKey:@"objectId"];
+    NSDictionary *params = @{@"commodityId":commodityId};
+    [AVCloud callFunctionInBackground:@"getCommodityInfo" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            if ([object valueForKey:@"success"]) {
+                self.detailInfo = [object valueForKey:@"result"][0];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.infoTableView reloadData];
+                }];
+            }
+        }
+    }];
 }
 
 
@@ -116,7 +139,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -132,6 +155,9 @@
                 return 2;
             }
             return 2 + [self.evaluationInfo count];
+            break;
+        case 3:
+            return 1;
             break;
         default:
             return 0;
@@ -151,11 +177,19 @@
         
         switch (indexPath.row) {
             case 0:
-                if ([self.info valueForKey:@"price"] == nil) {
+                if ([self.detailInfo valueForKey:@"price"] == nil) {
                     cell.infoLabel.text = @"价格";
                 }else {
                     NSString *price = @"¥";
-                    NSString *priceNum = [NSNumberFormatter localizedStringFromNumber:[self.info valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+                    NSLog(@"出错前价格数据%@",[self.detailInfo valueForKey:@"price"]);
+                    
+                    NSNumber *currentNum = [self.info valueForKey:@"price"];
+                    NSLog(@"正确显示的MNSnumber为:%@",currentNum);
+                    NSNumber *priceNumber  = [self.detailInfo valueForKey:@"price"];
+                    NSLog(@"出错前获取的价格NSNumber为：%@",priceNumber);
+                    NSString *priceNum = [NSNumberFormatter localizedStringFromNumber:priceNumber numberStyle:NSNumberFormatterNoStyle];
+                    //NSLog(@"获取的商品具体信息是:",self.detailInfo);
+                    NSLog(@"出错前价格数据%@",priceNum);
                     price = [price stringByAppendingString:priceNum];
                     cell.infoLabel.text = price;
                 }
@@ -165,20 +199,20 @@
                 cell.userInteractionEnabled = false;
                 break;
             case 1:
-                if ([self.info valueForKey:@"name"] == nil) {
+                if ([self.detailInfo valueForKey:@"name"] == nil) {
                     cell.infoLabel.text = @"商品名称";
                 }else{
-                    cell.infoLabel.text = [self.info valueForKey:@"name"];
+                    cell.infoLabel.text = [self.detailInfo valueForKey:@"name"];
                 }
                 cell.infoLabel.font = UIFont.normalFont;
                 cell.infoLabel.numberOfLines = 0;
                 cell.userInteractionEnabled = false;
                 break;
             case 2:
-                if ([self.info valueForKey:@"description"] == nil) {
+                if ([self.detailInfo valueForKey:@"description"] == nil) {
                     cell.infoLabel.text = @"商品描述";
                 }else {
-                    cell.infoLabel.text = [self.info valueForKey:@"description"];
+                    cell.infoLabel.text = [self.detailInfo valueForKey:@"description"];
                 }
                 cell.infoLabel.font = UIFont.descriptionFontLight;
                 cell.infoLabel.numberOfLines = 0;
@@ -259,6 +293,16 @@
             //cell.userInteractionEnabled = false;
             return cell;
         }
+    }else if (indexPath.section == 3){
+        baseInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"seeAR"];
+        if (!cell) {
+            cell = [[baseInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"seeAR"];
+        }
+        cell.infoLabel.text = @"实体查看";
+        cell.infoLabel.font = UIFont.normalFontLight;
+        cell.infoLabel.textColor = UIColor.themeMainColor;
+        
+        return cell;
     }
     
     return nil;
@@ -288,8 +332,8 @@
                 canshu.text = selectValue;
                 
                 NSInteger index = [dateSource indexOfObject:selectValue];
-                self.selectedModel = [self.stock[index] valueForKey:@"objectId"];
-                
+                self.selectedModel = self.stock[index];
+                NSLog(@"选择的型号为:%@",self.selectedModel);
                 ////            改变价格
                 //            UILabel *modelPrice = [tableView viewWithTag:666];
                 //            NSString *price = @"¥";
@@ -308,6 +352,10 @@
         evaluateView.commodityId = [self.info valueForKey:@"objectId"];
         [self.navigationController pushViewController:evaluateView animated:true];
         
+    }else if (indexPath.section == 3){
+        
+        ARViewController *ARView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"ARView"];
+        [self.navigationController pushViewController:ARView animated:true];
     }
     
     
@@ -316,7 +364,22 @@
 }
 
 - (void)buyCommodity{
+//    首先检查是否选择了型号
+    if (self.selectedModel == nil) {
+        [SVProgressHUD showErrorWithStatus:@"未选择型号"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
     orderViewController *orderView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"orderView"];
+    orderView.selectedStock = self.selectedModel;
+    
+    NSMutableArray *commodityList = [[NSMutableArray alloc] init];
+    [commodityList addObject:self.detailInfo];
+    NSLog(@"传递的商品数量为:%lu",(unsigned long)[commodityList count]);
+    orderView.commodityList = commodityList;
+    orderView.fromShoppingCar = false;
+    
     [self.navigationController pushViewController:orderView animated:true];
 }
 

@@ -15,15 +15,18 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "orderViewController.h"
 #import "evaluationDetailViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "ARViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface infoViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property NSDictionary *info;
+@property NSDictionary *detailInfo;
 @property NSArray *stock;
 @property NSArray *imageArray;
-@property NSString *selectedModel;
+@property NSDictionary *selectedModel;
 
 @property (weak, nonatomic) IBOutlet UITableView *infoTableView;
 @property SDCycleScrollView *commodityImage;
