@@ -76,12 +76,23 @@
 -(void)addCartFunction {
     
     if (self.selectedModel == nil) {
-        NSLog(@"请先选择型号");
+        [SVProgressHUD showErrorWithStatus:@"未选择型号"];
     }else {
-        NSDictionary *params = @{@"number":@1,@"userId":@"5cbc8182c8959c00751357ca",@"commodityId":[self.info valueForKey:@"objectId"],@"commodityStockId":self.selectedModel};
+        NSDictionary *params = @{
+                                 @"number":@1,
+                                 @"userId":@"5cbc8182c8959c00751357ca",
+                                 @"commodityId":[self.info valueForKey:@"objectId"],
+                                 @"commodityStockId":[self.selectedModel valueForKey:@"objectId"]
+                                 };
         [AVCloud callFunctionInBackground:@"addShoppingCar" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
             if (error == nil) {
-                NSLog(@"添加购物车成功");
+                if ([object valueForKey:@"success"]) {
+                    [SVProgressHUD showSuccessWithStatus:@"添加购物车成功"];
+                    [SVProgressHUD dismissWithDelay:0.5];
+                }else {
+                    [SVProgressHUD showErrorWithStatus:@"添加出错"];
+                    [SVProgressHUD dismissWithDelay:0.5];
+                }
             }
         }];
     }
@@ -174,6 +185,8 @@
         if (!cell) {
             cell = [[baseInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"baseInfoTableViewCell"];
         }
+        
+        
         
         switch (indexPath.row) {
             case 0:

@@ -46,20 +46,15 @@
 
 
 -(void)countTotalPrice {
-    int totalPrice = 0;
+    float totalPrice = 0;
     for (int i = 0 ; i < [self.commodityList count]; i++) {
         PPNumberButton *number = (PPNumberButton*)[self.view viewWithTag:(101 + i)];
-        if (number == nil) {
-            NSLog(@"未获取到相应的数量控制器");
-        }
         NSNumber *price = [self.commodityList[i] valueForKey:@"price"];
-        NSLog(@"当前单品价:%@",price);
         NSNumber *commodityNumber = [NSNumber numberWithFloat:number.currentNumber];
-        NSLog(@"当前个数:%@",commodityNumber);
-        totalPrice = commodityNumber.intValue * price.intValue + totalPrice;
+        totalPrice = commodityNumber.intValue * price.floatValue + totalPrice;
     }
     self.actualPay = [NSNumber numberWithInteger:totalPrice];
-    NSString *priceString = [NSString stringWithFormat:@"%d",totalPrice];
+    NSString *priceString = [NSString stringWithFormat:@"%f",totalPrice];
     self.totalPrice.text = priceString;
 }
 

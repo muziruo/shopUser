@@ -25,19 +25,40 @@
     self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     
+    self.shopCarTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getShoppingCarInfo)];
+    
     [self getShoppingCarInfo];
     // Do any additional setup after loading the view.
 }
 
 
+//计算总价
+-(void)countTotalPrice {
+    float total = 0;
+    for (int i = 0; i < [self.shoppingCarInfo count]; i++) {
+        PPNumberButton *numberButton = [self.view viewWithTag:(101 + i)];
+        NSNumber *number = [NSNumber numberWithFloat:numberButton.currentNumber];
+        NSNumber *price = [[self.shoppingCarInfo[i] valueForKey:@"commodity"] valueForKey:@"price"];
+        total = total + number.intValue * price.floatValue;
+    }
+    self.totalPrice = [NSNumber numberWithDouble:total];
+    NSString *priceString = [NSString stringWithFormat:@"%f",total];
+    self.totalPriceText.text = priceString;
+}
+
+
 //获取购物车信息
 -(void)getShoppingCarInfo {
+    [self.shopCarTableView.mj_header beginRefreshing];
+    
     NSDictionary *params = @{@"userId":@"5cbc8182c8959c00751357ca"};
     [AVCloud callFunctionInBackground:@"getShoppingCar" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
             self.shoppingCarInfo = object;
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.shopCarTableView reloadData];
+                [self.shopCarTableView.mj_header endRefreshing];
+                [self countTotalPrice];
             }];
         }
     }];
@@ -62,18 +83,24 @@
     myCell.descriptionInfo.text = [[self.shoppingCarInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"description"];
     NSNumber *number = [self.shoppingCarInfo[indexPath.row] valueForKey:@"number"];
     myCell.numberButton.currentNumber = number.floatValue;
+    [myCell.numberButton setTag:(101 + indexPath.row)];
+    myCell.numberButton.delegate = self;
     
     NSString *priceTitle = @"¥";
     NSString *price = [NSNumberFormatter localizedStringFromNumber:[[self.shoppingCarInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
     priceTitle = [priceTitle stringByAppendingString:price];
-    myCell.price.text = priceTitle;
+    myCell.price.text = price;
+    
+    //[myCell.selectButton addTarget:self action:@selector(changeColor) forControlEvents:UIControlEventTouchUpInside];
     
     return myCell;
 }
 
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return [[UIView alloc] initWithFrame:CGRectZero];
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
@@ -84,15 +111,14 @@
 }
 
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//ppnumberbutton代理方法
+- (void)pp_numberButton:(PPNumberButton *)numberButton number:(NSInteger)number increaseStatus:(BOOL)increaseStatus {
+    [self countTotalPrice];
 }
-*/
+
+
+-(void)changeColor {
+    
+}
 
 @end

@@ -15,11 +15,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface shoppingCarViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface shoppingCarViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, PPNumberButtonDelegate>
+
+@property NSNumber *totalPrice;
 
 @property (weak, nonatomic) IBOutlet UITableView *shopCarTableView;
 @property (weak, nonatomic) IBOutlet UIButton *buyButton;
-@property (weak, nonatomic) IBOutlet PPNumberButton *numberButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *selectAll;
+@property (weak, nonatomic) IBOutlet UILabel *totalPriceText;
+
 
 
 @end
