@@ -39,6 +39,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property BOOL fromShoppingCar;
 
+
+@property NSMutableArray *successArray;
+
+@property NSMutableArray *payArray;
+
+@property NSMutableArray *buyNumber;
+
 @end
 
 NS_ASSUME_NONNULL_END

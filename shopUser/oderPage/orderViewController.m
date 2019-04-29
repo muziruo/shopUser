@@ -28,6 +28,9 @@
     self.sureButton.titleLabel.font = UIFont.normalFontLight;
     [self.sureButton addTarget:self action:@selector(sureOrder) forControlEvents:UIControlEventTouchUpInside];
     
+    if (self.fromShoppingCar) {
+        self.payArray = [[NSMutableArray alloc] init];
+    }
     
     [self getReceiptLocal];
     // Do any additional setup after loading the view.
@@ -49,8 +52,17 @@
     float totalPrice = 0;
     for (int i = 0 ; i < [self.commodityList count]; i++) {
         PPNumberButton *number = (PPNumberButton*)[self.view viewWithTag:(101 + i)];
-        NSNumber *price = [self.commodityList[i] valueForKey:@"price"];
+        NSNumber *price = [[NSNumber alloc] init];
+        if (self.fromShoppingCar) {
+            price = [[self.commodityList[i] valueForKey:@"commodity"] valueForKey:@"price"];
+        }else {
+            price = [self.commodityList[i] valueForKey:@"price"];
+        }
         NSNumber *commodityNumber = [NSNumber numberWithFloat:number.currentNumber];
+        if (self.fromShoppingCar) {
+            NSNumber *simplePrice = [NSNumber numberWithFloat:(commodityNumber.integerValue * price.floatValue)];
+            [self.payArray addObject:simplePrice];
+        }
         totalPrice = commodityNumber.intValue * price.floatValue + totalPrice;
     }
     self.actualPay = [NSNumber numberWithInteger:totalPrice];
@@ -138,24 +150,50 @@
         
 //        设置商品信息
         if (!cell) {
+            
             cell = [[commodityInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commodityCell"];
             
-            cell.commodityName.text = [self.commodityList[indexPath.row] valueForKey:@"name"];
+            if (self.fromShoppingCar) {
+                
+                cell.commodityName.text = [[self.commodityList[indexPath.row] valueForKey:@"commodity"] valueForKey:@"name"];
+                
+                NSURL *imageUrl = [NSURL URLWithString:[[self.commodityList[indexPath.row] valueForKey:@"commodity"] valueForKey:@"mainImage"]];
+                [cell.commodityImage sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imageReplace-s"]];
+                
+                NSString *priceText = [NSNumberFormatter localizedStringFromNumber:[[self.commodityList[indexPath.row] valueForKey:@"commodity"] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+                NSString *totalPrice = [@"¥" stringByAppendingString:priceText];
+                cell.commodityPrice.text = totalPrice;
+                
+                cell.commodityModel.text = [[self.commodityList[indexPath.row] valueForKey:@"commodityStock"] valueForKey:@"commodityModel"];
+                
+                cell.shopName.text = [[[self.commodityList[indexPath.row] valueForKey:@"commodity"] valueForKey:@"shop"] valueForKey:@"name"];
+                
+                NSNumber *number = [[NSNumber alloc] init];
+                number = self.buyNumber[indexPath.row];
+                
+                cell.numberButton.currentNumber = number.floatValue;
+                [cell.numberButton setTag:(101 + indexPath.row)];
+                cell.numberButton.delegate = self;
+                
+            }else {
             
-            NSURL *imageUrl = [NSURL URLWithString:[self.commodityList[indexPath.row] valueForKey:@"mainImage"]];
-            [cell.commodityImage sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imagePlace-s"]];
-            
-            NSString *priceText = [NSNumberFormatter localizedStringFromNumber:[self.commodityList[indexPath.row] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
-            NSString *totalPrice = [@"¥" stringByAppendingString:priceText];
-            cell.commodityPrice.text = totalPrice;
-            
-            cell.commodityModel.text = [self.selectedStock valueForKey:@"commodityModel"];
-            cell.shopName.text = [[self.commodityList[indexPath.row] valueForKey:@"shop"] valueForKey:@"name"];
-            //cell.number.text = @"商品数量";
-            
-            //cell.numberButton.tag = 101 + indexPath.row;
-            [cell.numberButton setTag:(101 + indexPath.row)];
-            cell.numberButton.delegate = self;
+                cell.commodityName.text = [self.commodityList[indexPath.row] valueForKey:@"name"];
+                
+                NSURL *imageUrl = [NSURL URLWithString:[self.commodityList[indexPath.row] valueForKey:@"mainImage"]];
+                [cell.commodityImage sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imagePlace-s"]];
+                
+                NSString *priceText = [NSNumberFormatter localizedStringFromNumber:[self.commodityList[indexPath.row] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+                NSString *totalPrice = [@"¥" stringByAppendingString:priceText];
+                cell.commodityPrice.text = totalPrice;
+                
+                cell.commodityModel.text = [self.selectedStock valueForKey:@"commodityModel"];
+                cell.shopName.text = [[self.commodityList[indexPath.row] valueForKey:@"shop"] valueForKey:@"name"];
+                //cell.number.text = @"商品数量";
+                
+                //cell.numberButton.tag = 101 + indexPath.row;
+                [cell.numberButton setTag:(101 + indexPath.row)];
+                cell.numberButton.delegate = self;
+            }
         }
         
         return cell;
@@ -192,6 +230,8 @@
 
 //确认订单并且进行提交，注意此处提交使用的是userInfo表中的Id
 - (void)sureOrder {
+//
+    dispatch_queue_t doQueue = dispatch_queue_create("muziruo.com", DISPATCH_QUEUE_SERIAL);
 //    首先整理数据，可能有多个商品，所以可能需要创建多个订单
     NSString *receiptLocal = [[self.selectedLocal valueForKey:@"area"] stringByAppendingString:[self.selectedLocal valueForKey:@"address"]];
     
@@ -199,25 +239,47 @@
 //        所订购商品的数量
         PPNumberButton *currentNumber = [self.view viewWithTag:(101 + i)];
         NSNumber *commodityNumber = [NSNumber numberWithFloat:currentNumber.currentNumber];
+        
 //        商品所属店铺
-        NSString *shopId = [[self.commodityList[i] valueForKey:@"shop"] valueForKey:@"objectId"];
+        NSString *shopId = [[NSString alloc] init];
+        if (self.fromShoppingCar) {
+            shopId = [[[self.commodityList[i] valueForKey:@"commodity"] valueForKey:@"shop"] valueForKey:@"objectId"];
+        }else {
+            shopId = [[self.commodityList[i] valueForKey:@"shop"] valueForKey:@"objectId"];
+        }
+        
 //        型号信息
         NSString *model = [[NSString alloc] init];
         if (self.fromShoppingCar) {
-//            配置购物车的x各类型号
-            
+            model = [[self.commodityList[i] valueForKey:@"commodityStock"] valueForKey:@"commodityModel"];
         }else {
-//            配置单个商品的型号
             model = [self.selectedStock valueForKey:@"commodityModel"];
         }
+        
+//        商品Id
+        NSString *commodityId = [[NSString alloc] init];
+        if (self.fromShoppingCar) {
+            commodityId = [[self.commodityList[i] valueForKey:@"commodity"] valueForKey:@"objectId"];
+        }else {
+            commodityId = [self.commodityList[i] valueForKey:@"objectId"];
+        }
+        
+//        价格
+        NSNumber *paramsPrice = [[NSNumber alloc] init];
+        if (self.fromShoppingCar) {
+            paramsPrice = self.payArray[i];
+        }else {
+            paramsPrice = self.actualPay;
+        }
+        
 //        组装参数
         NSDictionary *params = @{
                                  @"userId":@"5cbc81e6a3180b7832cd059a",
                                  @"orderStatus":@1,
                                  @"number":commodityNumber,
                                  @"shopId":shopId,
-                                 @"actualPay":self.actualPay,
-                                 @"commodityId":[self.commodityList[i] valueForKey:@"objectId"],
+                                 @"actualPay":paramsPrice,
+                                 @"commodityId":commodityId,
                                  @"receiptName":[self.selectedLocal valueForKey:@"name"],
                                  @"commodityModel":model,
                                  @"receiptLocal":receiptLocal,
@@ -227,17 +289,36 @@
         
         NSLog(@"数据为:%@",params);
         
+        //continue;
+        
         [AVCloud callFunctionInBackground:@"createOrder" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
             if (error == nil) {
                 if ([object valueForKey:@"success"]) {
-                    [SVProgressHUD showSuccessWithStatus:@"下单成功"];
-                    [SVProgressHUD dismissWithDelay:0.5];
-                    [self.navigationController popViewControllerAnimated:true];
+                    
+//                    为数组添加元素，用于确定所有订单是否下单完毕
+                    dispatch_barrier_sync(doQueue, ^{
+                        
+                        NSLog(@"进入了muziruo线程");
+                        
+                        [self.successArray addObject:commodityId];
+                        
+                        NSLog(@"当前成功验证数组的值为%@",self.successArray);
+                        
+                        NSLog(@"当前订单完成数组的元素数量是%lu",(unsigned long)[self.successArray count]);
+                        
+                        if ([self.successArray count] == [self.commodityList count]) {
+                            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                                [SVProgressHUD showSuccessWithStatus:@"下单成功"];
+                                [SVProgressHUD dismissWithDelay:0.8];
+                                [self.navigationController popViewControllerAnimated:true];
+                            }];
+                        }
+                    });
+                    
                 }
             }
         }];
     }
-
 }
 
 @end

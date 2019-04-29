@@ -12,10 +12,11 @@
 #import "infoViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import <SDWebImage/SDWebImage.h>
+#import "orderViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface shoppingCarViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, PPNumberButtonDelegate>
+@interface shoppingCarViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, PPNumberButtonDelegate, SUSelectButtonDelegate>
 
 @property NSNumber *totalPrice;
 

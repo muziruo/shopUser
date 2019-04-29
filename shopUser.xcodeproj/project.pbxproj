@@ -72,6 +72,8 @@
 		EED07122225E2F490086D96C /* orderStatusCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07121225E2F490086D96C /* orderStatusCollectionViewCell.m */; };
 		EED289F222748887007725AE /* ARViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EED289F022748887007725AE /* ARViewController.h */; };
 		EED289F322748887007725AE /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EED289F122748887007725AE /* ARViewController.m */; };
+		EED289FA22753C1A007725AE /* SUSelectButton.h in Headers */ = {isa = PBXBuildFile; fileRef = EED289F822753C1A007725AE /* SUSelectButton.h */; };
+		EED289FB22753C1A007725AE /* SUSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EED289F922753C1A007725AE /* SUSelectButton.m */; };
 		EEDC62112268AA9A0067533A /* registerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDC620F2268AA9A0067533A /* registerViewController.h */; };
 		EEDC62122268AA9A0067533A /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDC62102268AA9A0067533A /* registerViewController.m */; };
 		EEDC62162268B79E0067533A /* infoTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDC62142268B79E0067533A /* infoTableViewController.h */; };
@@ -200,6 +202,8 @@
 		EED07121225E2F490086D96C /* orderStatusCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orderStatusCollectionViewCell.m; sourceTree = "<group>"; };
 		EED289F022748887007725AE /* ARViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARViewController.h; sourceTree = "<group>"; };
 		EED289F122748887007725AE /* ARViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARViewController.m; sourceTree = "<group>"; };
+		EED289F822753C1A007725AE /* SUSelectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SUSelectButton.h; sourceTree = "<group>"; };
+		EED289F922753C1A007725AE /* SUSelectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SUSelectButton.m; sourceTree = "<group>"; };
 		EEDC620F2268AA9A0067533A /* registerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
 		EEDC62102268AA9A0067533A /* registerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
 		EEDC62142268B79E0067533A /* infoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = infoTableViewController.h; sourceTree = "<group>"; };
@@ -299,6 +303,8 @@
 				EE03205D225CD8EE00212E84 /* shoppingCarViewController.m */,
 				EEED193C2265D26F005CD4DA /* shoppingCarTableViewCell.h */,
 				EEED193D2265D26F005CD4DA /* shoppingCarTableViewCell.m */,
+				EED289F822753C1A007725AE /* SUSelectButton.h */,
+				EED289F922753C1A007725AE /* SUSelectButton.m */,
 			);
 			path = shoppingCarPage;
 			sourceTree = "<group>";
@@ -505,6 +511,7 @@
 				EED289F222748887007725AE /* ARViewController.h in Headers */,
 				EE7B7B4822702D0200D2343C /* waitReceiptTableViewController.h in Headers */,
 				EEDC62242269B38C0067533A /* commodityListTableViewController.h in Headers */,
+				EED289FA22753C1A007725AE /* SUSelectButton.h in Headers */,
 				EE6D4E3E226D714700DDE1DA /* receiptLocalViewController.h in Headers */,
 				EEDC62222269772B0067533A /* infoViewController.h in Headers */,
 				EE50185A2268756F00EF007E /* listViewController.h in Headers */,
@@ -773,6 +780,7 @@
 				EE3D5DAF2265B928006F05BC /* UITestViewController.m in Sources */,
 				EED07113225D9CD10086D96C /* homeCollectionView.m in Sources */,
 				EEDC6228226D689C0067533A /* collectionTableViewController.m in Sources */,
+				EED289FB22753C1A007725AE /* SUSelectButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -78,7 +78,7 @@
                                                     <color key="textColor" red="1" green="0.2368721167" blue="0.14208941899999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Mi-fE-g5a">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Mi-fE-g5a" customClass="SUSelectButton">
                                                     <rect key="frame" x="15" y="47.5" width="25" height="25"/>
                                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -125,7 +125,7 @@
                                             <outlet property="descriptionInfo" destination="3zk-kA-rWA" id="W5a-W4-ewo"/>
                                             <outlet property="numberButton" destination="EOl-bq-oDT" id="s8r-8g-yK2"/>
                                             <outlet property="price" destination="PCG-DM-apq" id="XgQ-oM-7U2"/>
-                                            <outlet property="selectButton" destination="9Mi-fE-g5a" id="N3D-dJ-MbR"/>
+                                            <outlet property="selectButton" destination="9Mi-fE-g5a" id="to7-V7-mJX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1082,7 +1082,7 @@
         <!--Order View Controller-->
         <scene sceneID="UTz-wy-QaF">
             <objects>
-                <viewController storyboardIdentifier="orderView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5YY-pp-Oj2" customClass="orderViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="orderView" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5YY-pp-Oj2" customClass="orderViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PpW-jz-lNY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

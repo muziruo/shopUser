@@ -10,6 +10,7 @@
 #import "UIFont+themeUIFont.h"
 #import "UIColor+themeUIColor.h"
 #import <PPNumberButton/PPNumberButton.h>
+#import "SUSelectButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,8 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *descriptionInfo;
 @property (weak, nonatomic) IBOutlet UILabel *price;
 @property (weak, nonatomic) IBOutlet PPNumberButton *numberButton;
-@property (weak, nonatomic) IBOutlet UIButton *selectButton;
-
+@property (weak, nonatomic) IBOutlet SUSelectButton *selectButton;
 
 
 @end

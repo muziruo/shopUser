@@ -24,6 +24,10 @@
     self.numberButton.minValue = 1;
     self.numberButton.increaseTitle = @"+";
     self.numberButton.decreaseTitle = @"-";
+    
+    self.selectButton.backgroundColor = UIColor.voidColor;
+    
+    [self.selectButton addTarget:self action:@selector(goToDelegate) forControlEvents:UIControlEventTouchUpInside];
     // Initialization code
 }
 
@@ -31,6 +35,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)goToDelegate {
+    if ([self.selectButton.selectDelegate respondsToSelector:@selector(SUSelectButtonChangeStatus:)]) {
+        [self.selectButton.selectDelegate SUSelectButtonChangeStatus:self.selectButton];
+    }
 }
 
 @end
