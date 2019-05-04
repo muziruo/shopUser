@@ -235,6 +235,8 @@
 //    首先整理数据，可能有多个商品，所以可能需要创建多个订单
     NSString *receiptLocal = [[self.selectedLocal valueForKey:@"area"] stringByAppendingString:[self.selectedLocal valueForKey:@"address"]];
     
+    self.successNumber = [self.commodityList count];
+    
     for (int i = 0; i < [self.commodityList count]; i ++) {
 //        所订购商品的数量
         PPNumberButton *currentNumber = [self.view viewWithTag:(101 + i)];
@@ -295,25 +297,27 @@
             if (error == nil) {
                 if ([object valueForKey:@"success"]) {
                     
+                    if (self.fromShoppingCar) {
+                        NSDictionary *deleteParams = @{@"shoppingCarId":[self.commodityList[i] valueForKey:@"objectId"]};
+                        [AVCloud callFunctionInBackground:@"deleteCart" withParameters:deleteParams block:^(id  _Nullable object, NSError * _Nullable error) {
+                            
+                        }];
+                    }
+                    
 //                    为数组添加元素，用于确定所有订单是否下单完毕
                     dispatch_barrier_sync(doQueue, ^{
                         
-                        NSLog(@"进入了muziruo线程");
+                        self.successNumber--;
                         
-                        [self.successArray addObject:commodityId];
-                        
-                        NSLog(@"当前成功验证数组的值为%@",self.successArray);
-                        
-                        NSLog(@"当前订单完成数组的元素数量是%lu",(unsigned long)[self.successArray count]);
-                        
-                        if ([self.successArray count] == [self.commodityList count]) {
-                            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                                [SVProgressHUD showSuccessWithStatus:@"下单成功"];
-                                [SVProgressHUD dismissWithDelay:0.8];
-                                [self.navigationController popViewControllerAnimated:true];
-                            }];
-                        }
                     });
+                    
+                    if (self.successNumber == 0) {
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            [SVProgressHUD showSuccessWithStatus:@"下单成功"];
+                            [SVProgressHUD dismissWithDelay:0.8];
+                            [self.navigationController popViewControllerAnimated:true];
+                        }];
+                    }
                     
                 }
             }

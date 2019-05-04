@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property NSMutableArray *buyNumber;
 
+@property NSInteger successNumber;
+
 @end
 
 NS_ASSUME_NONNULL_END
