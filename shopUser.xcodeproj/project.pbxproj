@@ -72,7 +72,7 @@
 		EED07122225E2F490086D96C /* orderStatusCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07121225E2F490086D96C /* orderStatusCollectionViewCell.m */; };
 		EED289F222748887007725AE /* ARViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EED289F022748887007725AE /* ARViewController.h */; };
 		EED289F322748887007725AE /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EED289F122748887007725AE /* ARViewController.m */; };
-		EED289FA22753C1A007725AE /* SUSelectButton.h in Headers */ = {isa = PBXBuildFile; fileRef = EED289F822753C1A007725AE /* SUSelectButton.h */; };
+		EED289FA22753C1A007725AE /* SUSelectButton.h in Headers */ = {isa = PBXBuildFile; fileRef = EED289F822753C1A007725AE /* SUSelectButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EED289FB22753C1A007725AE /* SUSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EED289F922753C1A007725AE /* SUSelectButton.m */; };
 		EEDC62112268AA9A0067533A /* registerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDC620F2268AA9A0067533A /* registerViewController.h */; };
 		EEDC62122268AA9A0067533A /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDC62102268AA9A0067533A /* registerViewController.m */; };
@@ -506,12 +506,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EED289FA22753C1A007725AE /* SUSelectButton.h in Headers */,
 				EE3AAC032272E14300A5BC94 /* evaluationDetailViewController.h in Headers */,
 				EE7B7B5022702D4900D2343C /* historyTableViewController.h in Headers */,
 				EED289F222748887007725AE /* ARViewController.h in Headers */,
 				EE7B7B4822702D0200D2343C /* waitReceiptTableViewController.h in Headers */,
 				EEDC62242269B38C0067533A /* commodityListTableViewController.h in Headers */,
-				EED289FA22753C1A007725AE /* SUSelectButton.h in Headers */,
 				EE6D4E3E226D714700DDE1DA /* receiptLocalViewController.h in Headers */,
 				EEDC62222269772B0067533A /* infoViewController.h in Headers */,
 				EE50185A2268756F00EF007E /* listViewController.h in Headers */,

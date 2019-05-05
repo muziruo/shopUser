@@ -65,12 +65,29 @@
     
     cell.commodityStatus.text = @"正在运输";
     [cell.sureReceipt setTitle:@"确认收货" forState:UIControlStateNormal];
+    cell.sureReceipt.selectDelegate = self;
+    cell.sureReceipt.tag = 101 + indexPath.row;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+}
+
+
+- (void)SUSelectButtonChangeStatus:(SUSelectButton *)selectedButton {
+    NSLog(@"待收货订单位于%ld",selectedButton.tag - 101);
+    [SVProgressHUD show];
+    NSDictionary *params = @{@"orderId":[self.orderInfo[selectedButton.tag - 101] valueForKey:@"objectId"],@"orderStatus":@3};
+    [AVCloud callFunctionInBackground:@"shipOrder" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            if ([[object valueForKey:@"success"] boolValue]) {
+                [SVProgressHUD dismiss];
+                [self getOrderInfo];
+            }
+        }
+    }];
 }
 
 /*

@@ -175,3 +175,36 @@
 }
 
 @end
+
+
+
+
+@implementation logoutCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
+    if (self) {
+        self.logoutButton = [[UIButton alloc] init];
+        self.logoutButton.backgroundColor = UIColor.stressColor;
+        [self.logoutButton setTitle:@"登出" forState:UIControlStateNormal];
+        [self.logoutButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        
+        self.logoutButton.layer.cornerRadius = 20;
+        
+        [self addSubview:self.logoutButton];
+        
+        UIEdgeInsets buttonPadding = UIEdgeInsetsMake(10, 30, 10, 30);
+        [self.logoutButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self).with.insets(buttonPadding);
+        }];
+    }
+    
+    return self;
+}
+
+@end

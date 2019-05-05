@@ -60,11 +60,12 @@
     }else {
         [self.userNickName setTitle:@"昵称" forState:UIControlStateNormal];
         self.userNickName.userInteractionEnabled = false;
+        [self.tableView reloadData];
     }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -75,6 +76,9 @@
         case 1:
             return [self.userFunctions count];
             break;
+        case 2:
+            return 1;
+            break;
         default:
             return 0;
             break;
@@ -84,6 +88,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return 85;
+    }
+    if (indexPath.section == 2) {
+        return 60;
     }
     return 70;
 }
@@ -114,6 +121,24 @@
         myCell.functionTitle.text = self.userFunctions[indexPath.row];
         
         return myCell;
+    }else if (indexPath.section == 2){
+        logoutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"logoutCell"];
+        
+        if (!cell) {
+            cell = [[logoutCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"logoutCell"];
+        }
+        
+        if (![self.userSetting valueForKey:@"isLogin"]) {
+            [cell.logoutButton setTitle:@"登录" forState:UIControlStateNormal];
+            cell.logoutButton.backgroundColor = UIColor.themeMainColor;
+        }else {
+            [cell.logoutButton setTitle:@"登出" forState:UIControlStateNormal];
+            cell.logoutButton.backgroundColor = UIColor.stressColor;
+        }
+        
+        [cell.logoutButton addTarget:self action:@selector(userLogout) forControlEvents:UIControlEventTouchUpInside];
+        
+        return cell;
     }
     return nil;
 }
@@ -129,6 +154,18 @@
         }
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:true];
+}
+
+
+-(void)userLogout {
+    if (![self.userSetting valueForKey:@"isLogin"]) {
+        [self userLogin];
+    }else {
+        [self.userSetting setValue:false forKey:@"isLogin"];
+        [self.tableView reloadData];
+        [self.userNickName setTitle:@"登录/注册" forState:UIControlStateNormal];
+        [self.userNickName addTarget:self action:@selector(userLogin) forControlEvents:UIControlEventTouchUpInside];
+    }
 }
 
 

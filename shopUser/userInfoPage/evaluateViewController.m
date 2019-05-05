@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"当前商品ID%@",[[self.orderInfo valueForKey:@"commodity"] valueForKey:@"objectId"]);
+    
     self.view.backgroundColor = UIColor.voidColor;
     
     self.score = @5;
@@ -46,10 +48,16 @@
     [SVProgressHUD showWithStatus:@"正在提交"];
     NSString *info = self.inputInfo.text;
     if (info != nil) {
-        NSDictionary *params = @{@"commodityId":@"5caeae5ca673f50068cfdb0f",@"info":info,@"score":self.score,@"userId":@"5cbc81e6a3180b7832cd059a"};
+        NSDictionary *params = @{@"commodityId":[[self.orderInfo valueForKey:@"commodity"] valueForKey:@"objectId"],@"info":info,@"score":self.score,@"userId":@"5cbc81e6a3180b7832cd059a"};
         [AVCloud callFunctionInBackground:@"addEvaluate" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
             if (error == nil) {
                 NSLog(@"添加成功");
+                
+                NSDictionary *params = @{@"orderId":[self.orderInfo valueForKey:@"objectId"],@"orderStatus":@4};
+                [AVCloud callFunctionInBackground:@"shipOrder" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+                    
+                }];
+                
                 [SVProgressHUD showSuccessWithStatus:@"评论成功"];
                 [SVProgressHUD dismissWithDelay:0.5];
                 [self.navigationController popViewControllerAnimated:true];
@@ -57,7 +65,6 @@
         }];
         
     }
-    
 }
 
 @end

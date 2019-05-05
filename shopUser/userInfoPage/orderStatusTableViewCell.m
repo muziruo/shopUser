@@ -96,6 +96,8 @@
 @end
 
 
+
+
 @implementation waitReceiptCell
 
 - (void)awakeFromNib {
@@ -128,12 +130,13 @@
         self.commodityStatus.textColor = UIColor.stressColor;
         [self.commodityStatus setTextAlignment:NSTextAlignmentRight];
         //
-        self.sureReceipt = [[UIButton alloc] init];
+        self.sureReceipt = [[SUSelectButton alloc] init];
         [self.sureReceipt setTintColor:UIColor.whiteColor];
         self.sureReceipt.titleLabel.font = UIFont.descriptionFont;
         self.sureReceipt.backgroundColor = UIColor.stressColor;
         self.sureReceipt.titleLabel.font = UIFont.descriptionFont;
         self.sureReceipt.layer.cornerRadius = 12.5;
+        [self.sureReceipt addTarget:self action:@selector(goToDelegate) forControlEvents:UIControlEventTouchUpInside];
         
         [self addSubview:self.commodityImage];
         [self addSubview:self.commodityName];
@@ -193,6 +196,13 @@
     return self;
 }
 
+
+-(void)goToDelegate {
+    if ([self.sureReceipt.selectDelegate respondsToSelector:@selector(SUSelectButtonChangeStatus:)]) {
+        [self.sureReceipt.selectDelegate SUSelectButtonChangeStatus:self.sureReceipt];
+    }
+}
+
 @end
 
 
@@ -229,12 +239,13 @@
         self.commodityStatus.textColor = UIColor.stressColor;
         [self.commodityStatus setTextAlignment:NSTextAlignmentRight];
         //
-        self.evaluate = [[UIButton alloc] init];
+        self.evaluate = [[SUSelectButton alloc] init];
         [self.evaluate setTintColor:UIColor.whiteColor];
         self.evaluate.titleLabel.font = UIFont.descriptionFont;
         self.evaluate.backgroundColor = UIColor.stressColor;
         self.evaluate.titleLabel.font = UIFont.descriptionFont;
         self.evaluate.layer.cornerRadius = 12.5;
+        [self.evaluate addTarget:self action:@selector(goToDelegate) forControlEvents:UIControlEventTouchUpInside];
         
         [self addSubview:self.commodityImage];
         [self addSubview:self.commodityName];
@@ -290,18 +301,17 @@
             make.bottom.lessThanOrEqualTo(self.mas_bottom).with.offset(buttonPadding.bottom);
         }];
         
-        
-        [self.evaluate addTarget:self action:@selector(goToEvaluate) forControlEvents:UIControlEventTouchUpInside];
     }
 
     return self;
 }
 
--(void)goToEvaluate {
-    UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    evaluateViewController *evaluateView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"evaluateView"];
-    [[self getController].navigationController pushViewController:evaluateView animated:true];
-}
+//-(void)goToEvaluate {
+//    UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    evaluateViewController *evaluateView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"evaluateView"];
+//    [[self getController].navigationController pushViewController:evaluateView animated:true];
+//}
+
 
 - (UIViewController *)getController {
     for (UIView *nextView =[self superview]; nextView; nextView = nextView.superview) {
@@ -311,6 +321,13 @@
         }
     }
     return nil;
+}
+
+
+-(void)goToDelegate {
+    if ([self.evaluate.selectDelegate respondsToSelector:@selector(SUSelectButtonChangeStatus:)]) {
+        [self.evaluate.selectDelegate SUSelectButtonChangeStatus:self.evaluate];
+    }
 }
 
 @end

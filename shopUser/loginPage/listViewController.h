@@ -11,6 +11,8 @@
 #import "JVFloatLabeledTextField.h"
 #import "UIColor+themeUIColor.h"
 #import "UIFont+themeUIFont.h"
+#import <AVOSCloud/AVOSCloud.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

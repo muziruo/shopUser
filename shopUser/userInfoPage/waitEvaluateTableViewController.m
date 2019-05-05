@@ -10,12 +10,16 @@
 
 @interface waitEvaluateTableViewController ()
 
+@property UIStoryboard *mainStoryBroad;
+
 @end
 
 @implementation waitEvaluateTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -66,12 +70,26 @@
     
     cell.commodityStatus.text = @"等待评价";
     [cell.evaluate setTitle:@"填写评论" forState:UIControlStateNormal];
+    cell.evaluate.tag = 101 + indexPath.row;
+    cell.evaluate.selectDelegate = self;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+}
+
+
+- (void)SUSelectButtonChangeStatus:(SUSelectButton *)selectedButton {
+    evaluateViewController *evaluateView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"evaluateView"];
+    evaluateView.orderInfo = self.orderInfo[selectedButton.tag - 101];
+    [self.navigationController pushViewController:evaluateView animated:true];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self getOrderInfo];
 }
 
 /*

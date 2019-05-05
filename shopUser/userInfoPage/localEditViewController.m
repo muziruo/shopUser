@@ -42,11 +42,25 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.editInfoTitle count];
+    //return [self.editInfoTitle count];
+    if ([[self.editLocalInfo valueForKey:@"isDefault"] isEqual:@1]) {
+        return [self.editInfoTitle count];
+    }
+    return [self.editInfoTitle count] + 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [self.editInfoTitle count]) {
+        defaultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell"];
+        
+        if (!cell) {
+            cell = [[defaultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"defaultCell"];
+        }
+        
+        return cell;
+    }
+    
     localEditCell *cell = [tableView dequeueReusableCellWithIdentifier:@"localEditCell"];
     
     if (!cell) {

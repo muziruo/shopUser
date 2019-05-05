@@ -11,6 +11,7 @@
 #import "UIFont+themeUIFont.h"
 #import <Masonry/Masonry.h>
 #import "evaluateViewController.h"
+#import "SUSelectButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property UILabel *commodityModel;
 @property UILabel *commodityShop;
 @property UILabel *commodityStatus;
-@property UIButton *sureReceipt;
+@property SUSelectButton *sureReceipt;
 
 @end
 
@@ -47,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property UILabel *commodityModel;
 @property UILabel *commodityShop;
 @property UILabel *commodityStatus;
-@property UIButton *evaluate;
+@property SUSelectButton *evaluate;
 
 @end
 

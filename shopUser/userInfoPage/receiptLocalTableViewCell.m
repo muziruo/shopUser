@@ -122,3 +122,50 @@
 }
 
 @end
+
+
+
+
+
+@implementation defaultCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
+
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
+    if (self) {
+        self.defaultTitle = [[UILabel alloc] init];
+        self.defaultTitle.font = UIFont.normalFontLight;
+        self.defaultTitle.text = @"是否默认";
+        
+        self.defaultSwitch = [[UISwitch alloc] init];
+        self.defaultSwitch.onTintColor = UIColor.themeMainColor;
+        
+        [self addSubview:self.defaultSwitch];
+        [self addSubview:self.defaultTitle];
+        
+        UIEdgeInsets titlePadding = UIEdgeInsetsMake(20, 30, -20, 0);
+        [self.defaultTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top).with.offset(titlePadding.top);
+            make.left.equalTo(self.mas_left).with.offset(titlePadding.left);
+            make.height.mas_equalTo(20);
+            make.width.mas_equalTo(60);
+            make.bottom.equalTo(self.mas_bottom).with.offset(titlePadding.bottom);
+        }];
+        
+        UIEdgeInsets switchPadding = UIEdgeInsetsMake(0, 0, 0, -30);
+        [self.defaultSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.mas_right).with.offset(switchPadding.right);
+            make.centerY.equalTo(self.mas_centerY);
+            make.width.mas_equalTo(60);
+        }];
+    }
+    
+    return self;
+}
+
+@end

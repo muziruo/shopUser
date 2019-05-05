@@ -31,4 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+@interface defaultCell : UITableViewCell
+
+@property UILabel *defaultTitle;
+@property UISwitch *defaultSwitch;
+
+@end
+
 NS_ASSUME_NONNULL_END

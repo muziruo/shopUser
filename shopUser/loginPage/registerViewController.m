@@ -41,6 +41,7 @@
     [self.getCode setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     self.getCode.layer.cornerRadius = 25;
     self.getCode.backgroundColor = UIColor.themeMainColor;
+    [self.getCode addTarget:self action:@selector(getVerifiedCode) forControlEvents:UIControlEventTouchUpInside];
     
     self.registerButton = [[UIButton alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height - 220, self.view.frame.size.width - 120, 50)];
     self.registerButton.layer.cornerRadius = 25;
@@ -68,11 +69,28 @@
 }
 
 -(void)registerWork {
-    NSLog(@"注册成功");
+    [AVUser signUpOrLoginWithMobilePhoneNumberInBackground:self.accountInput.text smsCode:self.verifiedCode.text block:^(AVUser * _Nullable user, NSError * _Nullable error) {
+        if (error == nil) {
+            [[AVUser currentUser] setObject:self.passwordInput.text forKey:@"password"];
+            [[AVUser currentUser] saveInBackground];
+            [SVProgressHUD showSuccessWithStatus:@"已注册成功"];
+            [SVProgressHUD dismissWithDelay:1.0];
+        }
+    }];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:true];
+}
+
+
+-(void)getVerifiedCode {
+    NSString *phoneNumber = self.accountInput.text;
+    
+    [AVSMS requestShortMessageForPhoneNumber:phoneNumber options:nil callback:^(BOOL succeeded, NSError * _Nullable error) {
+        [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
+        [SVProgressHUD dismissWithDelay:1.0];
+    }];
 }
 
 @end

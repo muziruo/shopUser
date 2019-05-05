@@ -39,4 +39,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+
+@interface logoutCell : UITableViewCell
+
+@property UIButton *logoutButton;
+
+@end
+
 NS_ASSUME_NONNULL_END

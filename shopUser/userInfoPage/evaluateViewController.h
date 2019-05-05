@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property GRStarsView *stars;
 @property NSNumber *score;
 
+@property NSDictionary *orderInfo;
+
 @end
 
 NS_ASSUME_NONNULL_END

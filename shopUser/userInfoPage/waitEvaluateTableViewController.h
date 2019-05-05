@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "orderStatusTableViewCell.h"
 #import <SDWebImage/SDWebImage.h>
+#import "SUSelectButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface waitEvaluateTableViewController : UITableViewController
+@interface waitEvaluateTableViewController : UITableViewController<SUSelectButtonDelegate>
 
 @property NSMutableArray *orderInfo;
 

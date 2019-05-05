@@ -60,9 +60,15 @@
 //请在此配置具体的网络登录操作
 - (void)login {
 //    网络登录操作
+    [AVUser logInWithMobilePhoneNumberInBackground:self.accountInput.text password:self.passwordInput.text block:^(AVUser * _Nullable user, NSError * _Nullable error) {
+        if (error == nil) {
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [SVProgressHUD dismissWithDelay:1.0];
+        }
+    }];
     
     [self.userSetting setBool:true forKey:@"isLogin"];
-    [[self getCurrentVC] dismissViewControllerAnimated:true completion:nil];
+    //[[self getCurrentVC] dismissViewControllerAnimated:true completion:nil];
 }
 
 - (UIViewController *)getCurrentVC {

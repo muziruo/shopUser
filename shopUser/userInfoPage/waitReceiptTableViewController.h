@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface waitReceiptTableViewController : UITableViewController
+@interface waitReceiptTableViewController : UITableViewController<SUSelectButtonDelegate>
 
 @property NSArray *orderInfo;
 
