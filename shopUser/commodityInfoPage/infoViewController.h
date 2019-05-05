@@ -28,13 +28,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSArray *imageArray;
 @property NSDictionary *selectedModel;
 
+@property NSDictionary *collectInfo;
+
 @property (weak, nonatomic) IBOutlet UITableView *infoTableView;
 @property SDCycleScrollView *commodityImage;
 @property (weak, nonatomic) IBOutlet UIView *imageArea;
 @property (weak, nonatomic) IBOutlet UIButton *buyButton;
 @property (weak, nonatomic) IBOutlet UIButton *addCart;
 @property (weak, nonatomic) IBOutlet UIButton *collect;
-@property (weak, nonatomic) IBOutlet UIButton *inToShop;
 
 
 @end

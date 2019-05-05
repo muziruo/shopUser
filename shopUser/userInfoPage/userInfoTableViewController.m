@@ -14,6 +14,8 @@
 @property NSArray *userFunctions;
 @property NSArray *orderStatus;
 @property UIStoryboard *mainStoryBroad;
+@property NSArray *statusImage;
+@property NSArray *functionImage;
 
 @end
 
@@ -35,6 +37,8 @@
     
     self.userFunctions = @[@"收藏商品",@"收货地址管理",@"关于"];
     self.orderStatus = @[@"待发货",@"待收货",@"待评价",@"历史订单"];
+    self.statusImage = @[@"waitShip",@"waitReceipt",@"waitEvaluate",@"allOrder"];
+    self.functionImage = @[@"collectCommodity",@"local",@"about"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -96,6 +100,7 @@
         }
 
         myCell.statusTitle = self.orderStatus;
+        myCell.statusImage = self.statusImage;
         
         return myCell;
     }else if (indexPath.section == 1){
@@ -104,7 +109,8 @@
             myCell = [[listCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"listCell"];
         }
         
-        myCell.functionImage.image = [UIImage imageNamed:@"imageReplace-s"];
+        myCell.functionImage.contentMode = UIViewContentModeScaleAspectFit;
+        myCell.functionImage.image = [UIImage imageNamed:self.functionImage[indexPath.row]];
         myCell.functionTitle.text = self.userFunctions[indexPath.row];
         
         return myCell;

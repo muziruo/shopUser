@@ -22,7 +22,7 @@
     return [UIColor colorWithRed:240.0/255.0 green:55.0/255.0 blue:82.0/255.0 alpha:1.0];
 }
 
-//主题颜色，宝石蓝
+//主题颜色，宝石蓝 #2486b9
 + (UIColor *)themeMainColor {
     return [UIColor colorWithRed:36.0/255.0 green:134.0/255.0 blue:185.0/255.0 alpha:1.0];
 }

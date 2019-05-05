@@ -82,7 +82,13 @@
     
 //    在此配置数据
     orderCell.statusTitle.text = self.statusTitle[indexPath.item];
+    
+    
     orderCell.statusImage.image = [UIImage imageNamed:@"imageReplace-s"];
+    
+    orderCell.statusImage.contentMode = UIViewContentModeScaleAspectFit;
+    
+    orderCell.statusImage.image = [UIImage imageNamed:self.statusImage[indexPath.row]];
     
     return orderCell;
 }

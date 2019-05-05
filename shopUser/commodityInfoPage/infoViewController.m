@@ -40,6 +40,8 @@
     [self.buyButton addTarget:self action:@selector(buyCommodity) forControlEvents:UIControlEventTouchUpInside];
     [self.addCart addTarget:self action:@selector(addCartFunction) forControlEvents:UIControlEventTouchUpInside];
     
+    [self.collect addTarget:self action:@selector(collectCommodity) forControlEvents:UIControlEventTouchUpInside];
+    
     
     if (self.detailInfo == nil) {
         NSLog(@"无数据");
@@ -50,8 +52,69 @@
         [self getCommodityEvaluation];
         [self getImage];
         [self getStock];
+        [self isCollected];
     }
     // Do any additional setup after loading the view.
+}
+
+
+-(void)collectCommodity {
+    if ([self.collect.imageView.image isEqual:[UIImage imageNamed:@"collect"]]) {
+        //[SVProgressHUD showSuccessWithStatus:@"添加收藏"];
+        [self.collect setImage:[UIImage imageNamed:@"collected"] forState:UIControlStateNormal];
+        
+        NSDictionary *params = @{@"userId":@"5cbc8182c8959c00751357ca", @"commodityId":[self.info valueForKey:@"objectId"]};
+        [AVCloud callFunctionInBackground:@"setCollectionCommodity" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+            if (error == nil) {
+                if ([[object valueForKey:@"success"] boolValue]) {
+                    self.collectInfo = [object valueForKey:@"result"];
+                    [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+                    [SVProgressHUD dismissWithDelay:0.8];
+                }else {
+                    
+                }
+            }
+        }];
+        
+    }else if ([self.collect.imageView.image isEqual:[UIImage imageNamed:@"collected"]]){
+        //[SVProgressHUD showSuccessWithStatus:@"取消收藏"];
+        [self.collect setImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
+        
+        NSDictionary *params = @{@"collectionId":[self.collectInfo valueForKey:@"objectId"]};
+        [AVCloud callFunctionInBackground:@"deleteCollection" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+            if (error == nil) {
+                if ([[object valueForKey:@"isSuccess"] boolValue]) {
+                    [SVProgressHUD showSuccessWithStatus:@"取消收藏"];
+                    [SVProgressHUD dismissWithDelay:0.8];
+                }
+            }
+        }];
+    }
+}
+
+
+-(void)isCollected {
+    NSDictionary *params = @{@"userId":@"5cbc8182c8959c00751357ca", @"commodityId":[self.info valueForKey:@"objectId"]};
+    
+    [AVCloud callFunctionInBackground:@"isCollection" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            NSLog(@"后台传回数据格式为%@",[[object valueForKey:@"isCollection"] className]);
+            
+            
+            if ([[object valueForKey:@"isCollection"] boolValue]) {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    self.collectInfo = [object valueForKey:@"collectInfo"];
+                    //self.collect.imageView.image = [UIImage imageNamed:@"collected"];
+                    [self.collect setImage:[UIImage imageNamed:@"collected"] forState:UIControlStateNormal];
+                }];
+            }else {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    //self.collect.imageView.image = [UIImage imageNamed:@"collect"];
+                    [self.collect setImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
+                }];
+            }
+        }
+    }];
 }
 
 

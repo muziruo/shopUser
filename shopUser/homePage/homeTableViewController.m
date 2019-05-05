@@ -20,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
     _logoImage.image = [UIImage imageNamed:@"zhanweitu.png"];
     
     self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
