@@ -10,12 +10,16 @@
 
 @interface registerViewController ()
 
+@property NSUserDefaults *userSetting;
+
 @end
 
 @implementation registerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.userSetting = [NSUserDefaults standardUserDefaults];
     
     self.accountInput = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(40, 20, self.view.frame.size.width - 80, 50)];
     UIView *accountLine = [[UIView alloc] initWithFrame:CGRectMake(40, self.accountInput.frame.origin.y + 50, self.accountInput.frame.size.width, 1)];
@@ -73,8 +77,16 @@
         if (error == nil) {
             [[AVUser currentUser] setObject:self.passwordInput.text forKey:@"password"];
             [[AVUser currentUser] saveInBackground];
-            [SVProgressHUD showSuccessWithStatus:@"已注册成功"];
-            [SVProgressHUD dismissWithDelay:1.0];
+            
+            NSDictionary *params = @{@"userLoginId":[AVUser currentUser].objectId};
+            [AVCloud callFunctionInBackground:@"createUserInfo" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+                [self.userSetting setObject:[[object valueForKey:@"result"] valueForKey:@"objectId"] forKey:@"userInfoId"];
+                
+                [SVProgressHUD showSuccessWithStatus:@"已注册成功"];
+                [SVProgressHUD dismissWithDelay:1.0];
+                [[self getCurrentVC] dismissViewControllerAnimated:true completion:nil];
+            }];
+            
         }
     }];
 }
@@ -91,6 +103,35 @@
         [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
         [SVProgressHUD dismissWithDelay:1.0];
     }];
+}
+
+
+- (UIViewController *)getCurrentVC {
+    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    UIViewController *currentVC = [self getCurrentVCFrom:rootViewController];
+    
+    return currentVC;
+}
+
+- (UIViewController *)getCurrentVCFrom:(UIViewController *)rootVC {
+    UIViewController *currentVC;
+    
+    if ([rootVC presentedViewController]) {
+        // 视图是被presented出来的
+        rootVC = [rootVC presentedViewController];
+    }
+    if ([rootVC isKindOfClass:[UITabBarController class]]) {
+        // 根视图为UITabBarController
+        currentVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
+    } else if ([rootVC isKindOfClass:[UINavigationController class]]){
+        // 根视图为UINavigationController
+        currentVC = [self getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
+    } else {
+        // 根视图为非导航类
+        currentVC = rootVC;
+    }
+    return currentVC;
 }
 
 @end

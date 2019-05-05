@@ -33,6 +33,12 @@
     [self getHomeCommodity];
 }
 
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self.tableView.mj_header endRefreshing];
+}
+
+
 //获取云端数据
 - (void)getHomeCommodity {
     [self.tableView.mj_header beginRefreshing];
@@ -47,6 +53,11 @@
                 [self.tableView reloadData];
             }];
             NSLog(@"数据获取成功");
+        }else {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView.mj_header endRefreshing];
+                [self.tableView reloadData];
+            }];
         }
     }];
 }

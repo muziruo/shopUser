@@ -54,7 +54,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (![self.userSetting valueForKey:@"isLogin"]) {
+    if ([AVUser currentUser] == nil) {
         [self.userNickName setTitle:@"登录/注册" forState:UIControlStateNormal];
         [self.userNickName addTarget:self action:@selector(userLogin) forControlEvents:UIControlEventTouchUpInside];
     }else {
@@ -128,7 +128,7 @@
             cell = [[logoutCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"logoutCell"];
         }
         
-        if (![self.userSetting valueForKey:@"isLogin"]) {
+        if ([AVUser currentUser] == nil) {
             [cell.logoutButton setTitle:@"登录" forState:UIControlStateNormal];
             cell.logoutButton.backgroundColor = UIColor.themeMainColor;
         }else {
@@ -158,10 +158,11 @@
 
 
 -(void)userLogout {
-    if (![self.userSetting valueForKey:@"isLogin"]) {
+    if ([AVUser currentUser] == nil) {
         [self userLogin];
     }else {
-        [self.userSetting setValue:false forKey:@"isLogin"];
+        //[self.userSetting setValue:false forKey:@"isLogin"];
+        [AVUser logOut];
         [self.tableView reloadData];
         [self.userNickName setTitle:@"登录/注册" forState:UIControlStateNormal];
         [self.userNickName addTarget:self action:@selector(userLogin) forControlEvents:UIControlEventTouchUpInside];

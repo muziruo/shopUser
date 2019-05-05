@@ -62,13 +62,20 @@
 //    网络登录操作
     [AVUser logInWithMobilePhoneNumberInBackground:self.accountInput.text password:self.passwordInput.text block:^(AVUser * _Nullable user, NSError * _Nullable error) {
         if (error == nil) {
-            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
-            [SVProgressHUD dismissWithDelay:1.0];
+            
+            NSDictionary *params = @{@"userLoginId":[AVUser currentUser].objectId};
+            [AVCloud callFunctionInBackground:@"getUserInfo" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+                [self.userSetting setObject:[object valueForKey:@"objectId"] forKey:@"userInfoId"];
+                [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+                [SVProgressHUD dismissWithDelay:1.0];
+                [[self getCurrentVC] dismissViewControllerAnimated:true completion:nil];
+            }];
+            
         }
     }];
     
-    [self.userSetting setBool:true forKey:@"isLogin"];
-    //[[self getCurrentVC] dismissViewControllerAnimated:true completion:nil];
+    //[self.userSetting setBool:true forKey:@"isLogin"];
+    
 }
 
 - (UIViewController *)getCurrentVC {
