@@ -17,6 +17,7 @@
 #import "evaluationDetailViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "ARViewController.h"
+#import "loginViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

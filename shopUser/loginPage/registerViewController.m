@@ -11,6 +11,7 @@
 @interface registerViewController ()
 
 @property NSUserDefaults *userSetting;
+@property NSString *userId;
 
 @end
 
@@ -75,21 +76,36 @@
 -(void)registerWork {
     [AVUser signUpOrLoginWithMobilePhoneNumberInBackground:self.accountInput.text smsCode:self.verifiedCode.text block:^(AVUser * _Nullable user, NSError * _Nullable error) {
         if (error == nil) {
+            self.userId = user.objectId;
+            NSLog(@"获取的用户ID为%@",self.userId);
+            
             [[AVUser currentUser] setObject:self.passwordInput.text forKey:@"password"];
-            [[AVUser currentUser] saveInBackground];
-            
-            NSDictionary *params = @{@"userLoginId":[AVUser currentUser].objectId};
-            [AVCloud callFunctionInBackground:@"createUserInfo" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
-                [self.userSetting setObject:[[object valueForKey:@"result"] valueForKey:@"objectId"] forKey:@"userInfoId"];
-                
-                [SVProgressHUD showSuccessWithStatus:@"已注册成功"];
-                [SVProgressHUD dismissWithDelay:1.0];
-                [[self getCurrentVC] dismissViewControllerAnimated:true completion:nil];
+            [[AVUser currentUser] setObject:@"未命名" forKey:@"nickName"];
+            [[AVUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (error == nil) {
+                    [SVProgressHUD showSuccessWithStatus:@"已注册成功"];
+                    [SVProgressHUD dismissWithDelay:1.0];
+                    [[self getCurrentVC] dismissViewControllerAnimated:true completion:nil];
+                }
             }];
-            
         }
     }];
 }
+
+
+//-(void)createUserInfo {
+//    NSDictionary *params = @{@"userLoginId":[AVUser currentUser].objectId};
+//    NSLog(@"需要进行创建的userId为%@",[AVUser currentUser].objectId);
+//    
+//    [AVCloud callFunctionInBackground:@"createUserInfo" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+//        //[self.userSetting setObject:[[object valueForKey:@"result"] valueForKey:@"objectId"] forKey:@"userInfoId"];
+//        [self.userSetting setValue:[[object valueForKey:@"result"] valueForKey:@"objectId"] forKey:@"userInfoId"];
+//        
+//        NSLog(@"所得的用户信息表ID为%@",[self.userSetting valueForKey:@"userInfoId"]);
+//        
+//        
+//    }];
+//}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:true];

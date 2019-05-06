@@ -16,9 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITableView *localEditTableView;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
+//是创建还是修改
 @property int editOrCreate;
 //需要编辑的地址信息
 @property NSDictionary *editLocalInfo;
+
+@property BOOL isFrist;
 
 @end
 

@@ -32,6 +32,8 @@
     [self.localEditTableView addGestureRecognizer:tableviewEndEdit];
     
     self.localEditTableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    
+    [self.saveButton addTarget:self action:@selector(saveLocalInfo) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.
 }
 
@@ -58,6 +60,8 @@
             cell = [[defaultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"defaultCell"];
         }
         
+        cell.defaultSwitch.tag = 777;
+        
         return cell;
     }
     
@@ -69,6 +73,7 @@
     
     cell.infoTitle.text = self.editInfoTitle[indexPath.row];
     cell.infoInput.placeholder = self.editPlaceHolder[indexPath.row];
+    cell.infoInput.tag = 101 + indexPath.row;
     
     if (self.editOrCreate == 1) {
         cell.infoInput.text = [self.editLocalInfo valueForKey:self.needInfo[indexPath.row]];
@@ -90,6 +95,94 @@
 
 - (void)endEdit {
     [self.view endEditing:YES];
+}
+
+
+//保存地址信息操作
+-(void)saveLocalInfo {
+    
+//    获取信息
+    UITextField *nameInput = [self.view viewWithTag:101];
+    UITextField *phoneInput = [self.view viewWithTag:102];
+    UITextField *areaInput = [self.view viewWithTag:103];
+    UITextField *addressInput = [self.view viewWithTag:104];
+    UISwitch *defaultSwitch = [self.view viewWithTag:777];
+    
+//    修改地址信息
+    if (self.editOrCreate == 1) {
+        NSNumber *defaultNumber = [[NSNumber alloc] init];
+        if (defaultSwitch != nil) {
+            if ([defaultSwitch isOn]) {
+                defaultNumber = @1;
+            }else {
+                defaultNumber = @0;
+            }
+        }else {
+            defaultNumber = @0;
+        }
+        
+        NSDictionary *params = @{@"localId":[self.editLocalInfo valueForKey:@"objectId"],
+                                 @"userId":[AVUser currentUser].objectId,
+                                 @"name":nameInput.text,
+                                 @"phoneNumber":phoneInput.text,
+                                 @"area":areaInput.text,
+                                 @"address":addressInput.text,
+                                 @"isDefault":defaultNumber
+                                 };
+        
+        [AVCloud callFunctionInBackground:@"resetReceiptLocalInfo" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+            if (error == nil) {
+                if ([[object valueForKey:@"success"] boolValue]) {
+                    [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+                    [SVProgressHUD dismissWithDelay:0.8];
+                    [self.navigationController popViewControllerAnimated:true];
+                }
+            }
+        }];
+        
+        
+    }else if (self.editOrCreate == 0){
+//        创建地址信息
+        NSNumber *defaultNumber = [[NSNumber alloc] init];
+        if (defaultSwitch != nil) {
+            if ([defaultSwitch isOn]) {
+                defaultNumber = @1;
+            }else {
+                defaultNumber = @0;
+            }
+        }
+//        若为第一次添加，则必定设置为默认
+        if (self.isFrist) {
+            defaultNumber = @1;
+        }
+        
+        NSDictionary *params = @{@"userId":[AVUser currentUser].objectId,
+                                 @"name":nameInput.text,
+                                 @"phoneNumber":phoneInput.text,
+                                 @"area":areaInput.text,
+                                 @"address":addressInput.text,
+                                 @"isDefault":defaultNumber
+                                 };
+        
+        [AVCloud callFunctionInBackground:@"setLocalInfo" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+            if (error == nil) {
+                if ([[object valueForKey:@"success"] boolValue]) {
+                    if ([defaultNumber  isEqual: @1]) {
+                        NSDictionary *setParams = @{@"userLoginId":[AVUser currentUser].objectId,@"localId":[[object valueForKey:@"result"] valueForKey:@"objectId"]};
+                        [AVCloud callFunctionInBackground:@"setLocalDefault" withParameters:setParams block:^(id  _Nullable object, NSError * _Nullable error) {
+                            [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+                            [SVProgressHUD dismissWithDelay:0.8];
+                            [self.navigationController popViewControllerAnimated:true];
+                        }];
+                    }else {
+                        [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+                        [SVProgressHUD dismissWithDelay:0.8];
+                        [self.navigationController popViewControllerAnimated:true];
+                    }
+                }
+            }
+        }];
+    }
 }
 
 @end

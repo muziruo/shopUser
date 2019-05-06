@@ -10,6 +10,8 @@
 
 @interface evaluateViewController ()
 
+@property NSUserDefaults *userSetting;
+
 @end
 
 @implementation evaluateViewController
@@ -46,9 +48,15 @@
 
 -(void)submitEvaluate {
     [SVProgressHUD showWithStatus:@"正在提交"];
+    
+    self.userSetting = [NSUserDefaults standardUserDefaults];
+    NSString *userInfoId = [self.userSetting valueForKey:@"userInfoId"];
+    
+    NSLog(@"该用户信息表Id为%@",userInfoId);
+    
     NSString *info = self.inputInfo.text;
     if (info != nil) {
-        NSDictionary *params = @{@"commodityId":[[self.orderInfo valueForKey:@"commodity"] valueForKey:@"objectId"],@"info":info,@"score":self.score,@"userId":@"5cbc81e6a3180b7832cd059a"};
+        NSDictionary *params = @{@"commodityId":[[self.orderInfo valueForKey:@"commodity"] valueForKey:@"objectId"],@"info":info,@"score":self.score,@"userId":[AVUser currentUser].objectId};
         [AVCloud callFunctionInBackground:@"addEvaluate" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
             if (error == nil) {
                 NSLog(@"添加成功");

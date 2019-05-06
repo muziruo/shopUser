@@ -75,10 +75,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.delegate respondsToSelector:@selector(changeLocal:)]) {
-        [self.delegate changeLocal:(indexPath.row - 1)];
+    if (indexPath.row == 0) {
+        [self dismissViewControllerAnimated:true completion:nil];
+    }else {
+        if ([self.delegate respondsToSelector:@selector(changeLocal:)]) {
+            [self.delegate changeLocal:(indexPath.row - 1)];
+        }
+        [self dismissViewControllerAnimated:true completion:nil];
     }
-    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 @end

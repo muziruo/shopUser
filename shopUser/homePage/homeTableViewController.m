@@ -34,10 +34,6 @@
 }
 
 
-- (void)viewDidAppear:(BOOL)animated {
-    [self.tableView.mj_header endRefreshing];
-}
-
 
 //获取云端数据
 - (void)getHomeCommodity {

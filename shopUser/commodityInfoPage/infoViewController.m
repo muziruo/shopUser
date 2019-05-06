@@ -52,18 +52,35 @@
         [self getCommodityEvaluation];
         [self getImage];
         [self getStock];
-        [self isCollected];
     }
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 
 
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"页面出现就获取收藏信息");
+    if ([AVUser currentUser] != nil) {
+        [self isCollected];
+    }
+}
+
+
 -(void)collectCommodity {
+    
+    if ([AVUser currentUser] == nil) {
+        //[SVProgressHUD showErrorWithStatus:@"请先登录"];
+        [self needLogin];
+        return;
+    }
+    
     if ([self.collect.imageView.image isEqual:[UIImage imageNamed:@"collect"]]) {
         //[SVProgressHUD showSuccessWithStatus:@"添加收藏"];
         [self.collect setImage:[UIImage imageNamed:@"collected"] forState:UIControlStateNormal];
         
-        NSDictionary *params = @{@"userId":@"5cbc8182c8959c00751357ca", @"commodityId":[self.info valueForKey:@"objectId"]};
+        NSDictionary *params = @{@"userId":[AVUser currentUser].objectId, @"commodityId":[self.info valueForKey:@"objectId"]};
         [AVCloud callFunctionInBackground:@"setCollectionCommodity" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
             if (error == nil) {
                 if ([[object valueForKey:@"success"] boolValue]) {
@@ -94,7 +111,12 @@
 
 
 -(void)isCollected {
-    NSDictionary *params = @{@"userId":@"5cbc8182c8959c00751357ca", @"commodityId":[self.info valueForKey:@"objectId"]};
+    
+    if ([AVUser currentUser] == nil) {
+        return;
+    }
+    
+    NSDictionary *params = @{@"userId":[AVUser currentUser].objectId, @"commodityId":[self.info valueForKey:@"objectId"]};
     
     [AVCloud callFunctionInBackground:@"isCollection" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
@@ -138,12 +160,18 @@
 //添加购物车
 -(void)addCartFunction {
     
+    if ([AVUser currentUser] == nil) {
+        //[SVProgressHUD showErrorWithStatus:@"请先登录"];
+        [self needLogin];
+        return;
+    }
+    
     if (self.selectedModel == nil) {
         [SVProgressHUD showErrorWithStatus:@"未选择型号"];
     }else {
         NSDictionary *params = @{
                                  @"number":@1,
-                                 @"userId":@"5cbc8182c8959c00751357ca",
+                                 @"userId":[AVUser currentUser].objectId,
                                  @"commodityId":[self.info valueForKey:@"objectId"],
                                  @"commodityStockId":[self.selectedModel valueForKey:@"objectId"]
                                  };
@@ -343,7 +371,7 @@
                 return cell;
             }
 //
-            if (indexPath.row == 3) {
+            if (indexPath.row == 1 + [self.evaluationInfo count]) {
                 buttonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"buttonCell"];
                 
                 if (!cell) {
@@ -359,8 +387,11 @@
             }
             
             NSURL *imageUrl = [NSURL URLWithString:[[self.evaluationInfo[indexPath.row - 1] valueForKey:@"userId"] valueForKey:@"avatar"]];
+            
             [cell.userAvator sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imageReplace-s"]];
+            
             cell.userNickName.text = [[self.evaluationInfo[indexPath.row - 1] valueForKey:@"userId"] valueForKey:@"nickName"];
+            
             if ([self.evaluationInfo valueForKey:@"info"] == nil) {
                 cell.commentInfo.text = @"评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息评论信息";
             }else {
@@ -440,6 +471,13 @@
 }
 
 - (void)buyCommodity{
+    
+    if ([AVUser currentUser] == nil) {
+        //[SVProgressHUD showErrorWithStatus:@"请先登录"];
+        [self needLogin];
+        return;
+    }
+    
 //    首先检查是否选择了型号
     if (self.selectedModel == nil) {
         [SVProgressHUD showErrorWithStatus:@"未选择型号"];
@@ -457,6 +495,12 @@
     orderView.fromShoppingCar = false;
     
     [self.navigationController pushViewController:orderView animated:true];
+}
+
+
+-(void)needLogin {
+    loginViewController *loginView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"loginView"];
+    [self presentViewController:loginView animated:true completion:nil];
 }
 
 @end

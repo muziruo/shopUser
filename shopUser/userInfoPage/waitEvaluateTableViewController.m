@@ -33,7 +33,7 @@
 
 -(void)getOrderInfo {
     NSDictionary *params = @{
-                             @"userId":@"5cbc81e6a3180b7832cd059a",
+                             @"userId":[AVUser currentUser].objectId,
                              @"orderStatus":@3
                              };
     [AVCloud callFunctionInBackground:@"searchOrder" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {

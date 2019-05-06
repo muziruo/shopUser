@@ -11,7 +11,7 @@
 
 @interface collectionTableViewController ()
 
-@property NSArray *collectionInfo;
+@property NSMutableArray *collectionInfo;
 @property UIStoryboard *mainStoryBroad;
 
 @end
@@ -35,10 +35,10 @@
 
 //从网络获取收藏信息
 -(void)getCollectionInfo {
-    NSDictionary *params = [NSDictionary dictionaryWithObject:@"5cbc8182c8959c00751357ca" forKey:@"userId"];
+    NSDictionary *params = [NSDictionary dictionaryWithObject:[AVUser currentUser].objectId forKey:@"userId"];
     [AVCloud callFunctionInBackground:@"getCollectionCommodity" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
-            self.collectionInfo = object;
+            self.collectionInfo = [object mutableCopy];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.tableView reloadData];
             }];
@@ -57,11 +57,7 @@
 
     
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([self.collectionInfo count] == 0) {
-        return 10;
-    }else {
-        return [self.collectionInfo count];
-    }
+    return [self.collectionInfo count];
 }
 
 
@@ -78,6 +74,28 @@
     
     return cell;
 }
+
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSMutableArray *actionArray = [[NSMutableArray alloc] init];
+    
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        
+        NSDictionary *params = @{@"collectionId":[self.collectionInfo[indexPath.row] valueForKey:@"objectId"]};
+        [AVCloud callFunctionInBackground:@"deleteCollection" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+            
+        }];
+        
+        [self.collectionInfo removeObjectAtIndex:indexPath.row];
+        
+        [self.tableView reloadData];
+    }];
+    
+    [actionArray addObject:deleteAction];
+    
+    return actionArray;
+}
+
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -73,7 +73,7 @@
 
 //获取所有收货地址
 -(void)getReceiptLocal {
-    NSDictionary *params = @{@"userId":@"5cbc8182c8959c00751357ca"};
+    NSDictionary *params = @{@"userId":[AVUser currentUser].objectId};
     [AVCloud callFunctionInBackground:@"getReceiptLocal" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
             self.localList = object;
@@ -276,7 +276,7 @@
         
 //        组装参数
         NSDictionary *params = @{
-                                 @"userId":@"5cbc81e6a3180b7832cd059a",
+                                 @"userId":[AVUser currentUser].objectId,
                                  @"orderStatus":@1,
                                  @"number":commodityNumber,
                                  @"shopId":shopId,

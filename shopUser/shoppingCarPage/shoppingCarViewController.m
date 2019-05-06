@@ -32,18 +32,24 @@
     
     [self.buyButton addTarget:self action:@selector(sureBuy) forControlEvents:UIControlEventTouchUpInside];
     
-    [self getShoppingCarInfo];
+    //[self getShoppingCarInfo];
     // Do any additional setup after loading the view.
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self getShoppingCarInfo];
+    if ([AVUser currentUser] != nil) {
+        [self getShoppingCarInfo];
+        self.buyButton.userInteractionEnabled = YES;
+    }else{
+        self.buyButton.userInteractionEnabled = NO;
+    }
 }
 
 
 //确认购买
 -(void)sureBuy {
+    
     NSMutableArray *newList = [[NSMutableArray alloc] init];
     NSMutableArray *listNumber = [[NSMutableArray alloc] init];
     for (int i = 0; i < [self.shoppingCarInfo count]; i++) {
@@ -55,6 +61,12 @@
         }
     }
     NSLog(@"传递元素数量%lu",[newList count]);
+    
+    if ([newList count] == 0) {
+        [SVProgressHUD showErrorWithStatus:@"没有商品可购买"];
+        return;
+    }
+    
     UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     orderViewController *orderView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"orderView"];
     orderView.commodityList = newList;
@@ -97,10 +109,10 @@
 -(void)getShoppingCarInfo {
     [self.shopCarTableView.mj_header beginRefreshing];
     
-    NSDictionary *params = @{@"userId":@"5cbc8182c8959c00751357ca"};
+    NSDictionary *params = @{@"userId":[AVUser currentUser].objectId};
     [AVCloud callFunctionInBackground:@"getShoppingCar" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
-            self.shoppingCarInfo = object;
+            self.shoppingCarInfo = [object mutableCopy];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.shopCarTableView.mj_header endRefreshing];
                 [self.shopCarTableView reloadData];
@@ -195,5 +207,25 @@
     [self countTotalPrice];
 }
 
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSMutableArray *actionArray = [[NSMutableArray alloc] init];
+    
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        
+        NSDictionary *params = @{@"shoppingCarId": [self.shoppingCarInfo[indexPath.row] valueForKey:@"objectId"]};
+        [AVCloud callFunctionInBackground:@"deleteCart" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+            
+        }];
+        
+        [self.shoppingCarInfo removeObjectAtIndex:indexPath.row];
+        [self.shopCarTableView reloadData];
+        [self countTotalPrice];
+    }];
+    
+    [actionArray addObject:deleteAction];
+    
+    return actionArray;
+}
 
 @end

@@ -26,14 +26,23 @@
     self.addLoacl.backgroundColor = UIColor.buttonColor;
     [self.addLoacl addTarget:self action:@selector(goToAddLocal) forControlEvents:UIControlEventTouchUpInside];
     
-    [self getReceiptLocalInfo];
     // Do any additional setup after loading the view.
 }
 
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self getReceiptLocalInfo];
+}
+
+
+
+
+
+
 //请在此配置网络数据请求
 - (void)getReceiptLocalInfo {
-    NSDictionary *params = [NSDictionary dictionaryWithObject:@"5cbc8182c8959c00751357ca" forKey:@"userId"];
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObject:[AVUser currentUser].objectId forKey:@"userId"];
     [AVCloud callFunctionInBackground:@"getReceiptLocal" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
             self.localInfo = object;
@@ -87,6 +96,9 @@
 -(void)goToAddLocal {
     localEditViewController *editView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"editLocalView"];
     editView.editOrCreate = 0;
+    if ([self.localInfo count] == 0) {
+        editView.isFrist = true;
+    }
     [self.navigationController pushViewController:editView animated:true];
 }
 
