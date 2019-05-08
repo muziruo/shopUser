@@ -218,7 +218,8 @@
     
 //    商品价格
     NSString *priceTitle = @"¥";
-    NSString *priceString = [NSNumberFormatter localizedStringFromNumber:[self.commodityInfo[self.tableViewSection * 2 + indexPath.item] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+    //NSString *priceString = [NSNumberFormatter localizedStringFromNumber:[self.commodityInfo[self.tableViewSection * 2 + indexPath.item] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+    NSString *priceString = [NSString stringWithFormat:@"%@",[self.commodityInfo[self.tableViewSection * 2 + indexPath.item] valueForKey:@"price"]];
     priceTitle = [priceTitle stringByAppendingString:priceString];
     myCell.price.text = priceTitle;
     

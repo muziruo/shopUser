@@ -160,7 +160,8 @@
                 NSURL *imageUrl = [NSURL URLWithString:[[self.commodityList[indexPath.row] valueForKey:@"commodity"] valueForKey:@"mainImage"]];
                 [cell.commodityImage sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imageReplace-s"]];
                 
-                NSString *priceText = [NSNumberFormatter localizedStringFromNumber:[[self.commodityList[indexPath.row] valueForKey:@"commodity"] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+                //NSString *priceText = [NSNumberFormatter localizedStringFromNumber:[[self.commodityList[indexPath.row] valueForKey:@"commodity"] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+                NSString *priceText = [NSString stringWithFormat:@"%@",[[self.commodityList[indexPath.row] valueForKey:@"commodity"] valueForKey:@"price"]];
                 NSString *totalPrice = [@"¥" stringByAppendingString:priceText];
                 cell.commodityPrice.text = totalPrice;
                 
@@ -182,7 +183,8 @@
                 NSURL *imageUrl = [NSURL URLWithString:[self.commodityList[indexPath.row] valueForKey:@"mainImage"]];
                 [cell.commodityImage sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imagePlace-s"]];
                 
-                NSString *priceText = [NSNumberFormatter localizedStringFromNumber:[self.commodityList[indexPath.row] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+                //NSString *priceText = [NSNumberFormatter localizedStringFromNumber:[self.commodityList[indexPath.row] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+                NSString *priceText = [NSString stringWithFormat:@"%@",[self.commodityList[indexPath.row] valueForKey:@"price"]];
                 NSString *totalPrice = [@"¥" stringByAppendingString:priceText];
                 cell.commodityPrice.text = totalPrice;
                 

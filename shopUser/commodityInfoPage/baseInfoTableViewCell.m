@@ -55,11 +55,18 @@
     if (self) {
         UIView *superView = self;
         
-        self.userAvator = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 40, 40)];
+        self.userAvator = [[UIImageView alloc] init];
         self.userAvator.contentMode = UIViewContentModeScaleAspectFill;
         self.userAvator.clipsToBounds = true;
         self.userAvator.layer.cornerRadius = 20;
         [self addSubview:self.userAvator];
+        UIEdgeInsets imagePadding = UIEdgeInsetsMake(20, 20, 0, 0);
+        [self.userAvator mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top).with.offset(imagePadding.top);
+            make.left.equalTo(self.mas_left).with.offset(imagePadding.left);
+            make.height.mas_equalTo(40);
+            make.width.mas_equalTo(40);
+        }];
         
         self.userNickName = [[UILabel alloc] init];
         self.userNickName.font = UIFont.normalFont;

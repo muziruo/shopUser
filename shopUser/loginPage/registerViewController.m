@@ -26,18 +26,27 @@
     UIView *accountLine = [[UIView alloc] initWithFrame:CGRectMake(40, self.accountInput.frame.origin.y + 50, self.accountInput.frame.size.width, 1)];
     accountLine.backgroundColor = UIColor.blackColor;
     self.accountInput.placeholder = @"手机号";
+    
+    self.accountInput.keyboardType = UIKeyboardTypeNumberPad;
+    
     self.accountInput.floatingLabelTextColor = UIColor.themeMainColor;
     
     self.passwordInput = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(40, accountLine.frame.origin.y + 30, self.accountInput.frame.size.width, 50)];
     UIView *passwordLine = [[UIView alloc] initWithFrame:CGRectMake(40, self.passwordInput.frame.origin.y + 50, self.accountInput.frame.size.width, 1)];
     passwordLine.backgroundColor = UIColor.blackColor;
     self.passwordInput.placeholder = @"密码";
+    
+    self.passwordInput.keyboardType = UIKeyboardTypeAlphabet;
+    
     self.passwordInput.floatingLabelTextColor = UIColor.themeMainColor;
     
     self.verifiedCode = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(40, passwordLine.frame.origin.y + 30, self.accountInput.frame.size.width - 100, 50)];
     self.verifiedCode.placeholder = @"验证码";
     UIView *codeLine = [[UIView alloc] initWithFrame:CGRectMake(40, self.verifiedCode.frame.origin.y + 50, self.verifiedCode.frame.size.width, 1)];
     codeLine.backgroundColor = UIColor.blackColor;
+    
+    self.verifiedCode.keyboardType = UIKeyboardTypeNumberPad;
+    
     self.verifiedCode.floatingLabelTextColor = UIColor.themeMainColor;
     
     self.getCode = [[UIButton alloc] initWithFrame:CGRectMake(self.verifiedCode.frame.origin.x + self.verifiedCode.frame.size.width, self.verifiedCode.frame.origin.y, 100, 50)];

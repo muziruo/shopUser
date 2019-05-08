@@ -24,22 +24,36 @@
     
     self.evaluationInfo = [[NSArray alloc] init];
     //self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getHomeCommodity)];
-    self.evaluationTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getEvaluationInfo:)];
-    self.evaluationTableView.mj_footer = [MJRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(getEvaluationInfo:)];
+    self.evaluationTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reLoadInfo)];
+    self.evaluationTableView.mj_footer = [MJRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(addInfo)];
     
-    [self getEvaluationInfo:1];
+    [self.evaluationTableView.mj_header beginRefreshing];
     // Do any additional setup after loading the view.
+}
+
+
+-(void)reLoadInfo {
+    [self getEvaluationInfo:1];
+}
+
+
+-(void)addInfo {
+    [self getEvaluationInfo:2];
 }
 
 
 //获取评论信息
 -(void)getEvaluationInfo:(int)withRefreshType {
-    [self.evaluationTableView.mj_header beginRefreshing];
+
     NSDictionary *params = @{@"commodityId":self.commodityId,@"type":@2,@"page":self.page};
     [AVCloud callFunctionInBackground:@"getCommodityEvaluation" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
             if ([object valueForKey:@"success"]) {
-                self.evaluationInfo = [self.evaluationInfo arrayByAddingObjectsFromArray:[object valueForKey:@"resultInfo"]];
+                if (withRefreshType == 1) {
+                    self.evaluationInfo = [object valueForKey:@"resultInfo"];
+                }else {
+                    self.evaluationInfo = [self.evaluationInfo arrayByAddingObjectsFromArray:[object valueForKey:@"resultInfo"]];
+                }
                 //self.evaluationInfo = newInfoList;
                 //self.evaluationInfo = [object valueForKey:@"resultInfo"];
                 NSLog(@"数组元素个数为:%lu",(unsigned long)[self.evaluationInfo count]);
@@ -71,7 +85,7 @@
     }
     
     NSURL *imageUrl = [NSURL URLWithString:[[self.evaluationInfo[indexPath.row] valueForKey:@"userId"] valueForKey:@"avatar"]];
-    [cell.userAvator sd_setImageWithURL:imageUrl];
+    [cell.userAvator sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"imageReplace-s"]];
     cell.userNickName.text = [[self.evaluationInfo[indexPath.row] valueForKey:@"userId"] valueForKey:@"nickName"];
     cell.commentInfo.text = [self.evaluationInfo[indexPath.row] valueForKey:@"info"];
     

@@ -30,14 +30,14 @@
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getHomeCommodity)];
     
-    [self getHomeCommodity];
+    //[self getHomeCommodity];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 
 
 //获取云端数据
 - (void)getHomeCommodity {
-    [self.tableView.mj_header beginRefreshing];
     
     [AVCloud callFunctionInBackground:@"getHomeCommodity" withParameters:nil block:^(id  _Nullable object, NSError * _Nullable error) {
         if (error == nil) {

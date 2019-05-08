@@ -287,13 +287,14 @@
                     NSString *price = @"¥";
                     NSLog(@"出错前价格数据%@",[self.detailInfo valueForKey:@"price"]);
                     
-                    NSNumber *currentNum = [self.info valueForKey:@"price"];
-                    NSLog(@"正确显示的MNSnumber为:%@",currentNum);
-                    NSNumber *priceNumber  = [self.detailInfo valueForKey:@"price"];
-                    NSLog(@"出错前获取的价格NSNumber为：%@",priceNumber);
-                    NSString *priceNum = [NSNumberFormatter localizedStringFromNumber:priceNumber numberStyle:NSNumberFormatterNoStyle];
-                    //NSLog(@"获取的商品具体信息是:",self.detailInfo);
-                    NSLog(@"出错前价格数据%@",priceNum);
+//                    NSNumber *currentNum = [self.info valueForKey:@"price"];
+//                    NSLog(@"正确显示的MNSnumber为:%@",currentNum);
+//                    NSNumber *priceNumber  = [self.detailInfo valueForKey:@"price"];
+//                    NSLog(@"出错前获取的价格NSNumber为：%@",priceNumber);
+//                    NSString *priceNum = [NSNumberFormatter localizedStringFromNumber:priceNumber numberStyle:NSNumberFormatterNoStyle];
+//                    //NSLog(@"获取的商品具体信息是:",self.detailInfo);
+//                    NSLog(@"出错前价格数据%@",priceNum);
+                    NSString *priceNum = [NSString stringWithFormat:@"%@",[self.detailInfo valueForKey:@"price"]];
                     price = [price stringByAppendingString:priceNum];
                     cell.infoLabel.text = price;
                 }

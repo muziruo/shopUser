@@ -146,9 +146,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
+            if ([AVUser currentUser] == nil) {
+                [self userLogin];
+                return;
+            }
+            
             collectionTableViewController *collectionView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"collectionView"];
             [self.navigationController pushViewController:collectionView animated:true];
         }else if (indexPath.row == 1){
+            if ([AVUser currentUser] == nil) {
+                [self userLogin];
+                return;
+            }
+            
             receiptLocalViewController *receiptLocalView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"receiptLocalView"];
             [self.navigationController pushViewController:receiptLocalView animated:true];
         }

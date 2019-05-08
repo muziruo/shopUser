@@ -101,6 +101,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"你点击了第%li个按钮",(long)indexPath.item);
     UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    if ([AVUser currentUser] == nil) {
+        [self userLogin];
+        return;
+    }
+    
     if (indexPath.item == 0) {
         waitShipTableViewController *orderView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"waitShipView"];
         [[self getController].navigationController pushViewController:orderView animated:true];
@@ -116,6 +122,7 @@
     }
 }
 
+
 - (UIViewController *)getController {
     for (UIView *nextView =[self superview]; nextView; nextView = nextView.superview) {
         UIResponder *getResponder = [nextView nextResponder];
@@ -124,6 +131,13 @@
         }
     }
     return nil;
+}
+
+
+-(void)userLogin {
+    UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    loginViewController *loginView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"loginView"];
+    [[self getController] presentViewController:loginView animated:true completion:nil];
 }
 
 @end

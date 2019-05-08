@@ -14,6 +14,7 @@
 #import "waitReceiptTableViewController.h"
 #import "waitEvaluateTableViewController.h"
 #import "historyTableViewController.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

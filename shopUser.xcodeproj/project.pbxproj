@@ -51,6 +51,8 @@
 		EE6D4E43226D720F00DDE1DA /* receiptLocalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6D4E41226D720F00DDE1DA /* receiptLocalTableViewCell.m */; };
 		EE6D4E46226D7C5600DDE1DA /* localEditViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EE6D4E44226D7C5600DDE1DA /* localEditViewController.h */; };
 		EE6D4E47226D7C5600DDE1DA /* localEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6D4E45226D7C5600DDE1DA /* localEditViewController.m */; };
+		EE7741EF22828129001272D6 /* verifyCodeLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EE7741ED22828129001272D6 /* verifyCodeLoginViewController.h */; };
+		EE7741F022828129001272D6 /* verifyCodeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7741EE22828129001272D6 /* verifyCodeLoginViewController.m */; };
 		EE7B7B4422702CEF00D2343C /* waitShipTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EE7B7B4222702CEF00D2343C /* waitShipTableViewController.h */; };
 		EE7B7B4522702CEF00D2343C /* waitShipTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7B7B4322702CEF00D2343C /* waitShipTableViewController.m */; };
 		EE7B7B4822702D0200D2343C /* waitReceiptTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EE7B7B4622702D0200D2343C /* waitReceiptTableViewController.h */; };
@@ -176,6 +178,8 @@
 		EE6D4E41226D720F00DDE1DA /* receiptLocalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = receiptLocalTableViewCell.m; sourceTree = "<group>"; };
 		EE6D4E44226D7C5600DDE1DA /* localEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = localEditViewController.h; sourceTree = "<group>"; };
 		EE6D4E45226D7C5600DDE1DA /* localEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = localEditViewController.m; sourceTree = "<group>"; };
+		EE7741ED22828129001272D6 /* verifyCodeLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = verifyCodeLoginViewController.h; sourceTree = "<group>"; };
+		EE7741EE22828129001272D6 /* verifyCodeLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = verifyCodeLoginViewController.m; sourceTree = "<group>"; };
 		EE7B7B4222702CEF00D2343C /* waitShipTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waitShipTableViewController.h; sourceTree = "<group>"; };
 		EE7B7B4322702CEF00D2343C /* waitShipTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = waitShipTableViewController.m; sourceTree = "<group>"; };
 		EE7B7B4622702D0200D2343C /* waitReceiptTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waitReceiptTableViewController.h; sourceTree = "<group>"; };
@@ -426,6 +430,8 @@
 				EE5018592268756F00EF007E /* listViewController.m */,
 				EEDC620F2268AA9A0067533A /* registerViewController.h */,
 				EEDC62102268AA9A0067533A /* registerViewController.m */,
+				EE7741ED22828129001272D6 /* verifyCodeLoginViewController.h */,
+				EE7741EE22828129001272D6 /* verifyCodeLoginViewController.m */,
 			);
 			path = loginPage;
 			sourceTree = "<group>";
@@ -513,6 +519,7 @@
 				EE7B7B4822702D0200D2343C /* waitReceiptTableViewController.h in Headers */,
 				EEDC62242269B38C0067533A /* commodityListTableViewController.h in Headers */,
 				EE6D4E3E226D714700DDE1DA /* receiptLocalViewController.h in Headers */,
+				EE7741EF22828129001272D6 /* verifyCodeLoginViewController.h in Headers */,
 				EEDC62222269772B0067533A /* infoViewController.h in Headers */,
 				EE50185A2268756F00EF007E /* listViewController.h in Headers */,
 				EEDC62162268B79E0067533A /* infoTableViewController.h in Headers */,
@@ -753,6 +760,7 @@
 				EE3D5DAB2265B698006F05BC /* UIFont+themeUIFont.m in Sources */,
 				EEDC622C226D69570067533A /* collectionTableViewCell.m in Sources */,
 				EE6D4E3F226D714700DDE1DA /* receiptLocalViewController.m in Sources */,
+				EE7741F022828129001272D6 /* verifyCodeLoginViewController.m in Sources */,
 				EE6D4E43226D720F00DDE1DA /* receiptLocalTableViewCell.m in Sources */,
 				EE3D5DA42265AD7D006F05BC /* UIColor+themeUIColor.m in Sources */,
 				EE1A8A76225CC9B50054E293 /* main.m in Sources */,

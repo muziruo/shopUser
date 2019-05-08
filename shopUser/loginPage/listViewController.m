@@ -24,12 +24,17 @@
     UIView *accountLine = [[UIView alloc] initWithFrame:CGRectMake(40, self.accountInput.frame.origin.y + 50, self.accountInput.frame.size.width, 1)];
     accountLine.backgroundColor = UIColor.blackColor;
     self.accountInput.placeholder = @"手机号";
+//    限制输入
+    self.accountInput.keyboardType = UIKeyboardTypeNumberPad;
     self.accountInput.floatingLabelTextColor = UIColor.themeMainColor;
     
     self.passwordInput = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(40, accountLine.frame.origin.y + 30, self.accountInput.frame.size.width, 50)];
     UIView *passwordLine = [[UIView alloc] initWithFrame:CGRectMake(40, self.passwordInput.frame.origin.y + 50, self.accountInput.frame.size.width, 1)];
     passwordLine.backgroundColor = UIColor.blackColor;
     self.passwordInput.placeholder = @"密码";
+//    限制输入
+    self.passwordInput.keyboardType = UIKeyboardTypeASCIICapable;
+    
     self.passwordInput.floatingLabelTextColor = UIColor.themeMainColor;
     
     self.loginButton = [[UIButton alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height - 220, self.view.frame.size.width - 120, 50)];

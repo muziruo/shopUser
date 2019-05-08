@@ -39,7 +39,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if ([AVUser currentUser] != nil) {
-        [self getShoppingCarInfo];
+        [self.shopCarTableView.mj_header beginRefreshing];
         self.buyButton.userInteractionEnabled = YES;
     }else{
         self.buyButton.userInteractionEnabled = NO;
@@ -107,7 +107,6 @@
 
 //获取购物车信息
 -(void)getShoppingCarInfo {
-    [self.shopCarTableView.mj_header beginRefreshing];
     
     NSDictionary *params = @{@"userId":[AVUser currentUser].objectId};
     [AVCloud callFunctionInBackground:@"getShoppingCar" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
@@ -145,7 +144,8 @@
     myCell.numberButton.delegate = self;
     
     NSString *priceTitle = @"¥";
-    NSString *price = [NSNumberFormatter localizedStringFromNumber:[[self.shoppingCarInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+    //NSString *price = [NSNumberFormatter localizedStringFromNumber:[[self.shoppingCarInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"price"] numberStyle:NSNumberFormatterNoStyle];
+    NSString *price = [NSString stringWithFormat:@"%@",[[self.shoppingCarInfo[indexPath.row] valueForKey:@"commodity"] valueForKey:@"price"]];
     priceTitle = [priceTitle stringByAppendingString:price];
     myCell.price.text = price;
     
