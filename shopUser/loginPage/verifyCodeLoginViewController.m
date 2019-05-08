@@ -20,6 +20,7 @@
     [super viewDidLoad];
     
     
+    
     self.userSetting = [NSUserDefaults standardUserDefaults];
     
     self.accountInput = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(40, 20, self.view.frame.size.width - 80, 50)];
@@ -84,7 +85,7 @@
 
 -(void)getVerifiedCode {
     NSString *phoneNumber = self.accountInput.text;
-    if (phoneNumber == nil) {
+    if ([phoneNumber isEqual:@""]) {
         [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
         [SVProgressHUD dismissWithDelay:0.8];
         return;
@@ -103,6 +104,14 @@
             [SVProgressHUD showSuccessWithStatus:@"登录成功"];
             [SVProgressHUD dismissWithDelay:1.0];
             [[self getCurrentVC] dismissViewControllerAnimated:true completion:nil];
+        }else{
+            if (error.code == 211) {
+                [SVProgressHUD showErrorWithStatus:@"未找到用户"];
+                [SVProgressHUD dismissWithDelay:1.0];
+            }else if (error.code == 603){
+                [SVProgressHUD showErrorWithStatus:@"无效的短信验证码"];
+                [SVProgressHUD dismissWithDelay:1.0];
+            }
         }
     }];
 }

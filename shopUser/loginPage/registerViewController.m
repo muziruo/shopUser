@@ -78,11 +78,30 @@
     // Do any additional setup after loading the view.
 }
 
+
 - (UIView *)listView {
     return self.view;
 }
 
+
 -(void)registerWork {
+    if ([self.accountInput.text isEqual:@""]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
+        [SVProgressHUD dismissWithDelay:0.8];
+        return;
+    }
+    if ([self.passwordInput.text isEqual:@""]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入密码"];
+        [SVProgressHUD dismissWithDelay:0.8];
+        return;
+    }
+    if ([self.verifiedCode.text isEqual:@""]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
+        [SVProgressHUD dismissWithDelay:0.8];
+        return;
+    }
+    
+    
     [AVUser signUpOrLoginWithMobilePhoneNumberInBackground:self.accountInput.text smsCode:self.verifiedCode.text block:^(AVUser * _Nullable user, NSError * _Nullable error) {
         if (error == nil) {
             self.userId = user.objectId;
@@ -97,24 +116,18 @@
                     [[self getCurrentVC] dismissViewControllerAnimated:true completion:nil];
                 }
             }];
+        }else {
+            if (error.code == 603) {
+                [SVProgressHUD showErrorWithStatus:@"验证码错误"];
+                [SVProgressHUD dismissWithDelay:1.0];
+            }else if (error.code == 127){
+                [SVProgressHUD showErrorWithStatus:@"无效的手机号"];
+                [SVProgressHUD dismissWithDelay:1.0];
+            }
         }
     }];
 }
 
-
-//-(void)createUserInfo {
-//    NSDictionary *params = @{@"userLoginId":[AVUser currentUser].objectId};
-//    NSLog(@"需要进行创建的userId为%@",[AVUser currentUser].objectId);
-//    
-//    [AVCloud callFunctionInBackground:@"createUserInfo" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
-//        //[self.userSetting setObject:[[object valueForKey:@"result"] valueForKey:@"objectId"] forKey:@"userInfoId"];
-//        [self.userSetting setValue:[[object valueForKey:@"result"] valueForKey:@"objectId"] forKey:@"userInfoId"];
-//        
-//        NSLog(@"所得的用户信息表ID为%@",[self.userSetting valueForKey:@"userInfoId"]);
-//        
-//        
-//    }];
-//}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:true];
@@ -123,10 +136,25 @@
 
 -(void)getVerifiedCode {
     NSString *phoneNumber = self.accountInput.text;
+    if ([phoneNumber isEqual:@""]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
+        [SVProgressHUD dismissWithDelay:0.8];
+        return;
+    }
     
     [AVSMS requestShortMessageForPhoneNumber:phoneNumber options:nil callback:^(BOOL succeeded, NSError * _Nullable error) {
-        [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
-        [SVProgressHUD dismissWithDelay:1.0];
+        if (error == nil) {
+            [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
+            [SVProgressHUD dismissWithDelay:0.5];
+        }else {
+            if (error.code == 127) {
+                [SVProgressHUD showErrorWithStatus:@"无效的手机号"];
+                [SVProgressHUD dismissWithDelay:0.8];
+            }else{
+                [SVProgressHUD showErrorWithStatus:@"请检查手机号码格式"];
+                [SVProgressHUD dismissWithDelay:0.8];
+            }
+        }
     }];
 }
 
@@ -138,6 +166,7 @@
     
     return currentVC;
 }
+
 
 - (UIViewController *)getCurrentVCFrom:(UIViewController *)rootVC {
     UIViewController *currentVC;
