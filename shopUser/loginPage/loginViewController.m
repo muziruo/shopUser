@@ -20,7 +20,7 @@
     //创建标签
     self.myTitleView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 50)];
     self.myTitleView.delegate = self;
-    self.myTitleView.titles =@[@"登录",@"注册"];
+    self.myTitleView.titles =@[@"登录",@"验证码登录",@"注册"];
     self.myTitleView.titleFont = UIFont.titleFont;
     self.myTitleView.titleColorGradientEnabled = YES;
     self.myTitleView.titleSelectedColor = UIColor.themeMainColor;
@@ -81,6 +81,9 @@
             return [[listViewController alloc] init];
             break;
         case 1:
+            return [[verifyCodeLoginViewController alloc] init];
+            break;
+        case 2:
             return [[registerViewController alloc] init];
             break;
         default:

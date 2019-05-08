@@ -13,6 +13,7 @@
 #import "JXCategoryView.h"
 #import "listViewController.h"
 #import "registerViewController.h"
+#import "verifyCodeLoginViewController.h"
 
 
 NS_ASSUME_NONNULL_BEGIN

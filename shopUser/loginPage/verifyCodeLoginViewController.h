@@ -7,10 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JXCategoryView.h"
+#import "JVFloatLabeledTextField.h"
+#import "UIColor+themeUIColor.h"
+#import "UIFont+themeUIFont.h"
+#import <AVOSCloud/AVOSCloud.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface verifyCodeLoginViewController : UIViewController
+@interface verifyCodeLoginViewController : UIViewController<JXCategoryListContentViewDelegate>
+
+@property JVFloatLabeledTextField *accountInput;
+@property JVFloatLabeledTextField *passwordInput;
+@property UIButton *getCode;
+@property UIButton *loginButton;
 
 @end
 
