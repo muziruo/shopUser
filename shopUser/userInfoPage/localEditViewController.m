@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     self.editInfoTitle = @[@"收件人",@"电话号码",@"所在区域",@"具体住址"];
-    self.editPlaceHolder = @[@"请输入收件人姓名",@"请输入手机号码",@"请选择所在区域",@"请输入具体住址"];
+    self.editPlaceHolder = @[@"请输入收件人姓名(必填)",@"请输入手机号码(必填)",@"请选择所在区域(必填)",@"请输入具体住址(必填)"];
     self.needInfo = @[@"name",@"phoneNumber",@"area",@"address"];
     
     self.saveButton.backgroundColor = UIColor.buttonColor;
@@ -108,6 +108,28 @@
     UITextField *addressInput = [self.view viewWithTag:104];
     UISwitch *defaultSwitch = [self.view viewWithTag:777];
     
+//    判空
+    if ([nameInput.text isEqual:@""]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入收件人名称"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    if ([phoneInput.text isEqual:@""]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入收件人电话"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    if ([areaInput.text isEqual:@""]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入收件人地址"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    if ([addressInput.text isEqual:@""]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入收件人地址"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
 //    修改地址信息
     if (self.editOrCreate == 1) {
         NSNumber *defaultNumber = [[NSNumber alloc] init];
@@ -172,9 +194,15 @@
                         [AVCloud callFunctionInBackground:@"setLocalDefault" withParameters:setParams block:^(id  _Nullable object, NSError * _Nullable error) {
                             [SVProgressHUD showSuccessWithStatus:@"添加成功"];
                             [SVProgressHUD dismissWithDelay:0.8];
+                            if ([self.delegate respondsToSelector:@selector(addedLocal)]) {
+                                [self.delegate addedLocal];
+                            }
                             [self.navigationController popViewControllerAnimated:true];
                         }];
                     }else {
+                        if ([self.delegate respondsToSelector:@selector(addedLocal)]) {
+                            [self.delegate addedLocal];
+                        }
                         [SVProgressHUD showSuccessWithStatus:@"添加成功"];
                         [SVProgressHUD dismissWithDelay:0.8];
                         [self.navigationController popViewControllerAnimated:true];

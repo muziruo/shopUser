@@ -92,8 +92,18 @@
     }
     
     [AVSMS requestShortMessageForPhoneNumber:phoneNumber options:nil callback:^(BOOL succeeded, NSError * _Nullable error) {
-        [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
-        [SVProgressHUD dismissWithDelay:1.0];
+        if (error == nil) {
+            [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
+            [SVProgressHUD dismissWithDelay:1.0];
+        }else{
+            if (error.code == 127) {
+                [SVProgressHUD showErrorWithStatus:@"无效的手机号"];
+                [SVProgressHUD dismissWithDelay:0.8];
+            }else{
+                [SVProgressHUD showErrorWithStatus:@"请检查手机号码格式"];
+                [SVProgressHUD dismissWithDelay:0.8];
+            }
+        }
     }];
 }
 

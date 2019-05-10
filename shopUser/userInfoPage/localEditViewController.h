@@ -11,17 +11,28 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol localEditViewControllerDelegate <NSObject>
+
+-(void)addedLocal;
+
+@end
+
+
 @interface localEditViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *localEditTableView;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
-//是创建还是修改
+//是创建还是修改，1是修改，0是添加
 @property int editOrCreate;
 //需要编辑的地址信息
 @property NSDictionary *editLocalInfo;
 
 @property BOOL isFrist;
+
+
+//刷新代理
+@property (nonatomic, weak) id<localEditViewControllerDelegate> delegate;
 
 @end
 

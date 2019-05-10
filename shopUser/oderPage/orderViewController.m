@@ -11,6 +11,7 @@
 @interface orderViewController ()
 
 @property UIStoryboard *mainStoryBroad;
+@property BOOL addLocal;
 
 @end
 
@@ -81,6 +82,11 @@
                 if ([[object[i] valueForKey:@"isDefault"]  isEqual:@1]) {
                     self.selectedLocal = object[i];
                 }
+            }
+            if ([object count] == 0) {
+                self.addLocal = true;
+            }else{
+                self.addLocal = false;
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.orderTableView reloadData];
@@ -214,10 +220,18 @@
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     
     if (indexPath.section == 0) {
-        selectLocalViewController *localListView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"localListView"];
-        localListView.localList = self.localList;
-        localListView.delegate = self;
-        [self presentViewController:localListView animated:true completion:nil];
+        if (self.addLocal) {
+            localEditViewController *localEditView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"editLocalView"];
+            localEditView.delegate = self;
+            localEditView.editOrCreate = 0;
+            localEditView.isFrist = true;
+            [self.navigationController pushViewController:localEditView animated:true];
+        }else{
+            selectLocalViewController *localListView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"localListView"];
+            localListView.localList = self.localList;
+            localListView.delegate = self;
+            [self presentViewController:localListView animated:true completion:nil];
+        }
     }
 }
 
@@ -227,6 +241,12 @@
     self.selectedLocal = self.localList[selectedRow];
     NSLog(@"开始更新地址,更新为%@",self.selectedLocal);
     [self.orderTableView reloadData];
+}
+
+
+//代理回调刷新
+- (void)addedLocal {
+    [self getReceiptLocal];
 }
 
 

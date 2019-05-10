@@ -15,10 +15,11 @@
 #import <SDWebImage/SDWebImage.h>
 #import "selectLocalViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "localEditViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface orderViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, PPNumberButtonDelegate, selectLocalViewControllerDelegate>
+@interface orderViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, PPNumberButtonDelegate, selectLocalViewControllerDelegate, localEditViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *orderTableView;
 @property (weak, nonatomic) IBOutlet UIButton *sureButton;
