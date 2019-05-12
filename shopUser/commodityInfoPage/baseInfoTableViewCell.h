@@ -13,6 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+//基本参数cell
 @interface baseInfoTableViewCell : UITableViewCell
 
 @property UILabel* infoLabel;

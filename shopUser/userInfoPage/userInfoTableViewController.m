@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     
     self.mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
@@ -31,7 +32,10 @@
     _avatorimage.image = [UIImage imageNamed:@"imageReplace-s"];
     _userNickName.font = UIFont.normalFont;
     
-    self.navigationController.navigationBar.barTintColor = UIColor.whiteColor;
+    self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
+    self.navigationItem.title = @"个人中心";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont navTitleFont], NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -58,8 +62,10 @@
         [self.userNickName setTitle:@"登录/注册" forState:UIControlStateNormal];
         [self.userNickName addTarget:self action:@selector(userLogin) forControlEvents:UIControlEventTouchUpInside];
     }else {
-        [self.userNickName setTitle:@"昵称" forState:UIControlStateNormal];
+        [self.userNickName setTitle:[[AVUser currentUser] valueForKey:@"nickName"] forState:UIControlStateNormal];
         self.userNickName.userInteractionEnabled = false;
+        [self.avatorimage sd_setImageWithURL:[[AVUser currentUser] valueForKey:@"avatar"] placeholderImage:[UIImage imageNamed:@"imageReplace-s"]];
+        
         [self.tableView reloadData];
     }
 }

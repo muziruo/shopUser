@@ -25,6 +25,9 @@
     self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     
+//    设置导航栏标题字体和颜色
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont navTitleFont], NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
     self.shopCarTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getShoppingCarInfo)];
     
     self.selectAll.backgroundColor = UIColor.voidColor;

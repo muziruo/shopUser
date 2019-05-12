@@ -15,6 +15,7 @@
 #import "commodityListTableViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "MJRefresh.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

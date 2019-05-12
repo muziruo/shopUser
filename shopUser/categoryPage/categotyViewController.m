@@ -21,6 +21,9 @@
     
     _levelOne = @[@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类",@"分类"];
     
+//    设置导航栏标题字体和颜色
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont navTitleFont], NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
     self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     // Do any additional setup after loading the view.

@@ -18,4 +18,13 @@
 }
 */
 
+//通过重写该方法来实现扩大点击范围
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    CGRect bounds = self.bounds;
+    CGFloat widthLarge = 26;
+    CGFloat heightLarge = 26;
+    bounds = CGRectInset(bounds, -widthLarge/2, -heightLarge/2);
+    return CGRectContainsPoint(bounds, point);
+}
+
 @end

@@ -13,6 +13,7 @@
 
 @property NSArray *commodityListInfo;
 @property UIStoryboard *mainStoryBroad;
+@property NSNumber *page;
 
 @end
 
@@ -26,6 +27,14 @@
     if (self.searchText != nil) {
         [self searchInfo];
     }
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(searchInfo)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(searchMoreInfo)];
+    
+    self.page = @1;
+    
+    [self.tableView.mj_header beginRefreshing];
+    
     //self.hidesBottomBarWhenPushed = YES;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -37,16 +46,76 @@
 
 //搜索商品
 -(void)searchInfo {
-    NSDictionary *params = [NSDictionary dictionaryWithObject:self.searchText forKey:@"keyWord"];
+    NSDictionary *params = @{
+                             @"keyWord":self.searchText,
+                             @"page":@0
+                             };
+    //NSDictionary *params = [NSDictionary dictionaryWithObject:self.searchText forKey:@"keyWord"];
     [AVCloud callFunctionInBackground:@"searchCommodity" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
-            self.commodityListInfo = object;
+            if ([[object valueForKey:@"success"] boolValue]) {
+                self.commodityListInfo = [object valueForKey:@"result"];
+                self.page = @1;
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.tableView.mj_header endRefreshing];
+                    [self.tableView reloadData];
+                }];
+            }else{
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.tableView.mj_header endRefreshing];
+                    [self.tableView reloadData];
+                }];
+                [SVProgressHUD showErrorWithStatus:@"数据获取失败，请重新刷新"];
+                [SVProgressHUD dismissWithDelay:2.0];
+            }
+        }else{
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView.mj_header endRefreshing];
                 [self.tableView reloadData];
             }];
+            [SVProgressHUD showErrorWithStatus:@"数据获取失败，请重新刷新"];
+            [SVProgressHUD dismissWithDelay:2.0];
         }
     }];
 }
+
+
+
+-(void)searchMoreInfo {
+    NSDictionary *params = @{
+                             @"keyWord":self.searchText,
+                             @"page":self.page
+                             };
+    //NSDictionary *params = [NSDictionary dictionaryWithObject:self.searchText forKey:@"keyWord"];
+    [AVCloud callFunctionInBackground:@"searchCommodity" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            if ([[object valueForKey:@"success"] boolValue]) {
+                [self.commodityListInfo arrayByAddingObjectsFromArray:[object valueForKey:@"result"]];
+                int nextPage = self.page.intValue + 1;
+                self.page = [NSNumber numberWithInt:nextPage];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.tableView.mj_footer endRefreshing];
+                    [self.tableView reloadData];
+                }];
+            }else {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.tableView.mj_footer endRefreshing];
+                    [self.tableView reloadData];
+                }];
+                [SVProgressHUD showErrorWithStatus:@"数据获取失败，请重新刷新"];
+                [SVProgressHUD dismissWithDelay:2.0];
+            }
+        }else {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView.mj_footer endRefreshing];
+                [self.tableView reloadData];
+            }];
+            [SVProgressHUD showErrorWithStatus:@"数据获取失败，请重新刷新"];
+            [SVProgressHUD dismissWithDelay:2.0];
+        }
+    }];
+}
+
 
 #pragma mark - Table view data source
 

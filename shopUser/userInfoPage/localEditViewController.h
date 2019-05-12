@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "receiptLocalTableViewCell.h"
+#import <BRPickerView/BRPickerView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface localEditViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface localEditViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *localEditTableView;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;

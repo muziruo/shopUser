@@ -21,14 +21,19 @@
     if (self) {
         self.infoLabel = [[UILabel alloc] init];
         [self addSubview:self.infoLabel];
+        
+        UIEdgeInsets labelPadding = UIEdgeInsetsMake(10, 20, 10, 20);
+        [self.infoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self).with.insets(labelPadding);
+        }];
     }
-    
+
     return self;
 }
 
 //之后修改为约束，删除此处的固定位置
 - (void)layoutSubviews {
-    [self.infoLabel setFrame:CGRectMake(20, 0, self.frame.size.width - 40, self.frame.size.height)];
+    //[self.infoLabel setFrame:CGRectMake(20, 0, self.frame.size.width - 40, self.frame.size.height)];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -42,4 +42,8 @@
     return [UIFont fontWithName:@"Avenir" size:14];
 }
 
++ (UIFont *)navTitleFont {
+    return [UIFont fontWithName:@"Avenir-light" size:17];
+}
+
 @end

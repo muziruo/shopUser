@@ -21,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
+    
     self.editInfoTitle = @[@"收件人",@"电话号码",@"所在区域",@"具体住址"];
     self.editPlaceHolder = @[@"请输入收件人姓名(必填)",@"请输入手机号码(必填)",@"请选择所在区域(必填)",@"请输入具体住址(必填)"];
     self.needInfo = @[@"name",@"phoneNumber",@"area",@"address"];
@@ -73,6 +75,10 @@
     
     cell.infoTitle.text = self.editInfoTitle[indexPath.row];
     cell.infoInput.placeholder = self.editPlaceHolder[indexPath.row];
+    if (indexPath.row == 2) {
+        cell.infoInput.delegate = self;
+    }
+    
     cell.infoInput.tag = 101 + indexPath.row;
     
     if (self.editOrCreate == 1) {
@@ -80,6 +86,31 @@
     }
     
     return cell;
+}
+
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (textField.tag == 103) {
+        [self selectArea:textField];
+        return NO;
+    }
+    return YES;
+}
+
+
+-(void)selectArea:(UITextField*)textField {
+    NSArray *defaultSelArr = [textField.text componentsSeparatedByString:@" "];
+    // NSArray *dataSource = [weakSelf getAddressDataSource];  //从外部传入地区数据源
+    NSArray *dataSource = nil; // dataSource 为空时，就默认使用框架内部提供的数据源（即 BRCity.plist）
+    [BRAddressPickerView showAddressPickerWithShowType:BRAddressPickerModeArea dataSource:dataSource defaultSelected:defaultSelArr isAutoSelect:YES themeColor:UIColor.themeMainColor resultBlock:^(BRProvinceModel *province, BRCityModel *city, BRAreaModel *area) {
+        textField.text = [NSString stringWithFormat:@"%@%@%@", province.name, city.name, area.name];
+        NSLog(@"省[%@]：%@，%@", @(province.index), province.code, province.name);
+        NSLog(@"市[%@]：%@，%@", @(city.index), city.code, city.name);
+        NSLog(@"区[%@]：%@，%@", @(area.index), area.code, area.name);
+        NSLog(@"--------------------");
+    } cancelBlock:^{
+        NSLog(@"点击了背景视图或取消按钮");
+    }];
 }
 
 

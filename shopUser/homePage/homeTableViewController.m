@@ -12,6 +12,7 @@
 @interface homeTableViewController ()
 
 @property NSArray *commodityInfo;
+@property NSNumber *page;
 
 @end
 
@@ -21,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont navTitleFont], NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     _logoImage.image = [UIImage imageNamed:@"zhanweitu.png"];
     
@@ -29,6 +30,10 @@
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getHomeCommodity)];
+    
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreHomeCommodity)];
+    
+    self.page = @1;
     
     //[self getHomeCommodity];
     [self.tableView.mj_header beginRefreshing];
@@ -39,21 +44,75 @@
 //获取云端数据
 - (void)getHomeCommodity {
     
-    [AVCloud callFunctionInBackground:@"getHomeCommodity" withParameters:nil block:^(id  _Nullable object, NSError * _Nullable error) {
+    NSDictionary *params = @{
+                             @"page":@0
+                             };
+    [AVCloud callFunctionInBackground:@"getHomeCommodity" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
-            self.commodityInfo = object;
-            
-            //NSLog(@"数组中的元素个数为%lu",[object count]);
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.tableView.mj_header endRefreshing];
-                [self.tableView reloadData];
-            }];
-            NSLog(@"数据获取成功");
+            if ([[object valueForKey:@"success"] boolValue]) {
+                self.commodityInfo = [object valueForKey:@"result"];
+                self.page = @1;
+                
+                //NSLog(@"数组中的元素个数为%lu",[object count]);
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.tableView.mj_header endRefreshing];
+                    [self.tableView reloadData];
+                }];
+                NSLog(@"数据获取成功");
+            }else {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.tableView.mj_header endRefreshing];
+                    [self.tableView reloadData];
+                }];
+                [SVProgressHUD showErrorWithStatus:@"数据获取失败，请重新刷新"];
+                [SVProgressHUD dismissWithDelay:2.0];
+            }
         }else {
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.tableView.mj_header endRefreshing];
                 [self.tableView reloadData];
             }];
+            [SVProgressHUD showErrorWithStatus:@"数据获取失败，请重新刷新"];
+            [SVProgressHUD dismissWithDelay:2.0];
+        }
+    }];
+}
+
+
+//获取更多云端数据
+- (void)getMoreHomeCommodity {
+    
+    NSDictionary *params = @{
+                             @"page":self.page
+                             };
+    [AVCloud callFunctionInBackground:@"getHomeCommodity" withParameters:params block:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            if ([object valueForKey:@"success"]) {
+                [self.commodityInfo arrayByAddingObjectsFromArray:[object valueForKey:@"result"]];
+                int nextPage = self.page.intValue + 1;
+                self.page = [NSNumber numberWithInt:nextPage];
+                
+                //NSLog(@"数组中的元素个数为%lu",[object count]);
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.tableView.mj_footer endRefreshing];
+                    [self.tableView reloadData];
+                }];
+                NSLog(@"上拉数据获取成功");
+            }else {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.tableView.mj_footer endRefreshing];
+                    //[self.tableView reloadData];
+                }];
+                [SVProgressHUD showErrorWithStatus:@"数据获取失败，请重新刷新"];
+                [SVProgressHUD dismissWithDelay:2.0];
+            }
+        }else {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView.mj_footer endRefreshing];
+                //[self.tableView reloadData];
+            }];
+            [SVProgressHUD showErrorWithStatus:@"数据获取失败，请重新刷新"];
+            [SVProgressHUD dismissWithDelay:2.0];
         }
     }];
 }
@@ -108,8 +167,8 @@
 }
 
 //section之间的间隔
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 15;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 5;
 }
 
 

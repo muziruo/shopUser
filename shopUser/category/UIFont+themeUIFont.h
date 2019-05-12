@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIFont *)normalFont;
 + (UIFont *)normalFontLight;
 + (UIFont *)numberFont;
++ (UIFont *)navTitleFont;
 
 @end
 
