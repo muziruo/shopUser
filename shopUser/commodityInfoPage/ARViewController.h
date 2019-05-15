@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <QuickLook/QuickLook.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "UIColor+themeUIColor.h"
+#import "UIFont+themeUIFont.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property NSString *filePath;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property NSString *commodityName;
+
+@property (weak, nonatomic) IBOutlet UILabel *pageTitle;
+@property (weak, nonatomic) IBOutlet UIButton *showModel;
+
 
 
 @end

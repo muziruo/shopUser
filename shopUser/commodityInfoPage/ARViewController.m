@@ -21,9 +21,19 @@
     
     NSString *newpath = [docPath stringByAppendingPathComponent:@"ARModel.usdz"];
     
+    self.pageTitle.text = [self.commodityName stringByAppendingString:@" AR展示"];
+    
     self.filePath = newpath;
     
     [self.backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.showModel addTarget:self action:@selector(showARModel) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.showModel.userInteractionEnabled = false;
+    
+    self.showModel.backgroundColor = UIColor.grayColor;
+    
+    self.backButton.backgroundColor = UIColor.stressColor;
     
     [SVProgressHUD showWithStatus:@"准备模型中"];
     [self downARModel];
@@ -53,6 +63,11 @@
         
         NSLog(@"下载完成");
         
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            self.showModel.userInteractionEnabled = true;
+            self.showModel.backgroundColor = UIColor.themeMainColor;
+        }];
+        
         [SVProgressHUD dismiss];
         QLPreviewController *myView = [[QLPreviewController alloc] init];
         myView.delegate = self;
@@ -71,7 +86,15 @@
         NSLog(@"删除成功");
     }
     
-    [self.navigationController popViewControllerAnimated:true];
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+
+-(void)showARModel {
+    QLPreviewController *myView = [[QLPreviewController alloc] init];
+    myView.delegate = self;
+    myView.dataSource = self;
+    [self presentViewController:myView animated:true completion:nil];
 }
 
 @end

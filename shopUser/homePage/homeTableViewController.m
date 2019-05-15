@@ -186,6 +186,8 @@
         [searchViewController.navigationController pushViewController:toController animated:YES];
     }];
     
+    //searchViewController.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
+    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
     [self presentViewController:nav animated:true completion:nil];
 }

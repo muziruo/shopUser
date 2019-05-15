@@ -13,10 +13,11 @@
 #import "loginViewController.h"
 #import "collectionTableViewController.h"
 #import "receiptLocalViewController.h"
+#import "editUserInfoViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface userInfoTableViewController : UITableViewController
+@interface userInfoTableViewController : UITableViewController<editUserInfoViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatorimage;
 @property (weak, nonatomic) IBOutlet UIView *userBackgroundImage;

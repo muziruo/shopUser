@@ -140,6 +140,7 @@
     
     UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     commodityListTableViewController *commodityList = [mainStoryBroad instantiateViewControllerWithIdentifier:@"commodityListTableView"];
+    commodityList.searchText = @"iPhone";
     [[self getController].navigationController pushViewController:commodityList animated:true];
 }
 

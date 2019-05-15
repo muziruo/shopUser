@@ -29,7 +29,10 @@
     }
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(searchInfo)];
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(searchMoreInfo)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(searchMoreInfo)];
+    
+    self.navigationController.navigationBar.barTintColor = UIColor.themeMainColor;
+    self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     
     self.page = @1;
     

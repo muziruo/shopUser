@@ -67,6 +67,8 @@
 		EEB0A6B8226F07C800066371 /* orderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A6B6226F07C800066371 /* orderViewController.m */; };
 		EEB0A6BB226F095000066371 /* orderTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EEB0A6B9226F095000066371 /* orderTableViewCell.h */; };
 		EEB0A6BC226F095000066371 /* orderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A6BA226F095000066371 /* orderTableViewCell.m */; };
+		EEC8CE31228C33C6000D3EB9 /* editUserInfoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEC8CE2F228C33C6000D3EB9 /* editUserInfoViewController.h */; };
+		EEC8CE32228C33C6000D3EB9 /* editUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC8CE30228C33C6000D3EB9 /* editUserInfoViewController.m */; };
 		EED07113225D9CD10086D96C /* homeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07112225D9CD10086D96C /* homeCollectionView.m */; };
 		EED07116225D9D170086D96C /* homeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07115225D9D170086D96C /* homeCollectionViewCell.m */; };
 		EED07119225DED8B0086D96C /* commodityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EED07118225DED8B0086D96C /* commodityCollectionViewCell.m */; };
@@ -194,6 +196,8 @@
 		EEB0A6B6226F07C800066371 /* orderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orderViewController.m; sourceTree = "<group>"; };
 		EEB0A6B9226F095000066371 /* orderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = orderTableViewCell.h; sourceTree = "<group>"; };
 		EEB0A6BA226F095000066371 /* orderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = orderTableViewCell.m; sourceTree = "<group>"; };
+		EEC8CE2F228C33C6000D3EB9 /* editUserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = editUserInfoViewController.h; sourceTree = "<group>"; };
+		EEC8CE30228C33C6000D3EB9 /* editUserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = editUserInfoViewController.m; sourceTree = "<group>"; };
 		EED07111225D9CD10086D96C /* homeCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeCollectionView.h; sourceTree = "<group>"; };
 		EED07112225D9CD10086D96C /* homeCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeCollectionView.m; sourceTree = "<group>"; };
 		EED07114225D9D170086D96C /* homeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeCollectionViewCell.h; sourceTree = "<group>"; };
@@ -296,6 +300,8 @@
 				EE3AABF52271409700A5BC94 /* orderDetailTableViewCell.m */,
 				EE3AABFD2272BE9800A5BC94 /* evaluateViewController.h */,
 				EE3AABFE2272BE9800A5BC94 /* evaluateViewController.m */,
+				EEC8CE2F228C33C6000D3EB9 /* editUserInfoViewController.h */,
+				EEC8CE30228C33C6000D3EB9 /* editUserInfoViewController.m */,
 			);
 			path = userInfoPage;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 				EEDC6227226D689C0067533A /* collectionTableViewController.h in Headers */,
 				EEDC621A22695E940067533A /* baseInfoTableViewCell.h in Headers */,
 				EE7B7B4C22702D3D00D2343C /* waitEvaluateTableViewController.h in Headers */,
+				EEC8CE31228C33C6000D3EB9 /* editUserInfoViewController.h in Headers */,
 				EE6D4E46226D7C5600DDE1DA /* localEditViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -787,6 +794,7 @@
 				EED07116225D9D170086D96C /* homeCollectionViewCell.m in Sources */,
 				EE3D5DAF2265B928006F05BC /* UITestViewController.m in Sources */,
 				EED07113225D9CD10086D96C /* homeCollectionView.m in Sources */,
+				EEC8CE32228C33C6000D3EB9 /* editUserInfoViewController.m in Sources */,
 				EEDC6228226D689C0067533A /* collectionTableViewController.m in Sources */,
 				EED289FB22753C1A007725AE /* SUSelectButton.m in Sources */,
 			);

@@ -463,7 +463,9 @@
     }else if (indexPath.section == 3){
         
         ARViewController *ARView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"ARView"];
-        [self.navigationController pushViewController:ARView animated:true];
+        ARView.commodityName = [self.detailInfo valueForKey:@"name"];
+        //[self.navigationController pushViewController:ARView animated:true];
+        [self presentViewController:ARView animated:true completion:nil];
     }
     
     

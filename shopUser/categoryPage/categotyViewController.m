@@ -73,6 +73,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     UIStoryboard *mainStoryBroad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     commodityListTableViewController *commodityListView = [mainStoryBroad instantiateViewControllerWithIdentifier:@"commodityListTableView"];
+    commodityListView.searchText = @"iPhone";
     [self.navigationController pushViewController:commodityListView animated:true];
 }
 

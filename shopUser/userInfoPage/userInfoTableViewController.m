@@ -39,7 +39,7 @@
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
-    self.userFunctions = @[@"收藏商品",@"收货地址管理",@"关于"];
+    self.userFunctions = @[@"收藏商品",@"收货地址管理",@"个人信息"];
     self.orderStatus = @[@"待发货",@"待收货",@"待评价",@"历史订单"];
     self.statusImage = @[@"waitShip",@"waitReceipt",@"waitEvaluate",@"allOrder"];
     self.functionImage = @[@"collectCommodity",@"local",@"about"];
@@ -167,6 +167,15 @@
             
             receiptLocalViewController *receiptLocalView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"receiptLocalView"];
             [self.navigationController pushViewController:receiptLocalView animated:true];
+        }else if (indexPath.row == 2){
+            if ([AVUser currentUser] == nil) {
+                [self userLogin];
+                return;
+            }
+            
+            editUserInfoViewController *editUserInfoView = [self.mainStoryBroad instantiateViewControllerWithIdentifier:@"editUserInfoView"];
+            editUserInfoView.delegate = self;
+            [self.navigationController pushViewController:editUserInfoView animated:true];
         }
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:true];
@@ -183,6 +192,11 @@
         [self.userNickName setTitle:@"登录/注册" forState:UIControlStateNormal];
         [self.userNickName addTarget:self action:@selector(userLogin) forControlEvents:UIControlEventTouchUpInside];
     }
+}
+
+
+-(void)refreshUserInfo {
+    [self.userNickName setTitle:[[AVUser currentUser] valueForKey:@"nickName"] forState:UIControlStateNormal];
 }
 
 
